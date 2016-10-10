@@ -1,0 +1,214 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://files.minecraftforge.net/maven" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'org.ajoberstar:gradle-git:0.10.1'
+    }
+}
+
+plugins {
+    id "net.minecraftforge.gradle.forge" version "2.0.2"
+    id 'com.matthewprenger.cursegradle' version '1.0.7'
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
+
+//set it so it has to be java 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = package_group
+archivesBaseName = mod_name
+version = "${mc_version}-${major_version}.${minor_version}.${build_number}"
+
+// Ignore this error. It'll work just fine when building.
+import org.ajoberstar.grgit.*
+
+ext.repo = Grgit.open(project.file('.'))
+def gitHash = 'unknown'
+
+if (new File(projectDir, '.git').exists())
+    gitHash = repo.log().find().abbreviatedId
+
+repositories {
+    maven { url "http://dvs1.progwml6.com/files/maven" }
+}
+
+dependencies {
+    // compile against the JEI API
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    // at runtime, use the full JEI jar
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+}
+
+minecraft {
+    version = "${mc_version}-${forge_version}"
+    runDir = "run"
+
+    useDepAts = true
+
+    replace "@VERSION@", project.version
+    replaceIn "Constants.java"
+
+    if (project.hasProperty('mappings_version'))
+        mappings = project.mappings_version
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
+
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+        exclude '**/*.properties'
+    }
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+jar {
+    classifier = ''
+    manifest.mainAttributes(
+        "Built-By": System.getProperty('user.name'),
+        "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
+        "Implementation-Title": project.name,
+        "Implementation-Version": project.version,
+        "Git-Hash": gitHash
+    )
+}
+
+// Javadoc jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+//Not now not with clean and auto-upload to curse, it just deletes it so there is no point
+//tasks.build.dependsOn sourceJar, javadocJar
+
+tasks.withType(JavaCompile) { task ->
+    task.options.encoding = 'UTF-8'
+}
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+            artifact sourceJar
+            artifact javadocJar
+        }
+    }
+    repositories {
+        if (project.hasProperty('maven_repo')) {
+            maven { url maven_repo }
+        } else {
+            mavenLocal()
+        }
+    }
+}
+
+String getChangelogText() {
+    def changelogFile = new File('changelog.txt')
+    String str = ''
+    String separator = '---'
+    int lineCount = 0
+    boolean done = false
+    changelogFile.eachLine {
+        if (done || it == null) {
+            return
+        }
+        if (lineCount < 3) {
+            lineCount++
+            if (it.startsWith(separator)) {return}
+        }
+        if (!it.startsWith(separator)) {
+            str += "$it" + (lineCount < 3 ? ':\n\n' : '\n')
+            return
+        }
+        done = true // once we go past the first version block, parse no more
+    }
+    return str
+}
+
+def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+def curseRelations = {
+    optionalLibrary 'just-enough-items-jei'
+}
+
+curseforge {
+    if (project.hasProperty('curse_key_open_glider'))
+        apiKey = project.curse_key_iron_backpacks
+
+    project {
+        id = "${curse_id}"
+        changelog = getChangelogText()
+        releaseType = release_type.toString()
+
+        addGameVersion '1.10.2'
+
+        relations curseRelations
+    }
+}
+
+task incrementVersionNumber {
+    ant.replace(file: "gradle.properties", token: "build_number=${build_number}", value: "build_number=${build_number.toString().toInteger() + 1}") //need to make sure it only increments build number
+    ant.replace(file: "README.md", token: "[![](https://img.shields.io/badge/1.10.2 status-beta-yellow.svg)](https://minecraft.curseforge.com/projects/open-glider/files?filter-game-version=1738749986%3A572&filter-status=1)\n" +
+            "[![](https://img.shields.io/badge/Latest version-${major_version}.${minor_version}.${build_number.toString().toInteger() - 1}", value: "[![](https://img.shields.io/badge/1.10.2 status-beta-yellow.svg)](https://minecraft.curseforge.com/projects/iron-backpacks/files?filter-game-version=1738749986%3A572&filter-status=1)\n" +
+            "[![](https://img.shields.io/badge/Latest version-${major_version}.${minor_version}.${build_number}") //replace README 1.10 badge version with CURRENT build
+}
+
+//Adds a new changelog segment for the next 1.7.10. Nifty!
+task makeNewChangelog {
+    def changelogFile = new File('changelog.txt')
+    String newText = '------------------------------------------------------\n' +
+            'Version '+mc_version+" - "+major_version+"."+minor_version+"."+(build_number.toString().toInteger() + 1)+"\n" +
+            '------------------------------------------------------\n' +
+            'Additions\n' +
+            '- None\n' +
+            '\n' +
+            'Changes\n' +
+            '- None\n' +
+            '\n' +
+            'Bug Fixes\n' +
+            '- None\n'
+    String oldText = changelogFile.getText()
+    changelogFile.setText(newText + oldText);
+}
+
+//enforce correct order
+tasks.build.mustRunAfter clean
+tasks.incrementVersionNumber.mustRunAfter build
+tasks.makeNewChangelog.mustRunAfter incrementVersionNumber
+
+//curseforge uses these tasks
+tasks.curseforge.dependsOn clean, build, incrementVersionNumber, makeNewChangelog
+
+//to make the resources work in idea
+//Update: Seems to cause errors now, could be outdated
+//idea { module { inheritOutputDirs = true  } }

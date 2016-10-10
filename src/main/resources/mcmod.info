@@ -1,0 +1,16 @@
+[
+{
+  "modid": "openglider",
+  "name": "Open Glider",
+  "description": "Hang glider!",
+  "version": "${version}",
+  "mcversion": "1.10.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["gr8pefish"],
+  "credits": "open blocks team",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
