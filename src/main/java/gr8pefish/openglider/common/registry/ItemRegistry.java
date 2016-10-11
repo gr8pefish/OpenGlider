@@ -2,13 +2,8 @@ package gr8pefish.openglider.common.registry;
 
 import gr8pefish.openglider.common.item.ItemHangGlider;
 import gr8pefish.openglider.common.item.ItemHangGliderPart;
-import gr8pefish.openglider.common.item.ItemHangGliderWing;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry {
