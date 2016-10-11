@@ -10,9 +10,7 @@ public class PacketHandler {
 
     public static void init() {
         int id = 0;
-//        HANDLER.registerMessage(PacketBotaniaEffect.Handler.class, PacketBotaniaEffect.class, id++, Side.CLIENT);
-//        HANDLER.registerMessage(PacketLeftClick.Handler.class, PacketLeftClick.class, id++, Side.SERVER);
-//        HANDLER.registerMessage(PacketDodge.Handler.class, PacketDodge.class, id++, Side.SERVER);
+        HANDLER.registerMessage(PacketClientGliding.Handler.class, PacketClientGliding.class, id++, Side.CLIENT);
     }
 
 }
