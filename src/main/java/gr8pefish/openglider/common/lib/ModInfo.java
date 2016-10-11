@@ -14,4 +14,5 @@ public class ModInfo {
 
     public static final String NETWORK_CHANNEL = "opnglidr";
 
+    public static final String GLIDING_CAPABILITY_STRING = "gliding";
 }
