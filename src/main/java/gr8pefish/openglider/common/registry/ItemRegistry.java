@@ -2,6 +2,7 @@ package gr8pefish.openglider.common.registry;
 
 import gr8pefish.openglider.common.item.ItemHangGlider;
 import gr8pefish.openglider.common.item.ItemHangGliderPart;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -12,8 +13,8 @@ public class ItemRegistry {
     private static ItemHangGliderPart gliderPart;
 
     public static void registerItems(){
-        glider = new ItemHangGlider();
-        gliderPart = new ItemHangGliderPart();
+        glider = (ItemHangGlider) registerItem(new ItemHangGlider(), "itemHangGlider"); //ToDO: ask in IRC name enforcement for 1.11
+        gliderPart = (ItemHangGliderPart) registerItem(new ItemHangGliderPart(), "itemHangGliderPart");
     }
 
     public static void registerRecipes() {
@@ -47,5 +48,14 @@ public class ItemRegistry {
                 'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 's', new ItemStack(ItemRegistry.gliderPart, 1, 2),
                 'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)));
     }
+
+    //Helper methods for registration
+
+    private static Item registerItem(Item item, String name) {
+        item.setRegistryName(name);
+        GameRegistry.register(item);
+        return item;
+    }
+
 
 }
