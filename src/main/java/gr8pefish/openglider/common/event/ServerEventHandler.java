@@ -1,6 +1,5 @@
 package gr8pefish.openglider.common.event;
 
-import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.capabilities.PlayerGlidingCapability;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;

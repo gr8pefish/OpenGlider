@@ -11,7 +11,6 @@ public class OpenGliderCapabilities {
     @CapabilityInject(PlayerGlidingCapability.class)
     public static final Capability<PlayerGlidingCapability> GLIDING_CAPABILITY = null;
 
-
     //Get capabilities
     public static PlayerGlidingCapability getGlidingCapability(EntityPlayer player) {
         return player.getCapability(GLIDING_CAPABILITY, null);

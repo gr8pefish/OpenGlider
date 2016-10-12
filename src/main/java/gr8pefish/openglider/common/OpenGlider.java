@@ -1,11 +1,14 @@
 package gr8pefish.openglider.common;
 
+import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.common.event.ServerEventHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.proxy.IProxy;
 import gr8pefish.openglider.common.registry.ItemRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -35,13 +38,16 @@ public class OpenGlider {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
+        //register capabilities
+        OpenGliderCapabilities.registerAllCapabilities();
+
         //packets
         PacketHandler.init();
 
         //items
         ItemRegistry.registerItems();
 
-        //init renderers and event handlers
+        //init renderers and client event handlers
         proxy.preInit(event);
     }
 
@@ -51,6 +57,9 @@ public class OpenGlider {
 
         //recipes
         ItemRegistry.registerRecipes();
+
+        //register server events
+        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
 
         proxy.init(event);
     }
