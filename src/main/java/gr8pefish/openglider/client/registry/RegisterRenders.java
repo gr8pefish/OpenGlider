@@ -8,10 +8,10 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class RegisterRenders {
 
-    if (OpenBlocks.Items.hangGlider != null) {
-        RenderingRegistry.registerEntityRenderingHandler(EntityHangGlider.class, new EntityHangGliderRenderer());
-        MinecraftForgeClient.registerItemRenderer(OpenBlocks.Items.hangGlider, new ItemRendererHangGlider());
-        MinecraftForge.EVENT_BUS.register(new GliderPlayerRenderHandler());
-    }
+//    if (OpenBlocks.Items.hangGlider != null) {
+//        RenderingRegistry.registerEntityRenderingHandler(EntityHangGlider.class, new EntityHangGliderRenderer());
+//        MinecraftForgeClient.registerItemRenderer(OpenBlocks.Items.hangGlider, new ItemRendererHangGlider());
+//        MinecraftForge.EVENT_BUS.register(new GliderPlayerRenderHandler());
+//    }
 
 }

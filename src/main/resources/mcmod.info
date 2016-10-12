@@ -1,5 +1,4 @@
-[
-{
+[{
   "modid": "openglider",
   "name": "Open Glider",
   "description": "Hang glider!",
@@ -12,5 +11,4 @@
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
-}
-]
+}]

@@ -163,7 +163,7 @@ def curseRelations = {
 
 curseforge {
     if (project.hasProperty('curse_key_open_glider'))
-        apiKey = project.curse_key_iron_backpacks
+        apiKey = project.curse_key_open_glider
 
     project {
         id = "${curse_id}"

@@ -1,6 +1,7 @@
 package gr8pefish.openglider.common.item;
 
 import gr8pefish.openglider.common.OpenGlider;
+import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,9 +14,10 @@ public class ItemHangGliderPart extends Item {
 
     public String[] names = {"wing_left, wing_right, scaffolding"};
 
-    public ItemHangGliderPart() {
+    public ItemHangGliderPart(String unlocName) {
         setCreativeTab(OpenGlider.creativeTab);
         setHasSubtypes(true);
+        setUnlocalizedName(ModInfo.MODID +":" + "glider_part."+unlocName);
     }
 
     @Override

@@ -14,31 +14,31 @@ public class EntityHangGliderRenderer extends Render {
     private static final float QUAD_HALF_SIZE = 2.4f;
     private static final float ONGROUND_ROTATION = 90f;
 
-    private final DisplayListWrapper gliderRender = new DisplayListWrapper() {
-
-        @Override
-        public void compile() {
-            GL11.glDisable(GL11.GL_CULL_FACE);
-            GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-            GL11.glBegin(GL11.GL_QUADS);
-
-            GL11.glTexCoord2f(1, 1);
-            GL11.glVertex3f(QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
-
-            GL11.glTexCoord2f(0, 1);
-            GL11.glVertex3f(-QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
-
-            GL11.glTexCoord2f(0, 0);
-            GL11.glVertex3f(-QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
-
-            GL11.glTexCoord2f(1, 0);
-            GL11.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
-
-            GL11.glEnd();
-            GL11.glEnable(GL11.GL_CULL_FACE);
-
-        }
-    };
+//    private final DisplayListWrapper gliderRender = new DisplayListWrapper() {
+//
+//        @Override
+//        public void compile() {
+//            GL11.glDisable(GL11.GL_CULL_FACE);
+//            GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+//            GL11.glBegin(GL11.GL_QUADS);
+//
+//            GL11.glTexCoord2f(1, 1);
+//            GL11.glVertex3f(QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+//
+//            GL11.glTexCoord2f(0, 1);
+//            GL11.glVertex3f(-QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+//
+//            GL11.glTexCoord2f(0, 0);
+//            GL11.glVertex3f(-QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+//
+//            GL11.glTexCoord2f(1, 0);
+//            GL11.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+//
+//            GL11.glEnd();
+//            GL11.glEnable(GL11.GL_CULL_FACE);
+//
+//        }
+//    };
 
     private final ResourceLocation texture = new ResourceLocation("openblocks", "textures/models/hang_glider.png");
 
@@ -95,7 +95,7 @@ public class EntityHangGliderRenderer extends Render {
         }
 
         bindTexture(texture);
-        gliderRender.render();
+//        gliderRender.render();
         GL11.glPopMatrix();
     }
 

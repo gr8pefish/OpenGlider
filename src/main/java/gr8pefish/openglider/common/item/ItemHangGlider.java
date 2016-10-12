@@ -2,6 +2,7 @@ package gr8pefish.openglider.common.item;
 
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,8 +13,9 @@ import net.minecraft.world.World;
 
 public class ItemHangGlider extends Item {
 
-    public ItemHangGlider() {
+    public ItemHangGlider(String unlocName) {
         setCreativeTab(OpenGlider.creativeTab);
+        setUnlocalizedName(ModInfo.MODID +":" + unlocName);
     }
 
     @Override

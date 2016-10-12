@@ -12,12 +12,12 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry {
 
-    private static ItemHangGlider glider;
-    private static ItemHangGliderPart gliderPart;
+    public static ItemHangGlider glider;
+    public static ItemHangGliderPart gliderPart;
 
     public static void registerItems(){
-        glider = (ItemHangGlider) registerItem(new ItemHangGlider(), "hang_glider"); //ToDO: ask in IRC name enforcement for 1.11
-        gliderPart = (ItemHangGliderPart) registerItem(new ItemHangGliderPart(), "hang_glider_part");
+        glider = (ItemHangGlider) registerItem(new ItemHangGlider("hang_glider"), "hang_glider");
+        gliderPart = (ItemHangGliderPart) registerItem(new ItemHangGliderPart("hang_glider_part"), "hang_glider_part");
     }
 
     public static void registerRecipes() {
@@ -45,9 +45,9 @@ public class ItemRegistry {
 
         //Glider
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.glider, 1),
-                "",
+                "   ",
                 "lsr",
-                "",
+                "   ",
                 'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 's', new ItemStack(ItemRegistry.gliderPart, 1, 2),
                 'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)));
     }

@@ -1,0 +1,8 @@
+# Item Localizations
+item.openglider:hang_glider.name=Hang Glider
+item.openglider:glider_part.wing_left.name=Glider Wing (Left)
+item.openglider:glider_part.wing_right.name=Glider Wing (Right)
+item.openglider:glider_part.scaffolding.name=Scaffolding
+
+# Creative tab Localization
+itemGroup.openglider=Open Glider

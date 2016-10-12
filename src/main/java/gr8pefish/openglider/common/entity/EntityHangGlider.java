@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class EntityHangGlider extends Entity implements IEntityAdditionalSpawnData {
 
-    private static final int PROPERTY_DEPLOYED = new EntityDataManager.DataEntry<>(new DataParameter<>(), 1);
+//    private static final int PROPERTY_DEPLOYED;
 
     private static Map<EntityPlayer, EntityHangGlider> gliderMap = new MapMaker().weakKeys().weakValues().makeMap();
 
@@ -90,11 +90,12 @@ public class EntityHangGlider extends Entity implements IEntityAdditionalSpawnDa
 
     @Override
     protected void entityInit() {
-        this.dataWatcher.addObject(PROPERTY_DEPLOYED, (byte)1);
+//        this.dataWatcher.addObject(PROPERTY_DEPLOYED, (byte)1);
     }
 
     public boolean isDeployed() {
-        return this.dataWatcher.getWatchableObjectByte(PROPERTY_DEPLOYED) == 1;
+//        return this.dataWatcher.getWatchableObjectByte(PROPERTY_DEPLOYED) == 1;
+        return false; //temporary
     }
 
     @Override
@@ -111,7 +112,7 @@ public class EntityHangGlider extends Entity implements IEntityAdditionalSpawnDa
         boolean isDeployed = player.onGround || player.isInWater();
 
         if (!worldObj.isRemote) {
-            this.dataWatcher.updateObject(PROPERTY_DEPLOYED, (byte)(isDeployed? 1 : 0));
+//            this.dataWatcher.updateObject(PROPERTY_DEPLOYED, (byte)(isDeployed? 1 : 0));
             fixPositions(player, false);
         }
 
