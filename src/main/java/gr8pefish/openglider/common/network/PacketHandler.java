@@ -11,6 +11,7 @@ public class PacketHandler {
     public static void init() {
         int id = 0;
         HANDLER.registerMessage(PacketClientGliding.Handler.class, PacketClientGliding.class, id++, Side.CLIENT);
+        HANDLER.registerMessage(PacketServerGliding.Handler.class, PacketServerGliding.class, id, Side.SERVER);
     }
 
 }
