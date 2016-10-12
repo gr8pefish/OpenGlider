@@ -48,55 +48,55 @@ public class EntityHangGliderRenderer extends Render {
 
     @Override
     public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
-        final EntityHangGlider glider = (EntityHangGlider)entity;
-        final EntityPlayer owner = glider.getPlayer();
-        if (owner == null) return;
-
-        final Minecraft minecraft = Minecraft.getMinecraft();
-        final boolean isLocalPlayer = owner == minecraft.thePlayer;
-        final boolean isFpp = minecraft.gameSettings.thirdPersonView == 0;
-        final boolean isDeployed = glider.isDeployed();
-
-        if (isLocalPlayer && isFpp && isDeployed) return;
-
-        final float rotation = interpolateRotation(glider.prevRotationYaw, glider.rotationYaw, f1);
-
-        GL11.glPushMatrix();
-
-        GL11.glTranslated(x, y, z);
-        GL11.glRotatef(180.0F - rotation, 0.0F, 1.0F, 0.0F);
-
-        if (isLocalPlayer) {
-            if (isDeployed) {
-                // move up and closer to back
-                GL11.glTranslated(0, -0.2, +0.3);
-            } else {
-                if (isFpp) {
-                    // move over head when flying in FPP
-                    GL11.glTranslated(0, +0.2, 0);
-                } else {
-                    // move closer to back and forward when flying in TDD
-                    GL11.glTranslated(0, -0.8, -1.0);
-                }
-            }
-        } else {
-            if (isDeployed) {
-                // move up little bit (other player center is lower)
-                GL11.glTranslated(0, +0.2, +0.3);
-            } else {
-                // move closer to back and forward when flying
-                GL11.glTranslated(0, -0.5, -1.0);
-            }
-        }
-
-        if (isDeployed) {
-            GL11.glRotatef(ONGROUND_ROTATION, 1, 0, 0);
-            GL11.glScalef(0.4f, 1f, 0.4f);
-        }
-
-        bindTexture(texture);
-//        gliderRender.render();
-        GL11.glPopMatrix();
+//        final EntityHangGlider glider = (EntityHangGlider)entity;
+//        final EntityPlayer owner = glider.getPlayer();
+//        if (owner == null) return;
+//
+//        final Minecraft minecraft = Minecraft.getMinecraft();
+//        final boolean isLocalPlayer = owner == minecraft.thePlayer;
+//        final boolean isFpp = minecraft.gameSettings.thirdPersonView == 0;
+//        final boolean isDeployed = glider.isDeployed();
+//
+//        if (isLocalPlayer && isFpp && isDeployed) return;
+//
+//        final float rotation = interpolateRotation(glider.prevRotationYaw, glider.rotationYaw, f1);
+//
+//        GL11.glPushMatrix();
+//
+//        GL11.glTranslated(x, y, z);
+//        GL11.glRotatef(180.0F - rotation, 0.0F, 1.0F, 0.0F);
+//
+//        if (isLocalPlayer) {
+//            if (isDeployed) {
+//                // move up and closer to back
+//                GL11.glTranslated(0, -0.2, +0.3);
+//            } else {
+//                if (isFpp) {
+//                    // move over head when flying in FPP
+//                    GL11.glTranslated(0, +0.2, 0);
+//                } else {
+//                    // move closer to back and forward when flying in TDD
+//                    GL11.glTranslated(0, -0.8, -1.0);
+//                }
+//            }
+//        } else {
+//            if (isDeployed) {
+//                // move up little bit (other player center is lower)
+//                GL11.glTranslated(0, +0.2, +0.3);
+//            } else {
+//                // move closer to back and forward when flying
+//                GL11.glTranslated(0, -0.5, -1.0);
+//            }
+//        }
+//
+//        if (isDeployed) {
+//            GL11.glRotatef(ONGROUND_ROTATION, 1, 0, 0);
+//            GL11.glScalef(0.4f, 1f, 0.4f);
+//        }
+//
+//        bindTexture(texture);
+////        gliderRender.render();
+//        GL11.glPopMatrix();
     }
 
     /* Interpolate rotation */

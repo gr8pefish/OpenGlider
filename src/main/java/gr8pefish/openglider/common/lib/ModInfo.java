@@ -1,5 +1,7 @@
 package gr8pefish.openglider.common.lib;
 
+import net.minecraft.util.ResourceLocation;
+
 import java.util.Locale;
 
 public class ModInfo {
@@ -18,5 +20,7 @@ public class ModInfo {
 
     public static final String ITEM_GLIDER_NAME = "hang_glider";
     public static final String ITEM_GLIDER_PART_NAME = "glider_part";
+
+    public static final ResourceLocation MODEL_GLIDER_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider.png");
 
 }

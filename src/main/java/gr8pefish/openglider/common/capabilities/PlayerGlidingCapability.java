@@ -75,11 +75,11 @@ public class PlayerGlidingCapability implements ICapabilitySerializable<NBTTagCo
 
     //Getters and setters
 
-    protected boolean getIsGliding() {
+    public boolean getIsGliding() {
         return isGliding;
     }
 
-    protected void setIsGliding(boolean gliding) {
+    public void setIsGliding(boolean gliding) {
         this.isGliding = gliding;
     }
 
