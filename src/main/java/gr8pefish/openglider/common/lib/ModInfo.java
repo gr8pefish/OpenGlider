@@ -15,4 +15,8 @@ public class ModInfo {
     public static final String NETWORK_CHANNEL = "opngldr";
 
     public static final String GLIDING_CAPABILITY_STRING = "gliding";
+
+    public static final String ITEM_GLIDER_NAME = "hang_glider";
+    public static final String ITEM_GLIDER_PART_NAME = "glider_part";
+
 }

@@ -13,9 +13,10 @@ import net.minecraft.world.World;
 
 public class ItemHangGlider extends Item {
 
-    public ItemHangGlider(String unlocName) {
+    public ItemHangGlider() {
+        super();
         setCreativeTab(OpenGlider.creativeTab);
-        setUnlocalizedName(ModInfo.MODID +":" + unlocName);
+        setUnlocalizedName(ModInfo.MODID +":" + ModInfo.ITEM_GLIDER_NAME);
     }
 
     @Override

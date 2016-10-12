@@ -12,12 +12,13 @@ import java.util.List;
 
 public class ItemHangGliderPart extends Item {
 
-    public String[] names = {"wing_left, wing_right, scaffolding"};
+    public static String[] names = {"wing_left", "wing_right", "scaffolding"};
 
-    public ItemHangGliderPart(String unlocName) {
+    public ItemHangGliderPart() {
+        super();
         setCreativeTab(OpenGlider.creativeTab);
         setHasSubtypes(true);
-        setUnlocalizedName(ModInfo.MODID +":" + "glider_part."+unlocName);
+        setUnlocalizedName(ModInfo.MODID +":" +ModInfo.ITEM_GLIDER_PART_NAME+ ".");
     }
 
     @Override

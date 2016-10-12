@@ -16,8 +16,8 @@ public class ItemRegistry {
     public static ItemHangGliderPart gliderPart;
 
     public static void registerItems(){
-        glider = (ItemHangGlider) registerItem(new ItemHangGlider("hang_glider"), "hang_glider");
-        gliderPart = (ItemHangGliderPart) registerItem(new ItemHangGliderPart("hang_glider_part"), "hang_glider_part");
+        glider = (ItemHangGlider)registerItem(new ItemHangGlider(), ModInfo.ITEM_GLIDER_NAME);
+        gliderPart = (ItemHangGliderPart)registerItem(new ItemHangGliderPart(), ModInfo.ITEM_GLIDER_PART_NAME);
     }
 
     public static void registerRecipes() {
@@ -53,10 +53,10 @@ public class ItemRegistry {
     }
 
     public static void registerRenders(){
-        itemRender(glider, 0, "hang_glider");
-        itemRender(gliderPart, 0, "wing_left");
-        itemRender(gliderPart, 1, "wing_right");
-        itemRender(gliderPart, 2, "scaffolding");
+        itemRender(glider, 0, ModInfo.ITEM_GLIDER_NAME);
+        itemRender(gliderPart, 0, ItemHangGliderPart.names[0]);
+        itemRender(gliderPart, 1, ItemHangGliderPart.names[1]);
+        itemRender(gliderPart, 2, ItemHangGliderPart.names[2]);
     }
 
     //Helper methods for registration
