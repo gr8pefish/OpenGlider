@@ -11,28 +11,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientEventHandler {
 
-//    @SubscribeEvent
-//    public void onRenderTickStart(TickEvent.RenderTickEvent evt) {
-//        if (evt.phase == TickEvent.Phase.START && Minecraft.getMinecraft().theWorld != null) {
-//            preRenderTick(Minecraft.getMinecraft(), Minecraft.getMinecraft().theWorld, evt.renderTickTime);
-//        }
-//    }
-//
-//    public void preRenderTick(Minecraft mc, World world, float renderTick) {
-////        EntityHangGlider.updateGliders(world);
-//    }
-
-    //ToDo: Layers for client with the item
 
     @SubscribeEvent
-    public void onPlayerBodyRender(RenderPlayerEvent.Pre evt) {
-        final EntityPlayer player = evt.getEntityPlayer();
+    public void onPlayerBodyRenderPre(RenderPlayerEvent.Pre evt) {
+        EntityPlayer player = evt.getEntityPlayer();
         if (OpenGliderCapabilities.getIsGliding(player)) {
-//            player.limbSwing = 0f;
-//            player.prevLimbSwingAmount = 0f;
-//            player.limbSwingAmount = 0f;
-//            player.rotationPitch = 5;
-//            GlStateManager.rotate(75, -1, 0, 0);
+            GlStateManager.pushMatrix();
+            GlStateManager.rotate(90F, -1F, 0F, 1F);
+            //ToDo: Can't set statically, have to do it depending on player's view and stuffs
+
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerBodyRenderPost(RenderPlayerEvent.Post evt) {
+        EntityPlayer player = evt.getEntityPlayer();
+        if (OpenGliderCapabilities.getIsGliding(player)) {
+            GlStateManager.popMatrix();
         }
     }
 

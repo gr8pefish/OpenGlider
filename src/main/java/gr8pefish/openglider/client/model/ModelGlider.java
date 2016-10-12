@@ -1,16 +1,10 @@
 package gr8pefish.openglider.client.model;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -61,32 +55,11 @@ public class ModelGlider extends ModelBase {
         EntityPlayer player = (EntityPlayer) entityIn;
         final float rotation = interpolateRotation(player.prevRotationYaw, player.rotationYaw);
 
-        final Minecraft minecraft = Minecraft.getMinecraft();
-        final boolean isLocalPlayer = player == minecraft.thePlayer;
-        final boolean isFpp = minecraft.gameSettings.thirdPersonView == 0;
+        GlStateManager.rotate(180.0F - rotation, 0.0F, 1.0F, 0.0F); //set rotation to align with player
 
-        GlStateManager.rotate(rotation, 0.0F, 1.0F, 0.0F);
-
-//        if (isLocalPlayer) {
-        // move up and closer to back
-        GlStateManager.translate(0, -0.2, +0.3);
-        if (isFpp) { //ToDo: something is wrong here
-            // move over head when flying in FPP
-            GlStateManager.translate(0, +0.2, 0);
-        } else {
-            // move closer to back and forward when flying in TDD
-            GlStateManager.translate(0, -0.8, -1.0);
-        }
-
-        player.limbSwing = 0f;
-        player.prevLimbSwingAmount = 0f;
-        player.limbSwingAmount = 0f;
-
-
-//        } else {
-//            // move closer to back and forward when flying
-//            GlStateManager.translate(0, -0.5, -1.0);
-//        }
+        GlStateManager.rotate(ONGROUND_ROTATION, 1, 0, 0); //on same plane as player
+        GlStateManager.rotate(180F, 0, 2, 0); //front facing
+        GlStateManager.translate(0, -0.3, 0); //move to on the back
 
     }
 

@@ -10,7 +10,7 @@ public class OpenGliderPlayerHelper {
 
     public static void updatePosition(EntityPlayer player){
         if (!shouldBeGliding(player)) {
-            OpenGliderCapabilities.setIsGliding(player, false); //ToDo: Test server and client or just server
+            OpenGliderCapabilities.setIsGliding(player, false); //ToDo: Test server and client or just server //ToDo: Make it active when right clicked, like in 1.7 version
         } else {
             if (player.motionY < 0) {
                 final double horizontalSpeed;
@@ -32,9 +32,11 @@ public class OpenGliderPlayerHelper {
                 player.fallDistance = 0f; /* Don't like getting hurt :( */
             }
         }
-        player.limbSwing = 0;
-        player.limbSwingAmount = 0; //ToDo: Ask which side this should be set on
-        player.setPositionAndRotation(player.posX, player.posY, player.posZ, player.rotationYaw, 10); //ToDo: figure out how to rotate player horizontal (RenderPlayer.rotateCorpse)
+        if (player.worldObj.isRemote) {
+            player.limbSwing = 0;
+            player.limbSwingAmount = 0; //ToDo: Ask which side this should be set on (assuming client)
+        }
+//        player.setPositionAndRotation(player.posX, player.posY, player.posZ, player.rotationYaw, 10); //ToDo: figure out how to rotate player horizontal (RenderPlayer.rotateCorpse)
     }
 
     private static boolean shouldBeGliding(EntityPlayer player){
