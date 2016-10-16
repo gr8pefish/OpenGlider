@@ -5,6 +5,7 @@ import gr8pefish.openglider.common.item.ItemHangGlider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.client.model.ModelLoader;
 
 public class OpenGliderPlayerHelper {
 
@@ -16,12 +17,13 @@ public class OpenGliderPlayerHelper {
                 final double horizontalSpeed;
                 final double verticalSpeed;
 
+                //ToDo: tweak speeds/make sure okay
                 if (player.isSneaking()) {
                     horizontalSpeed = 0.1;
-                    verticalSpeed = 0.7;
+                    verticalSpeed = 0.8;
                 } else {
                     horizontalSpeed = 0.03;
-                    verticalSpeed = 0.4;
+                    verticalSpeed = 0.5;
                 }
 
                 player.motionY *= verticalSpeed;

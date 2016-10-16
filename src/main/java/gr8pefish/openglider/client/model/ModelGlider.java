@@ -59,7 +59,7 @@ public class ModelGlider extends ModelBase {
 
         GlStateManager.rotate(ONGROUND_ROTATION, 1, 0, 0); //on same plane as player
         GlStateManager.rotate(180F, 0, 2, 0); //front facing
-        GlStateManager.translate(0, -0.3, 0); //move to on the back
+        GlStateManager.translate(0, -0.5, 0); //move to on the back
 
     }
 

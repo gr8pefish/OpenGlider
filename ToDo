@@ -1,14 +1,14 @@
 To Do:
 
     NOW:
-        Fix player rendering
+        Fix player rendering - look at elytra
         Disable when elytra
 
     LATER:
 
         DEFINITE:
             Re-add deployed ability.
-
+            Make model for bars hanging down.
         MAYBE:
             Add tiers of gliders?
             Blow up the item perspective in fpp to be a huge wing?
