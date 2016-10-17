@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry {
@@ -38,10 +39,10 @@ public class ItemRegistry {
 
         //Scaffolding
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderPart, 1, 2),
-                "iii",
-                "isi",
                 " i ",
-                'i', "ingotIron", 'l', "string"));
+                "i i",
+                "iii",
+                'i', "ingotIron"));
 
         //Glider
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.glider, 1),
