@@ -2,6 +2,7 @@ package gr8pefish.openglider.client.event;
 
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
@@ -23,6 +24,11 @@ public class ClientEventHandler {
 
             float partialTicks = evt.getPartialRenderTick();
             //ToDo: Can't set statically, have to do it depending on player's view and stuffs
+
+            //ToDo: Only does it in third person, have to add it as 1st person too
+                //OpenBlocks does it via ASM and a hook into rotateCorpse? Ask in #mcf
+
+            //Check it out: https://github.com/Mysteryem/Up_And_Down_And_All_Around/blob/master/src/main/java/uk/co/mysterymayhem/gravitymod/PlayerRenderListener.java
 
 
             float yawDeg = MathHelper.wrapDegrees(player.rotationYaw);
