@@ -62,9 +62,6 @@ public class OpenGlider {
         //register server events
         MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
 
-        //register client events
-        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
-
         proxy.init(event);
     }
 

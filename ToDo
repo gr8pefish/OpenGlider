@@ -3,6 +3,7 @@ To Do:
     NOW:
         Fix player rendering - look at elytra
         Disable when elytra
+        add red/white dye to recipes?
 
     LATER:
 
@@ -14,6 +15,11 @@ To Do:
             Blow up the item perspective in fpp to be a huge wing?
 
     EVENTUAL FEATURES:
+
+    BALANCE:
+        config (easy mode vs all these tweaks?)
+        Durability
+        Inaccuracy
 
 
 
