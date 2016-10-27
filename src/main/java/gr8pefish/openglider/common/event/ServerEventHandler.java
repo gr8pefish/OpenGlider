@@ -48,11 +48,26 @@ public class ServerEventHandler {
     @SubscribeEvent
     public void onTrack(net.minecraftforge.event.entity.player.PlayerEvent.StartTracking event) {
         EntityPlayer tracker = event.getEntityPlayer(); //the tracker
-        Entity target = event.getTarget(); //the target that is being tracked
-        if (OpenGliderCapabilities.getIsGliding(tracker)){ //check that the tracker has capability (is it really checking if the tracker has the cap)
-            PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(PacketUpdateClientTarget.IS_GLIDING), (EntityPlayerMP) tracker); //send a packet to their (ambiguous, who is their?) client to update their target
+        Entity targetEntity = event.getTarget(); //the target that is being tracked
+        if (targetEntity instanceof EntityPlayer) { //only check players
+            EntityPlayer targetPlayer = (EntityPlayer)targetEntity; //typecast to entityPlayer
+            if (OpenGliderCapabilities.getIsGliding(targetPlayer)) { //if the target has capability need to update
+                PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, true), (EntityPlayerMP) tracker); //send a packet to the tracker's client to update their target
+            }
         }
     }
+
+
+//    public static void syncDataFor(EntityLivingBase target, EntityPlayerMP tracker)
+//    {
+//        EffectData data = EffectData.getInstance(target);
+//        if (!data.getActiveEffects().isEmpty())
+//        {
+//            NBTTagCompound tag = new NBTTagCompound();
+//            data.saveNBTData(tag);
+//            PotionAPI.PACKET_HANDLER.sendTo(new MessageEffect(target, tag), tracker);
+//        }
+//    }
 
 //    <tterrag|ZZZzzz> You are sending the info of the player they are tracking, to the tracker
 //    <tterrag|ZZZzzz> So you want to check that the target has the capability
