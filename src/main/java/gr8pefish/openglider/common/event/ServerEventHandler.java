@@ -51,7 +51,7 @@ public class ServerEventHandler {
     public void onTrack(net.minecraftforge.event.entity.player.PlayerEvent.StartTracking event) {
         EntityPlayer tracker = event.getEntityPlayer(); //the tracker
         Entity targetEntity = event.getTarget(); //the target that is being tracked
-        if (targetEntity.getClass().equals(EntityPlayerMP.class)) { //only entityPlayerMP ( MP part is very important :/ )
+        if (targetEntity instanceof EntityPlayerMP) { //only entityPlayerMP ( MP part is very important :/ )
             EntityPlayer targetPlayer = (EntityPlayer) targetEntity; //typecast to entityPlayer
             if (targetPlayer.hasCapability(OpenGliderCapabilities.GLIDING_CAPABILITY, null)) { //if have the capability
                 if (OpenGliderCapabilities.getIsGliding(targetPlayer)) { //if the target has capability need to update
