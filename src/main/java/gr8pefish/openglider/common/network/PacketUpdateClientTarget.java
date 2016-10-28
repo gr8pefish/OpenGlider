@@ -4,11 +4,8 @@ import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -43,24 +40,15 @@ public class PacketUpdateClientTarget implements IMessage{
         @Override
         public IMessage onMessage(PacketUpdateClientTarget message, MessageContext ctx) {
 
-            World world = OpenGlider.proxy.getClientWorld();
-            EntityPlayer targetEntity = (EntityPlayer) world.getEntityByID(message.targetEntityID);
-            if (targetEntity != null) {
-//                EffectData data = EffectData.getInstance(entity);
-//                data.loadNBTData(message.data);
-                OpenGliderCapabilities.setIsGliding(targetEntity, message.isGliding);
-            }
+            Minecraft.getMinecraft().addScheduledTask(() -> {
+                World world = OpenGlider.proxy.getClientWorld();
+                EntityPlayer targetEntity = (EntityPlayer) world.getEntityByID(message.targetEntityID);
+                if (targetEntity != null) {
+                    OpenGliderCapabilities.setIsGliding(targetEntity, message.isGliding);
+                }
+            });
             return null;
 
-//            //have to use threading system since 1.8
-//            Minecraft.getMinecraft().addScheduledTask(() -> {
-//                EntityPlayer player = OpenGlider.proxy.getClientPlayer();
-//                if (player != null) {
-//                    OpenGliderCapabilities.setIsGliding(player, message.isGliding == IS_GLIDING);
-//                }
-//            });
-
-//            return null; //no return message
         }
     }
 }

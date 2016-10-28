@@ -7,9 +7,11 @@ import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -49,29 +51,16 @@ public class ServerEventHandler {
     public void onTrack(net.minecraftforge.event.entity.player.PlayerEvent.StartTracking event) {
         EntityPlayer tracker = event.getEntityPlayer(); //the tracker
         Entity targetEntity = event.getTarget(); //the target that is being tracked
-        if (targetEntity instanceof EntityPlayer) { //only check players
-            EntityPlayer targetPlayer = (EntityPlayer)targetEntity; //typecast to entityPlayer
-            if (OpenGliderCapabilities.getIsGliding(targetPlayer)) { //if the target has capability need to update
-                PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, true), (EntityPlayerMP) tracker); //send a packet to the tracker's client to update their target
+        if (targetEntity.getClass().equals(EntityPlayerMP.class)) { //only entityPlayerMP ( MP part is very important :/ )
+            EntityPlayer targetPlayer = (EntityPlayer) targetEntity; //typecast to entityPlayer
+            if (targetPlayer.hasCapability(OpenGliderCapabilities.GLIDING_CAPABILITY, null)) { //if have the capability
+                if (OpenGliderCapabilities.getIsGliding(targetPlayer)) { //if the target has capability need to update
+                    PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, true), (EntityPlayerMP) tracker); //send a packet to the tracker's client to update their target
+                } else {
+                    PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, false), (EntityPlayerMP) tracker);
+                }
             }
         }
     }
 
-
-//    public static void syncDataFor(EntityLivingBase target, EntityPlayerMP tracker)
-//    {
-//        EffectData data = EffectData.getInstance(target);
-//        if (!data.getActiveEffects().isEmpty())
-//        {
-//            NBTTagCompound tag = new NBTTagCompound();
-//            data.saveNBTData(tag);
-//            PotionAPI.PACKET_HANDLER.sendTo(new MessageEffect(target, tag), tracker);
-//        }
-//    }
-
-//    <tterrag|ZZZzzz> You are sending the info of the player they are tracking, to the tracker
-//    <tterrag|ZZZzzz> So you want to check that the target has the capability
-//    <tterrag|ZZZzzz> er
-//    <tterrag|ZZZzzz> The tracker*
-//    <tterrag|ZZZzzz> and send a packet to their client to update the target
 }
