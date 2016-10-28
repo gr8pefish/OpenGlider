@@ -1,7 +1,14 @@
 To Do:
 
+    //ToDo discord textures from InsomniaKitten
+
     NOW:
-        Fix player rendering - look at elytra
+        Fix player rendering
+            - jumpy for others
+            - fix fpp
+            - inventoryGui render disable fancy rendering
+            - magically updates when player touches down? how is that possible?
+            - figure out, personally, the gl code, so I understand it for the future
         Disable when elytra
         add red/white dye to recipes?
 
