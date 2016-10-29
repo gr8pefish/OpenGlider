@@ -1,6 +1,7 @@
 To Do:
 
     //ToDo discord textures from InsomniaKitten
+    //tterrag source for rendering others updates: https://github.com/tterrag1098/PotionAPI/blob/master/src/main/java/tterrag/potionapi/api/effect/EffectUtil.java
 
     NOW:
         Fix player rendering
