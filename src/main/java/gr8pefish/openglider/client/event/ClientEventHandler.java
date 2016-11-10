@@ -4,9 +4,12 @@ import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -57,6 +60,21 @@ public class ClientEventHandler {
         if (this.needToPop) {
             this.needToPop = false;
             GlStateManager.popMatrix();
+        }
+    }
+
+    @SubscribeEvent
+    public void onRenderOverlay(RenderGameOverlayEvent.Pre event){
+        if (event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS) {
+            EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
+            if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) {
+                if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) {
+                    FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+                    GlStateManager.pushMatrix();
+                    fontRenderer.drawString("CONGRATULATIONS, YOU ARE NOW GLIDING", 0, 0, 1); //ToDo: Nice image overlay in the right spot
+                    GlStateManager.popMatrix();
+                }
+            }
         }
     }
 
