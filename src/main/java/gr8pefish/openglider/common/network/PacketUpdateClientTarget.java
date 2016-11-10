@@ -44,7 +44,7 @@ public class PacketUpdateClientTarget implements IMessage{
                 World world = OpenGlider.proxy.getClientWorld();
                 EntityPlayer targetEntity = (EntityPlayer) world.getEntityByID(message.targetEntityID);
                 if (targetEntity != null) {
-                    OpenGliderCapabilities.setIsGliding(targetEntity, message.isGliding);
+                    OpenGliderCapabilities.setIsGliderDeployed(targetEntity, message.isGliding);
                 }
             });
             return null;

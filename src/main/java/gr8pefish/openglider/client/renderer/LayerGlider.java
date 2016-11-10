@@ -30,7 +30,7 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
         if (!entitylivingbaseIn.isInvisible()) { //if not invisible and should render
             //ToDo: config option to disable rendering?
 
-            boolean gliding = OpenGliderCapabilities.getIsGliding(entitylivingbaseIn); //get if gliding (to render or not)
+            boolean gliding = OpenGliderCapabilities.getIsGliderDeployed(entitylivingbaseIn); //get if gliding (to render or not)
             if (gliding) { //if there is one
 
                 //bind texture of the current backpack

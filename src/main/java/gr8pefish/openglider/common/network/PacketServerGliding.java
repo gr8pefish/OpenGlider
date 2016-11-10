@@ -36,7 +36,7 @@ public class PacketServerGliding implements IMessage {
         @Override
         public IMessage onMessage(PacketServerGliding message, MessageContext ctx) {
 
-            OpenGliderCapabilities.setIsGliding(ctx.getServerHandler().playerEntity, message.isGliding == IS_GLIDING);
+            OpenGliderCapabilities.setIsGliderDeployed(ctx.getServerHandler().playerEntity, message.isGliding == IS_GLIDING);
 
             return null; //no return message
         }

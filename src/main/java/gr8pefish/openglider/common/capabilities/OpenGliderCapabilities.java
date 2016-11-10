@@ -1,7 +1,6 @@
 package gr8pefish.openglider.common.capabilities;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
@@ -22,16 +21,16 @@ public class OpenGliderCapabilities {
     }
 
     //Useful methods for other classes
-    public static boolean getIsGliding(EntityPlayer player) {
+    public static boolean getIsGliderDeployed(EntityPlayer player) {
         PlayerGlidingCapability cap = getGlidingCapability(player);
         if (cap != null)
-            return cap.getIsGliding();
+            return cap.getIsGliderDeployed();
         return false;
     }
 
-    public static void setIsGliding(EntityPlayer player, boolean gliding) {
+    public static void setIsGliderDeployed(EntityPlayer player, boolean gliding) {
         PlayerGlidingCapability cap = getGlidingCapability(player);
         if (cap != null)
-            cap.setIsGliding(gliding);
+            cap.setIsGliderDeployed(gliding);
     }
 }

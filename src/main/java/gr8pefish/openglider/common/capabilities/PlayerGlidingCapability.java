@@ -14,10 +14,10 @@ public class PlayerGlidingCapability implements ICapabilitySerializable<NBTTagCo
 
     public static final String CAP_GLIDING = ModInfo.MODID;
 
-    private boolean isGliding;
+    private boolean isGliderDeployed;
 
     public PlayerGlidingCapability() {
-        this.isGliding = false;
+        this.isGliderDeployed = false;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class PlayerGlidingCapability implements ICapabilitySerializable<NBTTagCo
 
         //save the boolean
         NBTTagCompound compound = new NBTTagCompound();
-        compound.setBoolean(CAP_GLIDING, isGliding);
+        compound.setBoolean(CAP_GLIDING, isGliderDeployed);
 
         //return compound
         return compound;
@@ -45,7 +45,7 @@ public class PlayerGlidingCapability implements ICapabilitySerializable<NBTTagCo
     public void deserializeNBT(NBTTagCompound compound) {
 
         //load and set
-        setIsGliding(compound.getBoolean(CAP_GLIDING));
+        setIsGliderDeployed(compound.getBoolean(CAP_GLIDING));
 
     }
 
@@ -75,12 +75,12 @@ public class PlayerGlidingCapability implements ICapabilitySerializable<NBTTagCo
 
     //Getters and setters
 
-    public boolean getIsGliding() {
-        return isGliding;
+    public boolean getIsGliderDeployed() {
+        return isGliderDeployed;
     }
 
-    public void setIsGliding(boolean gliding) {
-        this.isGliding = gliding;
+    public void setIsGliderDeployed(boolean gliding) {
+        this.isGliderDeployed = gliding;
     }
 
     //Other helper methods
