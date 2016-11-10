@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "openglider:items/sleepingbag_32"
+    "layer0": "openglider:items/wing_left"
   }
 }
