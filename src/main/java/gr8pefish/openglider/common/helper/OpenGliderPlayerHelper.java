@@ -5,19 +5,18 @@ import gr8pefish.openglider.common.item.ItemHangGlider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraftforge.client.model.ModelLoader;
 
 public class OpenGliderPlayerHelper {
 
     public static void updatePosition(EntityPlayer player){
         if (!shouldBeGliding(player)) {
-            OpenGliderCapabilities.setIsGliding(player, false); //ToDo: Test server and client or just server //ToDo: Make it active when right clicked, like in 1.7 version
+            //OpenGliderCapabilities.setIsGliderDeployed(player, false); //ToDo: Test server and client or just server //ToDo: Make it active when right clicked, like in 1.7 version
         } else {
             if (player.motionY < 0) {
                 final double horizontalSpeed;
                 final double verticalSpeed;
 
-                //ToDo: tweak speeds/make sure okay
+                //ToDo: tweak speeds/make sure okay (change with tiers)
                 if (player.isSneaking()) {
                     horizontalSpeed = 0.1;
                     verticalSpeed = 0.8;
@@ -41,10 +40,10 @@ public class OpenGliderPlayerHelper {
 //        player.setPositionAndRotation(player.posX, player.posY, player.posZ, player.rotationYaw, 10); //ToDo: figure out how to rotate player horizontal (RenderPlayer.rotateCorpse)
     }
 
-    private static boolean shouldBeGliding(EntityPlayer player){
+    public static boolean shouldBeGliding(EntityPlayer player){
         if (player == null || player.isDead) return false;
         ItemStack held = player.getHeldItem(EnumHand.MAIN_HAND);
-        if (held == null || !(held.getItem() instanceof ItemHangGlider)) return false; //ToDo: Remove at some point?
+        if (held == null || !(held.getItem() instanceof ItemHangGlider)) return false; //ToDo: Remove at some point? (some upgrade/better tier?)
         if (player.onGround || player.isInWater()) return false;
         return true;
 
