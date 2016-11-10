@@ -1,6 +1,7 @@
 package gr8pefish.openglider.client.event;
 
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -20,10 +21,10 @@ public class ClientEventHandler {
     public void onRender(RenderPlayerEvent.Pre event) {
 
         if (event.getEntity() instanceof EntityPlayer) {
+            EntityPlayer playerEntity = (EntityPlayer) event.getEntity();
+            if (OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer) event.getEntity())) {
+                if (!OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) return;
 
-            if (OpenGliderCapabilities.getIsGliding((EntityPlayer) event.getEntity())) {
-
-                EntityPlayer playerEntity = (EntityPlayer) event.getEntity();
                 float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
                 //            double interpolatedPitch = (playerEntity.prevRotationPitch + (playerEntity.rotationPitch - playerEntity.prevRotationPitch) * partialTicks);
                 double interpolatedYaw = (playerEntity.prevRotationYaw + (playerEntity.rotationYaw - playerEntity.prevRotationYaw) * partialTicks);
