@@ -1,6 +1,8 @@
 package gr8pefish.openglider.client.model;
 
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -56,7 +58,10 @@ public class ModelGlider extends ModelBase {
         EntityPlayer player = (EntityPlayer) entityIn;
         final float rotation = interpolateRotation(player.prevRotationYaw, player.rotationYaw);
 
-        GlStateManager.rotate(180.0F - rotation, 0.0F, 1.0F, 0.0F); //set rotation to align with player
+        if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) //the main inventory screen that renders the player
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F); //set it to the back (no rotation)
+        else //in world/elsewhere
+            GlStateManager.rotate(180.0F - rotation, 0.0F, 1.0F, 0.0F); //set rotation to align with player
 
         GlStateManager.rotate(ONGROUND_ROTATION, 1, 0, 0); //on same plane as player
         GlStateManager.rotate(180F, 0, 2, 0); //front facing
