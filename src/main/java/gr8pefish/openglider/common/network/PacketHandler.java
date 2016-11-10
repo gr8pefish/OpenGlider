@@ -15,5 +15,7 @@ public class PacketHandler {
         HANDLER.registerMessage(PacketServerGliding.Handler.class, PacketServerGliding.class, id, Side.SERVER);
     }
 
+    //ToDo: remove unused packets?
+
 }
 
