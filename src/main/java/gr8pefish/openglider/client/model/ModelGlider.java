@@ -1,5 +1,6 @@
 package gr8pefish.openglider.client.model;
 
+import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -59,7 +60,15 @@ public class ModelGlider extends ModelBase {
 
         GlStateManager.rotate(ONGROUND_ROTATION, 1, 0, 0); //on same plane as player
         GlStateManager.rotate(180F, 0, 2, 0); //front facing
-        GlStateManager.translate(0, -0.5, 0); //move to on the back
+        if (player.isSneaking())
+            GlStateManager.translate(0, -0.5, 0); //move to on the back (but not as much)
+        else
+            GlStateManager.translate(0, -0.35, 0); //move to on the back (quite close)
+
+        if (!OpenGliderPlayerHelper.shouldBeGliding(player)) {
+            GlStateManager.scale(0.9, 0.9, 0.8); //scale slightly smaller
+            GlStateManager.translate(0, 0, -.5); // move up if on ground
+        }
 
     }
 
