@@ -1,26 +1,22 @@
 To Do:
 
-    //ToDo discord textures from InsomniaKitten
-    //tterrag source for rendering others updates: https://github.com/tterrag1098/PotionAPI/blob/master/src/main/java/tterrag/potionapi/api/effect/EffectUtil.java
+    - fix fpp - PRIORITY
 
     NOW:
         Fix player rendering
             - jumpy for others
-            - fix fpp
             - inventoryGui render disable fancy rendering
-            - magically updates when player touches down? how is that possible?
+            - magically updates when player touches down? how is that possible? -solved with deployed?
             - figure out, personally, the gl code, so I understand it for the future
-        Disable when elytra
         add red/white dye to recipes?
 
     LATER:
 
         DEFINITE:
-            Re-add deployed ability.
             Make model for bars hanging down.
         MAYBE:
             Add tiers of gliders?
-            Blow up the item perspective in fpp to be a huge wing?
+            Blow up the item perspective in fpp of wings to be huge?
 
     EVENTUAL FEATURES:
 
