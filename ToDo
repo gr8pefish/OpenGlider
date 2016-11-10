@@ -1,14 +1,13 @@
 To Do:
 
-    - fix fpp - PRIORITY
+    - add icon for fpp
+    - new icon for in-hand when deployed vs not deployed
 
     NOW:
         Fix player rendering
             - jumpy for others
-            - inventoryGui render disable fancy rendering
-            - magically updates when player touches down? how is that possible? -solved with deployed?
+            - inventoryGui render disable fancy rendering when going horizontal (how to do that?)
             - figure out, personally, the gl code, so I understand it for the future
-        add red/white dye to recipes?
 
     LATER:
 
@@ -17,6 +16,7 @@ To Do:
         MAYBE:
             Add tiers of gliders?
             Blow up the item perspective in fpp of wings to be huge?
+            add red/white dye to recipes?
 
     EVENTUAL FEATURES:
 
