@@ -2,5 +2,12 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "openglider:items/hang_glider_deployed"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ -8.5, 4, 1 ],
+      "scale": [ 1.8, 0.55, 0.55 ]
+    }
   }
 }
