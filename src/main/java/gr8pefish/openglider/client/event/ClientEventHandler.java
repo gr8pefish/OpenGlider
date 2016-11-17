@@ -80,15 +80,16 @@ public class ClientEventHandler extends Gui {
     }
 
     private void renderTriangle(RenderGameOverlayEvent event){
-        int centeredScreenStartWidth = event.getResolution().getScaledWidth() / 2 - 64; //-x | x=2nd to last param of draw rectangle method/2
+        int centeredScreenStartWidth = event.getResolution().getScaledWidth() / 2 - 128; //-x | x=2nd to last param of draw rectangle method/2
         int screenStartHeight = 0; //top of screen
         ResourceLocation rl = new ResourceLocation("openglider", "textures/hang_glider_overlay.png"); //seems to accept the texture, but wrong size?
         Minecraft.getMinecraft().getTextureManager().bindTexture(rl); //not working?
-        TextureAtlasSprite textureAtlasSprite = Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(rl);
-        textureAtlasSprite.setIconWidth(128); //testing
-        textureAtlasSprite.setIconHeight(64); //testing
-        System.out.println(textureAtlasSprite.toString()); //TextureAtlasSprite{name='openglider:textures/hang_glider_overlay.png', frameCount=0, rotated=false, x=0, y=0, height=64, width=128, u0=0.0, u1=0.0, v0=0.0, v1=0.0}
-        this.drawTexturedModalRect(centeredScreenStartWidth, screenStartHeight, textureAtlasSprite, 128, 64); //testing
+        GlStateManager.pushMatrix();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+        GlStateManager.rotate(70, 1, 0, 0);
+        this.drawTexturedModalRect(centeredScreenStartWidth, screenStartHeight, 0, 90, 256, 166); //testing
+        GlStateManager.popMatrix();
 
     }
 
