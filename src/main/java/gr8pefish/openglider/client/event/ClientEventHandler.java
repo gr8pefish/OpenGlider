@@ -3,20 +3,22 @@ package gr8pefish.openglider.client.event;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ClientEventHandler {
+public class ClientEventHandler extends Gui {
 
     private boolean needToPop = false;
 
@@ -70,14 +72,24 @@ public class ClientEventHandler {
                 EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
                 if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) {
                     if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) {
-                        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
-                        GlStateManager.pushMatrix();
-                        fontRenderer.drawString("CONGRATULATIONS, YOU ARE NOW GLIDING", 0, 0, 1); //ToDo: Nice image overlay in the right spot
-                        GlStateManager.popMatrix();
+                        renderTriangle(event);
                     }
                 }
             }
         }
+    }
+
+    private void renderTriangle(RenderGameOverlayEvent event){
+        int centeredScreenStartWidth = event.getResolution().getScaledWidth() / 2 - 64; //-x | x=2nd to last param of draw rectangle method/2
+        int screenStartHeight = 0; //top of screen
+        ResourceLocation rl = new ResourceLocation("openglider", "textures/hang_glider_overlay.png"); //seems to accept the texture, but wrong size?
+        Minecraft.getMinecraft().getTextureManager().bindTexture(rl); //not working?
+        TextureAtlasSprite textureAtlasSprite = Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(rl);
+        textureAtlasSprite.setIconWidth(128); //testing
+        textureAtlasSprite.setIconHeight(64); //testing
+        System.out.println(textureAtlasSprite.toString()); //TextureAtlasSprite{name='openglider:textures/hang_glider_overlay.png', frameCount=0, rotated=false, x=0, y=0, height=64, width=128, u0=0.0, u1=0.0, v0=0.0, v1=0.0}
+        this.drawTexturedModalRect(centeredScreenStartWidth, screenStartHeight, textureAtlasSprite, 128, 64); //testing
+
     }
 
 }
