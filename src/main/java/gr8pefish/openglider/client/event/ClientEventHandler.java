@@ -65,14 +65,16 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event){
-        if (event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS) {
-            EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
-            if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) {
-                if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) {
-                    FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
-                    GlStateManager.pushMatrix();
-                    fontRenderer.drawString("CONGRATULATIONS, YOU ARE NOW GLIDING", 0, 0, 1); //ToDo: Nice image overlay in the right spot
-                    GlStateManager.popMatrix();
+        if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) {//first person perspective
+            if (event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS) {
+                EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
+                if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) {
+                    if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) {
+                        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+                        GlStateManager.pushMatrix();
+                        fontRenderer.drawString("CONGRATULATIONS, YOU ARE NOW GLIDING", 0, 0, 1); //ToDo: Nice image overlay in the right spot
+                        GlStateManager.popMatrix();
+                    }
                 }
             }
         }
