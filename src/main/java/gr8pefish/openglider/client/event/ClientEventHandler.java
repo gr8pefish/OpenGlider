@@ -19,27 +19,36 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientEventHandler extends Gui {
 
+
+    //==================================================Rotating the Player to a Flying Position (Horizontal)=====================================
+
     private boolean needToPop = false;
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onRender(RenderPlayerEvent.Pre event) {
         if (event.getEntity() instanceof EntityPlayer) {
             EntityPlayer playerEntity = (EntityPlayer) event.getEntity();
-            if (OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer) event.getEntity())) {
-                if (!OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) return;
-                if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) return;
-                rotateToHorizontal(event.getEntityPlayer(), event.getX(), event.getY(), event.getZ());
-                this.needToPop = true;
+            if (OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer) event.getEntity())) { //if glider deployed
+                if (!OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) return; //don't continue if player is not flying
+                if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) return; //don't rotate if the player rendered is in an inventory
+                rotateToHorizontal(event.getEntityPlayer(), event.getX(), event.getY(), event.getZ()); //rotate player to flying position
+                this.needToPop = true; //mark the matrix to pop
             }
         }
     }
 
+    /**
+     * Makes the player's body rotate visually to be flat, parallel to the ground (e.g. like superman flies).
+     *
+     * @param playerEntity - the player to rotate
+     * @param x - player's x pos
+     * @param y - player's y pos
+     * @param z - player's z pos
+     */
     private void rotateToHorizontal(EntityPlayer playerEntity, double x, double y, double z){
-        float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
-        //            double interpolatedPitch = (playerEntity.prevRotationPitch + (playerEntity.rotationPitch - playerEntity.prevRotationPitch) * partialTicks);
-        double interpolatedYaw = (playerEntity.prevRotationYaw + (playerEntity.rotationYaw - playerEntity.prevRotationYaw) * partialTicks);
 
-        //ToDo Ask about entityPlayerMP and related stuffs
+        float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
+        double interpolatedYaw = (playerEntity.prevRotationYaw + (playerEntity.rotationYaw - playerEntity.prevRotationYaw) * partialTicks);
 
         GlStateManager.pushMatrix();
         //7. Set position back to normal
@@ -67,40 +76,59 @@ public class ClientEventHandler extends Gui {
         }
     }
 
+    //=============================================================Rendering In-World for 1st Person Perspective==================================================
+
     /**
      * For rendering as a perspective projection in-world, as opposed to the slightly odd looking orthogonal projection above
      */
     @SubscribeEvent
     public void onRenderOverlay(RenderWorldLastEvent event){
-        if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) {//first person perspective
+        if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //first person perspective
             EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
-            if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) {
-                if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) {
-                    renderTriangle(event);
+            if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) { //if glider deployed
+                if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) { //if flying
+                    renderGliderFirstPersonPerspective(event); //render hang glider above head
                 }
             }
         }
     }
 
+    //The model to display
     private final ModelGlider modelGlider = new ModelGlider();
 
-    private void renderTriangle(RenderWorldLastEvent event){
+    /**
+     * Renders the glider above the player
+     * @param event - the render world event
+     */
+    private void renderGliderFirstPersonPerspective(RenderWorldLastEvent event){
 
         EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
         Minecraft.getMinecraft().getTextureManager().bindTexture(ModInfo.MODEL_GLIDER_TEXTURE_RL); //bind texture
 
-        GlStateManager.pushMatrix(); //push matrix
-        setRotationWorld(entityPlayer, event.getPartialTicks()); //set the roation correctly for 1st person
-        modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1); //render
-        GlStateManager.popMatrix(); //pop matrix
+        //push matrix
+        GlStateManager.pushMatrix();
+        //set the rotation correctly for fpp
+        setRotationFirstPersonPerspective(entityPlayer, event.getPartialTicks());
+        //render the glider
+        modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
+        //pop matrix
+        GlStateManager.popMatrix();
 
     }
 
-    private void setRotationWorld(EntityPlayer player, float partialTicks) {
+    /**
+     * Sets the rotation of the hang glider to work for first person rendering in-world.
+     * @param player - the player
+     * @param partialTicks - the partial ticks
+     */
+    private void setRotationFirstPersonPerspective(EntityPlayer player, float partialTicks) {
         double interpolatedYaw = (player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks);
-        GlStateManager.rotate((float) -interpolatedYaw, 0, 1, 0); //same direction as player (but backwards)
-        GlStateManager.rotate(180F, 0, 1, 0); //rotate so it is forwards
-        GlStateManager.translate(0, 2, 0); //move up above head
+        //rotate the glider to the same orientation as the player is facing
+        GlStateManager.rotate((float) -interpolatedYaw, 0, 1, 0);
+        //rotate the glider so it is forwards facing, as it should be
+        GlStateManager.rotate(180F, 0, 1, 0);
+        //move up to correct position (above player's head)
+        GlStateManager.translate(0, 2, 0);
     }
 
 
