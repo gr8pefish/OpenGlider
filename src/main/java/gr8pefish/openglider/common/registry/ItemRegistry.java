@@ -50,7 +50,7 @@ public class ItemRegistry {
                 "lsr",
                 "   ",
                 'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 's', new ItemStack(ItemRegistry.gliderPart, 1, 2),
-                'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)));
+                'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)).setMirrored(false));
     }
 
     public static void registerRenders(){
