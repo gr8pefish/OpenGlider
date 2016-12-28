@@ -50,13 +50,14 @@ public class ModelGlider extends ModelBase {
     }
 
     /**
-     * Set all the details of the backpack to render.
+     * Set all the details of the glider to render.
      */
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn){
 
         EntityPlayer player = (EntityPlayer) entityIn;
-        final float rotation = interpolateRotation(player.prevRotationYaw, player.rotationYaw);
+        float rotation = 0; //interpolateRotation(player.prevRotationYaw, player.rotationYaw); //does nothing?
+//        rotation = interpolateRotation(player.prevRotationYawHead, player.rotationYawHead);
 
         if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) //the main inventory screen that renders the player
             GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F); //set it to the back (no rotation)
@@ -78,13 +79,18 @@ public class ModelGlider extends ModelBase {
     }
 
     /**
-     * Get the correct rotation of the player, so that the backpack can be parallel to the player's back.
+     * Get the correct rotation of the player, so that the glider can be parallel to the player's back.
      * @param prevRotation - initial rotation (yaw)
      * @param nextRotation - next rotation (yaw)
      * @return - angle to rotate the backpack to
      */
     private static float interpolateRotation(float prevRotation, float nextRotation) {
         float rotation = nextRotation - prevRotation;
+        System.out.println(" ");
+        System.out.println(prevRotation);
+        System.out.println(nextRotation);
+        System.out.println(prevRotation * rotation);
+        System.out.println(" ");
         return prevRotation * rotation;
     }
 }
