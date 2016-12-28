@@ -9,33 +9,39 @@ import net.minecraft.util.EnumHand;
 public class OpenGliderPlayerHelper {
 
     public static void updatePosition(EntityPlayer player){
-        if (shouldBeGliding(player)) {
-            if (player.motionY < 0) {
-                final double horizontalSpeed;
-                final double verticalSpeed;
+        if (OpenGliderCapabilities.getIsGliderDeployed(player)) {
+            player.fallDistance = 0; //don't get hurt if glider deployed
+//            System.out.println(player.worldObj.isRemote ? "client" : "server");
+            if (shouldBeGliding(player)) {
+                if (player.motionY < 0) {
+                    final double horizontalSpeed;
+                    final double verticalSpeed;
 
-                //ToDo: tweak speeds/make sure okay (change with tiers)
-                if (player.isSneaking()) {
-                    horizontalSpeed = 0.1;
-                    verticalSpeed = 0.8;
-                } else {
-                    horizontalSpeed = 0.03;
-                    verticalSpeed = 1.0; //0.5
+                    //ToDo: tweak speeds/make sure okay (change with tiers)
+                    if (player.isSneaking()) {
+                        horizontalSpeed = 0.1;
+                        verticalSpeed = 0.8;
+                    } else {
+                        horizontalSpeed = 0.03;
+                        verticalSpeed = 1.0; //0.5
+                    }
+
+                    player.motionY *= verticalSpeed;
+                    double x = Math.cos(Math.toRadians(player.rotationYawHead + 90)) * horizontalSpeed;
+                    double z = Math.sin(Math.toRadians(player.rotationYawHead + 90)) * horizontalSpeed;
+                    player.motionX += x;
+                    player.motionZ += z;
+//                    player.fallDistance = 0f; /* Don't like getting hurt :( */
                 }
 
-                player.motionY *= verticalSpeed;
-                double x = Math.cos(Math.toRadians(player.rotationYawHead + 90)) * horizontalSpeed;
-                double z = Math.sin(Math.toRadians(player.rotationYawHead + 90)) * horizontalSpeed;
-                player.motionX += x;
-                player.motionZ += z;
-                player.fallDistance = 0f; /* Don't like getting hurt :( */
-            }
-            player.fallDistance = 0f; /* Don't like getting hurt :( */
-
-            //no wild arm swinging while flying
-            if (player.worldObj.isRemote) {
-                player.limbSwing = 0;
-                player.limbSwingAmount = 0;
+                //no wild arm swinging while flying
+                if (player.worldObj.isRemote) {
+                    player.limbSwing = 0;
+                    player.limbSwingAmount = 0;
+                    player.fallDistance = 0;
+                } else {
+                    player.fallDistance = 0;
+                }
             }
         }
 
