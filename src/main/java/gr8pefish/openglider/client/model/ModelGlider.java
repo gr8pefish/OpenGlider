@@ -62,7 +62,7 @@ public class ModelGlider extends ModelBase {
         GlStateManager.rotate(ONGROUND_ROTATION, 1, 0, 0); //on same plane as player
         GlStateManager.rotate(180F, 0, 2, 0); //front facing
         if (player.isSneaking())
-            GlStateManager.translate(0, -0.5, 0); //move to on the back (but not as much)
+            GlStateManager.translate(0, -0.5, 0); //move to on the back (more away than fpp)
         else
             GlStateManager.translate(0, -0.35, 0); //move to on the back (quite close)
 

@@ -129,6 +129,10 @@ public class ClientEventHandler extends Gui {
         GlStateManager.rotate(180F, 0, 1, 0);
         //move up to correct position (above player's head)
         GlStateManager.translate(0, 2, 0);
+
+        //move away if sneaking
+        if (player.isSneaking())
+            GlStateManager.translate(0, 0, -0.25); //subtle speed effect (makes glider smaller looking)
     }
 
 
