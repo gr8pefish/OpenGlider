@@ -9,9 +9,7 @@ import net.minecraft.util.EnumHand;
 public class OpenGliderPlayerHelper {
 
     public static void updatePosition(EntityPlayer player){
-        if (!shouldBeGliding(player)) {
-            //OpenGliderCapabilities.setIsGliderDeployed(player, false); //ToDo: Test server and client or just server //ToDo: Make it active when right clicked, like in 1.7 version
-        } else {
+        if (shouldBeGliding(player)) {
             if (player.motionY < 0) {
                 final double horizontalSpeed;
                 final double verticalSpeed;
@@ -22,7 +20,7 @@ public class OpenGliderPlayerHelper {
                     verticalSpeed = 0.8;
                 } else {
                     horizontalSpeed = 0.03;
-                    verticalSpeed = 0.5;
+                    verticalSpeed = 1.0; //0.5
                 }
 
                 player.motionY *= verticalSpeed;
@@ -32,12 +30,15 @@ public class OpenGliderPlayerHelper {
                 player.motionZ += z;
                 player.fallDistance = 0f; /* Don't like getting hurt :( */
             }
+            player.fallDistance = 0f; /* Don't like getting hurt :( */
+
+            //no wild arm swinging while flying
+            if (player.worldObj.isRemote) {
+                player.limbSwing = 0;
+                player.limbSwingAmount = 0;
+            }
         }
-        if (player.worldObj.isRemote) {
-            player.limbSwing = 0;
-            player.limbSwingAmount = 0; //ToDo: Ask which side this should be set on (assuming client)
-        }
-//        player.setPositionAndRotation(player.posX, player.posY, player.posZ, player.rotationYaw, 10); //ToDo: figure out how to rotate player horizontal (RenderPlayer.rotateCorpse)
+
     }
 
     public static boolean shouldBeGliding(EntityPlayer player){

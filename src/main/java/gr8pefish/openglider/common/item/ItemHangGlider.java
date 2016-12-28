@@ -30,6 +30,8 @@ public class ItemHangGlider extends Item {
         super();
         setCreativeTab(OpenGlider.creativeTab);
         setUnlocalizedName(ModInfo.MODID +":" + ModInfo.ITEM_GLIDER_NAME);
+
+        //Add different icons for if the glider is deployed or not
         this.addPropertyOverride(new ResourceLocation("deployed"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
@@ -41,11 +43,16 @@ public class ItemHangGlider extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-        ItemStack chestItem = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-        if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
-            OpenGliderCapabilities.setIsGliderDeployed(player, !OpenGliderCapabilities.getIsGliderDeployed(player)); //set it to whatever it is not
 
-            //sending packet to nearby players
+        ItemStack chestItem = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+
+        //if no elytra equipped
+        if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
+
+            //toggle state of glider deployment
+            OpenGliderCapabilities.setIsGliderDeployed(player, !OpenGliderCapabilities.getIsGliderDeployed(player));
+
+            //send packet to nearby players to update visually
             if (!world.isRemote) {
                 EntityTracker tracker = world.getMinecraftServer().worldServerForDimension(player.dimension).getEntityTracker();
                 tracker.sendToAllTrackingEntity(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, OpenGliderCapabilities.getIsGliderDeployed(player))));
