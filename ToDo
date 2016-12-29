@@ -1,6 +1,8 @@
 To Do:
 
-    - add icon for fpp
+    - shift and "moved wrongly"
+    - hotbar slot change doesn't undeploy when it should
+    - config file for tweaking simple values
 
     NOW:
         Fix player rendering
