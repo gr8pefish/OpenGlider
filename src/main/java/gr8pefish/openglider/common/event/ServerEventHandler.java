@@ -4,14 +4,17 @@ import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.capabilities.PlayerGlidingCapability;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.lib.ModInfo;
+import gr8pefish.openglider.common.network.PacketClientGliding;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class ServerEventHandler {
@@ -36,6 +39,24 @@ public class ServerEventHandler {
                 newCap.setIsGliderDeployed(oldCap.getIsGliderDeployed());
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        syncGlidingCapability(event.player);
+    }
+    @SubscribeEvent
+    public void onPlayerChangedDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
+        syncGlidingCapability(event.player);
+    }
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        syncGlidingCapability(event.player);
+    }
+
+    private void syncGlidingCapability(EntityPlayer player) {
+        boolean deployed = OpenGliderCapabilities.getIsGliderDeployed(player);
+        PacketHandler.HANDLER.sendTo(new PacketClientGliding(deployed ? PacketClientGliding.IS_GLIDING : PacketClientGliding.IS_NOT_GLIDING), (EntityPlayerMP) player);
     }
 
     @SubscribeEvent

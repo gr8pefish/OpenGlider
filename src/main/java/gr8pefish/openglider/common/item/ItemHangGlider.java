@@ -3,11 +3,14 @@ package gr8pefish.openglider.common.item;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.lib.ModInfo;
+import gr8pefish.openglider.common.network.PacketClientGliding;
 import gr8pefish.openglider.common.network.PacketHandler;
+import gr8pefish.openglider.common.network.PacketServerGliding;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -49,14 +52,19 @@ public class ItemHangGlider extends Item {
         //if no elytra equipped
         if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
 
-            //toggle state of glider deployment
-            OpenGliderCapabilities.setIsGliderDeployed(player, !OpenGliderCapabilities.getIsGliderDeployed(player));
+            //old deployment state
+            boolean isDeployed = OpenGliderCapabilities.getIsGliderDeployed(player);
 
-            //send packet to nearby players to update visually
+            //toggle state of glider deployment
+            OpenGliderCapabilities.setIsGliderDeployed(player, !isDeployed);
+
+            //client only
             if (!world.isRemote) {
+                //send packet to nearby players to update visually
                 EntityTracker tracker = world.getMinecraftServer().worldServerForDimension(player.dimension).getEntityTracker();
                 tracker.sendToAllTrackingEntity(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, OpenGliderCapabilities.getIsGliderDeployed(player))));
             }
+
         }
 
         return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
