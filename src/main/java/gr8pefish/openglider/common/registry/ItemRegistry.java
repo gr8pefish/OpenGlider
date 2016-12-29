@@ -28,14 +28,14 @@ public class ItemRegistry {
                 " sl",
                 "sll",
                 "lll",
-                's', "stickWood", 'l', "leather"));
+                's', "stickWood", 'l', "leather").setMirrored(false));
 
         //Right wing
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderPart, 1, 1),
                 "ls ",
                 "lls",
                 "lll",
-                's', "stickWood", 'l', "leather"));
+                's', "stickWood", 'l', "leather").setMirrored(false));
 
         //Scaffolding
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderPart, 1, 2),
