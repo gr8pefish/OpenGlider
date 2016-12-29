@@ -1,6 +1,5 @@
 package gr8pefish.openglider.common;
 
-import gr8pefish.openglider.client.event.ClientEventHandler;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.event.ServerEventHandler;
 import gr8pefish.openglider.common.lib.ModInfo;

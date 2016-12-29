@@ -1,8 +1,6 @@
 package gr8pefish.openglider.client.model;
 
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;

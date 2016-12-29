@@ -3,14 +3,11 @@ package gr8pefish.openglider.common.item;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.lib.ModInfo;
-import gr8pefish.openglider.common.network.PacketClientGliding;
 import gr8pefish.openglider.common.network.PacketHandler;
-import gr8pefish.openglider.common.network.PacketServerGliding;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -25,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 
 public class ItemHangGlider extends Item {
 

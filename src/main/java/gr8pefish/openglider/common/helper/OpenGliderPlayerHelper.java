@@ -1,6 +1,5 @@
 package gr8pefish.openglider.common.helper;
 
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.item.ItemHangGlider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
