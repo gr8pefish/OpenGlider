@@ -98,6 +98,7 @@ public class ClientEventHandler extends Gui {
 
     /**
      * Renders the glider above the player
+     *
      * @param event - the render world event
      */
     private void renderGliderFirstPersonPerspective(RenderWorldLastEvent event){
@@ -118,6 +119,7 @@ public class ClientEventHandler extends Gui {
 
     /**
      * Sets the rotation of the hang glider to work for first person rendering in-world.
+     *
      * @param player - the player
      * @param partialTicks - the partial ticks
      */

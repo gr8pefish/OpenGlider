@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 public class ModelGlider extends ModelBase {
 
-    private ArrayList<ModelRenderer> parts;
-
     private static final float QUAD_HALF_SIZE = 2.4f;
     private static final float ONGROUND_ROTATION = 90f;
 

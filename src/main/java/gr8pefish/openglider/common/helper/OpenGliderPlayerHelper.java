@@ -43,7 +43,7 @@ public class OpenGliderPlayerHelper {
                 player.limbSwing = 0;
                 player.limbSwingAmount = 0;
             }
-        }
+        } //If item holding enforced need to update/sync cap in an else clause here probably
 
     }
 

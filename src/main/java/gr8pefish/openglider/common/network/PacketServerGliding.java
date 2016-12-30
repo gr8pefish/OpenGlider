@@ -7,6 +7,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+/**
+ * [UNUSED]
+ * Syncs the gliding capability on the server side to a given player.
+ */
 public class PacketServerGliding implements IMessage {
 
     //the data sent

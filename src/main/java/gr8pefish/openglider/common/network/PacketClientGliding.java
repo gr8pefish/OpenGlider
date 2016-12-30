@@ -10,28 +10,32 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+/**
+ * Message to sync the gliding capability on the client side for a given player.
+ */
 public class PacketClientGliding implements IMessage{
 
     //the data sent
-    private byte isGliding;
+    private boolean isGliding;
 
+    //use variables so I can just send over
     public final static byte IS_GLIDING = 0;
     public final static byte IS_NOT_GLIDING = 1;
 
     public PacketClientGliding() {} //default constructor is necessary
 
-    public PacketClientGliding(byte gliding) {
-        this.isGliding = gliding;
+    public PacketClientGliding(boolean isGliding) {
+        this.isGliding = isGliding;
     }
 
     @Override
     public void fromBytes(ByteBuf buf){
-        isGliding = (byte) ByteBufUtils.readVarShort(buf);
+        isGliding = buf.readBoolean();
     }
 
     @Override
     public void toBytes(ByteBuf buf){
-        ByteBufUtils.writeVarShort(buf, isGliding);
+        buf.writeBoolean(isGliding);
     }
 
     public static class Handler implements IMessageHandler<PacketClientGliding, IMessage> {
@@ -43,7 +47,7 @@ public class PacketClientGliding implements IMessage{
             Minecraft.getMinecraft().addScheduledTask(() -> {
                 EntityPlayer player = OpenGlider.proxy.getClientPlayer();
                 if (player != null) {
-                    OpenGliderCapabilities.setIsGliderDeployed(player, message.isGliding == IS_GLIDING);
+                    OpenGliderCapabilities.setIsGliderDeployed(player, message.isGliding);
                 }
             });
 

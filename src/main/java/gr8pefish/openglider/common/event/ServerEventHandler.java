@@ -18,6 +18,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class ServerEventHandler {
 
+    /**
+     * Initialize the cap to the player.
+     *
+     * @param event - attach cap event
+     */
     @SubscribeEvent
     public void onAttachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayer) {
@@ -27,6 +32,11 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Deal with end movement and copying capability data over.
+     *
+     * @param event - the player being cloned (teleported in vanilla code)
+     */
     @SubscribeEvent
     public void onPlayerCloning(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
         if (!event.isWasDeath()) { //return from end (deal with dumb returning from the end code)
@@ -40,24 +50,11 @@ public class ServerEventHandler {
         }
     }
 
-    @SubscribeEvent
-    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        syncGlidingCapability(event.player);
-    }
-    @SubscribeEvent
-    public void onPlayerChangedDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
-        syncGlidingCapability(event.player);
-    }
-    @SubscribeEvent
-    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        syncGlidingCapability(event.player);
-    }
-
-    private void syncGlidingCapability(EntityPlayer player) {
-        boolean deployed = OpenGliderCapabilities.getIsGliderDeployed(player);
-        PacketHandler.HANDLER.sendTo(new PacketClientGliding(deployed ? PacketClientGliding.IS_GLIDING : PacketClientGliding.IS_NOT_GLIDING), (EntityPlayerMP) player);
-    }
-
+    /**
+     * Update the position of the player when flying.
+     *
+     * @param event - tick event
+     */
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event){
         if (OpenGliderCapabilities.getIsGliderDeployed(event.player)){
@@ -65,6 +62,11 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Sync capability of a tracked player for visual person flying updates.
+     *
+     * @param event - the tracking event
+     */
     @SubscribeEvent
     public void onTrack(net.minecraftforge.event.entity.player.PlayerEvent.StartTracking event) {
         EntityPlayer tracker = event.getEntityPlayer(); //the tracker
@@ -79,6 +81,33 @@ public class ServerEventHandler {
                 }
             }
         }
+    }
+
+    //===========================================================Simple Sync Capability EVents==============================================
+
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        syncGlidingCapability(event.player);
+    }
+
+    @SubscribeEvent
+    public void onPlayerChangedDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
+        syncGlidingCapability(event.player);
+    }
+
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        syncGlidingCapability(event.player);
+    }
+
+    /**
+     * Sends a message to the client to update the status fo the glider to whatever it is on the server.
+     *
+     * @param player - the player to sync the data for
+     */
+    private void syncGlidingCapability(EntityPlayer player) {
+        boolean deployed = OpenGliderCapabilities.getIsGliderDeployed(player);
+        PacketHandler.HANDLER.sendTo(new PacketClientGliding(deployed), (EntityPlayerMP) player);
     }
 
 }

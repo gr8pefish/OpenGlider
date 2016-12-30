@@ -1,20 +1,15 @@
 To Do:
 
-    - shift and "moved wrongly"
-    - hotbar slot change doesn't undeploy when it should
-    - config file for tweaking simple values
-
     NOW:
-        Fix player rendering
-            - jumpy for others
-            - inventoryGui render disable fancy rendering when going horizontal (how to do that?)
-            - figure out, personally, the gl code, so I understand it for the future
 
     LATER:
 
         DEFINITE:
-            Make model for bars hanging down.
+            Config file for tweaking values
+            Balance with durability/inaccuracy (configurable)
+            Investigate shift and "[player] moved wrongly"
         MAYBE:
+            Make model for bars hanging down.
             Add tiers of gliders?
             Blow up the item perspective in fpp of wings to be huge?
             add red/white dye to recipes?
@@ -22,9 +17,6 @@ To Do:
     EVENTUAL FEATURES:
 
     BALANCE:
-        config (easy mode vs all these tweaks?)
-        Durability
-        Inaccuracy
 
 
 
