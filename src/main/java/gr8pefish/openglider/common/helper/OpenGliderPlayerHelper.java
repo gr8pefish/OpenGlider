@@ -27,7 +27,7 @@ public class OpenGliderPlayerHelper {
                     verticalSpeed = ConfigHandler.verticalMovement;
                 }
 
-                applyWind(player);
+                WindHelper.applyWind(player);
 
                 player.motionY *= verticalSpeed;
 
@@ -56,15 +56,5 @@ public class OpenGliderPlayerHelper {
 
     }
 
-    private static void applyWind(EntityPlayer player){
-        //ToDo: config for all wind values
-        double downscaleFactor = 3.5;
-        double wind = WindHelper.noiseGenerator.eval(player.posX / downscaleFactor, player.posZ / downscaleFactor); //occurrence amount
-        if (!player.worldObj.isRaining()) wind *= 0.6; //intensity (stronger when raining)
-        double velocity = Math.sqrt(Math.pow(player.motionX, 2) + Math.pow(player.motionZ, 2)); //player's velocity
-        double speedStabilized = wind * 1/((velocity+1) * 0.5); //stabilize somewhat with higher speeds
-        double height = player.posY < 256 ? 1 + ((player.posY / 256) * 0.2) : 1.2 ; //world height clamp
-        double modifier = speedStabilized * height; //more wind at higher heights
-        player.rotationYaw += modifier; //apply rotation based on wind
-    }
+
 }
