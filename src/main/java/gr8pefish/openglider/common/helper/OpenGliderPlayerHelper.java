@@ -1,5 +1,6 @@
 package gr8pefish.openglider.common.helper;
 
+import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.item.ItemHangGlider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ public class OpenGliderPlayerHelper {
      * Updates the position of the player when gliding.
      * Glider is assumed to be deployed already.
      *
-     * @param player - the player
+     * @param player - the player gliding
      */
     public static void updatePosition(EntityPlayer player){
 
@@ -20,12 +21,12 @@ public class OpenGliderPlayerHelper {
                 final double horizontalSpeed;
                 final double verticalSpeed;
 
-                //ToDo: tweak speeds/make sure okay (change with tiers)
+                //ToDo: tweak speeds/make sure okay (change with tiers), make configurable
                 if (player.isSneaking()) {
-                    horizontalSpeed = 0.1;
-                    verticalSpeed = 0.8;
+                    horizontalSpeed = 0.09;
+                    verticalSpeed = 0.7;
                 } else {
-                    horizontalSpeed = 0.03;
+                    horizontalSpeed = 0.02;
                     verticalSpeed = 0.5;
                 }
 
@@ -48,8 +49,8 @@ public class OpenGliderPlayerHelper {
 
     public static boolean shouldBeGliding(EntityPlayer player){
         if (player == null || player.isDead) return false;
-        ItemStack held = player.getHeldItem(EnumHand.MAIN_HAND);
-        if (held == null || !(held.getItem() instanceof ItemHangGlider)) return false; //ToDo: Remove at some point? (some upgrade/better tier?)
+//        ItemStack held = player.getHeldItem(EnumHand.MAIN_HAND);
+//        if (held == null || !(held.getItem() instanceof ItemHangGlider)) return false; //ToDo: Add back at some point?
         if (player.onGround || player.isInWater()) return false;
         return true;
 
