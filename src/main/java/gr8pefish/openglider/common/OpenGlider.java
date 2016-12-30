@@ -7,6 +7,7 @@ import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.proxy.IProxy;
 import gr8pefish.openglider.common.registry.ItemRegistry;
+import gr8pefish.openglider.common.wind.WindHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -41,6 +42,9 @@ public class OpenGlider {
 
         //config
         ConfigHandler.init(event.getSuggestedConfigurationFile());
+
+        //wind
+        WindHelper.initNoiseGenerator();
 
         //register capabilities
         OpenGliderCapabilities.registerAllCapabilities();

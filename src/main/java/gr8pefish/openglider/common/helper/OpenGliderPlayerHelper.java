@@ -1,9 +1,8 @@
 package gr8pefish.openglider.common.helper;
 
 import gr8pefish.openglider.common.config.ConfigHandler;
+import gr8pefish.openglider.common.wind.WindHelper;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.Random;
 
 public class OpenGliderPlayerHelper {
 
@@ -20,7 +19,6 @@ public class OpenGliderPlayerHelper {
                 final double horizontalSpeed;
                 final double verticalSpeed;
 
-                //ToDo: tweak speeds/make sure okay (change with tiers), make configurable
                 if (player.isSneaking()) {
                     horizontalSpeed = ConfigHandler.forwardMovementShift;
                     verticalSpeed = ConfigHandler.verticalMovementShift;
@@ -29,11 +27,9 @@ public class OpenGliderPlayerHelper {
                     verticalSpeed = ConfigHandler.verticalMovement;
                 }
 
-                player.motionY *= verticalSpeed;
+                applyWind(player);
 
-                float randomizer = getRandomMovementMultiplier(player.getRNG());
-                System.out.println(randomizer);
-                player.rotationYaw += randomizer;
+                player.motionY *= verticalSpeed;
 
                 double x = Math.cos(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
                 double z = Math.sin(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
@@ -60,13 +56,15 @@ public class OpenGliderPlayerHelper {
 
     }
 
-    private static float getRandomMovementMultiplier(Random random){
-        if (ConfigHandler.incaccuracyEnabled) {
-            if (random.nextInt(20) < 18) return 0; //only randomize about 3 times a second
-            float randNum = ConfigHandler.inaccuracyMultiplier * random.nextFloat(); //random number withing config bounds
-            return random.nextBoolean() ? randNum : -1 * randNum; //positive or negative
-        } else {
-            return 1;
-        }
+    private static void applyWind(EntityPlayer player){
+        //ToDo: config for all wind values
+        double downscaleFactor = 3.5;
+        double wind = WindHelper.noiseGenerator.eval(player.posX / downscaleFactor, player.posZ / downscaleFactor); //occurrence amount
+        if (!player.worldObj.isRaining()) wind *= 0.6; //intensity (stronger when raining)
+        double velocity = Math.sqrt(Math.pow(player.motionX, 2) + Math.pow(player.motionZ, 2)); //player's velocity
+        double speedStabilized = wind * 1/((velocity+1) * 0.5); //stabilize somewhat with higher speeds
+        double height = player.posY < 256 ? 1 + ((player.posY / 256) * 0.2) : 1.2 ; //world height clamp
+        double modifier = speedStabilized * height; //more wind at higher heights
+        player.rotationYaw += modifier; //apply rotation based on wind
     }
 }
