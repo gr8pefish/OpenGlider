@@ -1,10 +1,9 @@
 package gr8pefish.openglider.common.helper;
 
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
-import gr8pefish.openglider.common.item.ItemHangGlider;
+import gr8pefish.openglider.common.config.ConfigHandler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
+
+import java.util.Random;
 
 public class OpenGliderPlayerHelper {
 
@@ -23,16 +22,21 @@ public class OpenGliderPlayerHelper {
 
                 //ToDo: tweak speeds/make sure okay (change with tiers), make configurable
                 if (player.isSneaking()) {
-                    horizontalSpeed = 0.09;
-                    verticalSpeed = 0.7;
+                    horizontalSpeed = ConfigHandler.forwardMovementShift;
+                    verticalSpeed = ConfigHandler.verticalMovementShift;
                 } else {
-                    horizontalSpeed = 0.02;
-                    verticalSpeed = 0.5;
+                    horizontalSpeed = ConfigHandler.forwardMovement;
+                    verticalSpeed = ConfigHandler.verticalMovement;
                 }
 
                 player.motionY *= verticalSpeed;
-                double x = Math.cos(Math.toRadians(player.rotationYawHead + 90)) * horizontalSpeed;
-                double z = Math.sin(Math.toRadians(player.rotationYawHead + 90)) * horizontalSpeed;
+
+                float randomizer = getRandomMovementMultiplier(player.getRNG());
+                System.out.println(randomizer);
+                player.rotationYaw += randomizer;
+
+                double x = Math.cos(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
+                double z = Math.sin(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
                 player.motionX += x;
                 player.motionZ += z;
                 player.fallDistance = 0f; /* Don't like getting hurt :( */
@@ -54,5 +58,15 @@ public class OpenGliderPlayerHelper {
         if (player.onGround || player.isInWater()) return false;
         return true;
 
+    }
+
+    private static float getRandomMovementMultiplier(Random random){
+        if (ConfigHandler.incaccuracyEnabled) {
+            if (random.nextInt(20) < 18) return 0; //only randomize about 3 times a second
+            float randNum = ConfigHandler.inaccuracyMultiplier * random.nextFloat(); //random number withing config bounds
+            return random.nextBoolean() ? randNum : -1 * randNum; //positive or negative
+        } else {
+            return 1;
+        }
     }
 }

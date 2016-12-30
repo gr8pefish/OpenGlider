@@ -2,6 +2,7 @@ package gr8pefish.openglider.client.renderer;
 
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -26,8 +27,7 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
 
     public void doRenderLayer(@Nonnull AbstractClientPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 
-        if (!entitylivingbaseIn.isInvisible()) { //if not invisible and should render
-            //ToDo: config option to disable rendering?
+        if (!entitylivingbaseIn.isInvisible() && ConfigHandler.enableRendering) { //if not invisible and should render
 
             boolean gliding = OpenGliderCapabilities.getIsGliderDeployed(entitylivingbaseIn); //get if gliding (to render or not)
             if (gliding) { //if there is one

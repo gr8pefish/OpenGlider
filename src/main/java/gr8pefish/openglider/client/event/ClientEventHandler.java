@@ -2,6 +2,7 @@ package gr8pefish.openglider.client.event;
 
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
@@ -83,7 +84,7 @@ public class ClientEventHandler extends Gui {
      */
     @SubscribeEvent
     public void onRenderOverlay(RenderWorldLastEvent event){
-        if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //first person perspective
+        if (ConfigHandler.enableRendering && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //rendering enabled and first person perspective
             EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
             if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) { //if glider deployed
                 if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) { //if flying
