@@ -2,6 +2,7 @@ package gr8pefish.openglider.common.item;
 
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
@@ -20,8 +21,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemHangGlider extends Item {
 
@@ -37,6 +40,29 @@ public class ItemHangGlider extends Item {
                 return entityIn != null && entityIn instanceof EntityPlayer && OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer)entityIn) ? 1.0F : 0.0F;
             }
         });
+
+        setMaxDamage(ConfigHandler.durabilityTotal);
+    }
+
+    //ToDo: set broken
+
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return !(oldStack.getItem().equals(newStack.getItem())); //no more bobbing when damaged if it is the same exact item
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil. Uses leather.
+     */
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+
+        List<ItemStack> leathers = OreDictionary.getOres("leather");
+        for (ItemStack stack : leathers) {
+            if (stack.getItem() == repair.getItem()) return true;
+        }
+        return false;
 
     }
 
