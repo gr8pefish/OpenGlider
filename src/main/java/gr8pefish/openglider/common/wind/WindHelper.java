@@ -14,6 +14,8 @@ public class WindHelper {
 
     public static void applyWind(EntityPlayer player){
 
+        if (!ConfigHandler.windEnabled) return; //if no wind, then do nothing
+
         double windGustSize = ConfigHandler.windGustSize; //18;
         double windFrequency = ConfigHandler.windFrequency; //0.15;
         double windRainingMultiplier = ConfigHandler.windRainingMultiplier; //4;
