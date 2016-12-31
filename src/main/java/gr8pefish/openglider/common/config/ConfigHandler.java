@@ -30,6 +30,7 @@ public class ConfigHandler {
     public static boolean durabilityEnabled;
     public static int durabilityTotal;
     public static int durabilityPerUse;
+    public static int durabilityTimeframe;
 
     public static boolean enableRendering;
     public static float gliderVisibilityFPPShiftAmount;
@@ -62,7 +63,7 @@ public class ConfigHandler {
         categories.add(category);
         windEnabled = config.getBoolean("1) Enable Wind", category, true, "Enables wind, making the player move unpredictably around when gliding.");
         windOverallPower = config.getFloat("2) Overall Power", category, 1.3F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available below.");
-        windGustSize = config.getFloat("3) Gust Size", category, 18, 1, 100, "The size of the wind gusts, larger values mean the gusts push the player around in greater angles from their intended direction. Default is moderately sized. Observable gameplay effects are highly tied with wind frequency.");
+        windGustSize = config.getFloat("3) Gust Size", category, 20, 1, 100, "The size of the wind gusts, larger values mean the gusts push the player around in greater angles from their intended direction. Default is moderately sized. Observable gameplay effects are highly tied with wind frequency.");
         windFrequency = config.getFloat("4) Wind Frequency", category, 0.15F, 0, 5, "The frequency of the wind gusts, larger values mean the wind effects occur more often. 0 removes wind. Default is semi-common. Observable gameplay effects are highly tied with gust size.");
         windRainingMultiplier = config.getFloat("5) Rain Multiplier", category, 5, 1, 10, "How much stronger the wind should be while it is raining. 1 means the wind is the same if raining or not, 10 means the wind is 10x stronger while it is raining.");
         windSpeedMultiplier = config.getFloat("6) Speed Multiplier", category, 0.4F, -10, 10, "When going fast, the overall wind effect is changed by this multiplier. Default is that going fast reduces the wind effect by a moderate amount. 0 means the player's speed has no effect on the wind.");
@@ -71,8 +72,9 @@ public class ConfigHandler {
         category = "3) Durability"; //ToDo
         categories.add(category);
         durabilityEnabled = config.getBoolean("Enable Durability", category, true, "Enables durability usage of the hang glider when gliding.");
-        durabilityTotal = config.getInt("Total Durability", category, 100, 1, 10000, "The maximum durability of an unused hang glider.");
+        durabilityTotal = config.getInt("Total Durability", category, 200, 1, 10000, "The maximum durability of an unused hang glider.");
         durabilityPerUse = config.getInt("Durability Per-Use", category, 1, 0, 10000, "The durability used up each time the hang glider is utilized.");
+        durabilityTimeframe = config.getInt("Durability Timeframe", category, 100, 1, 10000, "The durability is used up this time in ticks. Recall that there are 20 ticks in a second, so a value of 20 would damage the item about once a second. Default is 1 damage about every 5 seconds of flight. With the default durability (200) this means about 15 minutes of flight.");
 
         category = "4) Visuals";
         categories.add(category);
