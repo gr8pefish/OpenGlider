@@ -14,6 +14,8 @@ public class ConfigHandler {
     public static Configuration config;
     public static List<String> categories = new ArrayList<>();
 
+    public static boolean holdingGliderEnforced;
+
     public static float forwardMovement;
     public static float verticalMovement;
     public static float forwardMovementShift;
@@ -52,12 +54,13 @@ public class ConfigHandler {
 
         String category;
 
-        category = "1) Balance";
+        category = "1) Balance/Miscellaneous";
         categories.add(category);
         forwardMovement = config.getFloat("1) Normal Forward Movement", category, 0.02F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding normally.");
         verticalMovement = config.getFloat("2) Normal Fall Distance", category, 0.55F, 0, 100,"The amount of blocks a player falls (per-tick) while gliding normally.");
         forwardMovementShift = config.getFloat("3) Fast Forward Movement", category, 0.08F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift').");
         verticalMovementShift = config.getFloat("4) Fast Fall Distance", category, 0.8F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
+        holdingGliderEnforced = config.getBoolean("5) Holding Glider Enforced", category, true, "Must be holding the hang glider and have it selected to fly.");
 
         category = "2) Wind";
         categories.add(category);
@@ -69,12 +72,12 @@ public class ConfigHandler {
         windSpeedMultiplier = config.getFloat("6) Speed Multiplier", category, 0.4F, -10, 10, "When going fast, the overall wind effect is changed by this multiplier. Default is that going fast reduces the wind effect by a moderate amount. 0 means the player's speed has no effect on the wind.");
         windHeightMultiplier = config.getFloat("7) Height Multiplier", category, 1.8F, -10, 10, "The player's y-level/height changes the overall wind effect by this multiplier. Default is that the higher you are up in the world the stronger the wind is, but only by a moderate amount. 0 means the player's height has no effect on the wind.");
 
-        category = "3) Durability"; //ToDo
+        category = "3) Durability";
         categories.add(category);
         durabilityEnabled = config.getBoolean("Enable Durability", category, true, "Enables durability usage of the hang glider when gliding.");
-        durabilityTotal = config.getInt("Total Durability", category, 200, 1, 10000, "The maximum durability of an unused hang glider.");
-        durabilityPerUse = config.getInt("Durability Per-Use", category, 1, 0, 10000, "The durability used up each time the hang glider is utilized.");
-        durabilityTimeframe = config.getInt("Durability Timeframe", category, 100, 1, 10000, "The durability is used up this time in ticks. Recall that there are 20 ticks in a second, so a value of 20 would damage the item about once a second. Default is 1 damage about every 5 seconds of flight. With the default durability (200) this means about 15 minutes of flight.");
+        durabilityTotal = config.getInt("Total Durability", category, 206, 1, 10000, "The maximum durability of an unused hang glider.");
+        durabilityPerUse = config.getInt("Durability Per-Use", category, 1, 0, 10000, "The durability used up each time.");
+        durabilityTimeframe = config.getInt("Durability Timeframe", category, 100, 1, 10000, "The timeframe for durability usage, in ticks. Recall that there are 20 ticks in a second, so a value of 20 would damage the item about once a second. Default is 1 damage about every 5 seconds of flight, so with the default durability (206) means about 15 minutes of flight time with an undamaged glider.");
 
         category = "4) Visuals";
         categories.add(category);
