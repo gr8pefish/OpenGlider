@@ -25,24 +25,25 @@ public class ModelGlider extends ModelBase {
         GlStateManager.disableRescaleNormal();
         GlStateManager.disableCull();
 
-        GL11.glDisable(GL11.GL_CULL_FACE);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        GL11.glBegin(GL11.GL_QUADS);
+        GlStateManager.disableCull();
+        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+        GlStateManager.glBegin(GL11.GL_QUADS);
 
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+        GlStateManager.glTexCoord2f(1, 1);
+        GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
 
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(-QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+        GlStateManager.glTexCoord2f(0, 1);
+        GlStateManager.glVertex3f(-QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
 
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(-QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+        GlStateManager.glTexCoord2f(0, 0);
+        GlStateManager.glVertex3f(-QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
 
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+        GlStateManager.glTexCoord2f(1, 0);
+        GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
 
-        GL11.glEnd();
-        GL11.glEnable(GL11.GL_CULL_FACE);
+        GlStateManager.glEnd();
+        GlStateManager.enableCull();
+
     }
 
     /**
