@@ -24,26 +24,26 @@ public class WindHelper {
         double windOverallPower = ConfigHandler.windOverallPower; //1;
 
         //downscale for gust size/occurrence amount
-        double wind = WindHelper.noiseGenerator.eval(player.posX / windGustSize, player.posZ / windGustSize); //occurrence amount
+        double noise = WindHelper.noiseGenerator.eval(player.posX / windGustSize, player.posZ / windGustSize); //occurrence amount
 
         //multiply by intensity factor (alter by multiplier if raining)
-        wind *= player.worldObj.isRaining() ? windRainingMultiplier * windFrequency : windFrequency;
+        noise *= player.worldObj.isRaining() ? windRainingMultiplier * windFrequency : windFrequency;
 
         //stabilize somewhat depending on velocity
         double velocity = Math.sqrt(Math.pow(player.motionX, 2) + Math.pow(player.motionZ, 2)); //player's velocity
-        double speedStabilized = wind * 1/((velocity * windSpeedMultiplier) + 1); //stabilize somewhat with higher speeds //ToDo: test
+        double speedStabilized = noise * 1/((velocity * windSpeedMultiplier) + 1); //stabilize somewhat with higher speeds //ToDo: test
 
         //increase wind depending on world height
         double height = player.posY < 256 ? (player.posY / 256) * windHeightMultiplier : windHeightMultiplier; //world height clamp
 
-        //apply stabilized speed wind with height
-        double modifier = speedStabilized * height;
+        //apply stabilized speed with height
+        double wind = speedStabilized * height;
 
-        //apply overall power option
-        modifier *= windOverallPower;
+        //apply overall wind power multiplier
+        wind *= windOverallPower;
 
         //apply final rotation based on all the above
-        player.rotationYaw += modifier;
+        player.rotationYaw += wind;
     }
 
 }
