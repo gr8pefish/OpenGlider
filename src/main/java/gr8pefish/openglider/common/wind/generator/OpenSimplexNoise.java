@@ -3,17 +3,10 @@ package gr8pefish.openglider.common.wind.generator;
 /*
  * OpenSimplex Noise in Java.
  * by Kurt Spencer
+ * https://gist.github.com/KdotJPG/b1270127455a94ac5d19
  *
  * v1.1 (October 5, 2014)
- * - Added 2D and 4D implementations.
- * - Proper gradient sets for all dimensions, from a
- *   dimensionally-generalizable scheme with an actual
- *   rhyme and reason behind it.
- * - Removed default permutation array in favor of
- *   default seed.
- * - Changed seed-based constructor to be independent
- *   of any particular randomization library, so results
- *   will be the same when ported to other languages.
+ * This is free and unencumbered software released into the public domain.
  */
 
 public class OpenSimplexNoise {
