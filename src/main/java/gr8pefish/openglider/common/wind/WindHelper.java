@@ -19,6 +19,7 @@ public class WindHelper {
         double windRainingMultiplier = ConfigHandler.windRainingMultiplier; //4;
         double windSpeedMultiplier = ConfigHandler.windSpeedMultiplier; //0.4;
         double windHeightMultiplier = ConfigHandler.windHeightMultiplier; //1.2;
+        double windOverallPower = ConfigHandler.windOverallPower; //1;
 
         //downscale for gust size/occurrence amount
         double wind = WindHelper.noiseGenerator.eval(player.posX / windGustSize, player.posZ / windGustSize); //occurrence amount
@@ -35,6 +36,9 @@ public class WindHelper {
 
         //apply stabilized speed wind with height
         double modifier = speedStabilized * height;
+
+        //apply overall power option
+        modifier *= windOverallPower;
 
         //apply final rotation based on all the above
         player.rotationYaw += modifier;

@@ -20,11 +20,12 @@ public class ConfigHandler {
     public static float verticalMovementShift;
 
     public static boolean windEnabled;
-    public static double windGustSize;
-    public static double windFrequency;
-    public static double windRainingMultiplier;
-    public static double windSpeedMultiplier;
-    public static double windHeightMultiplier;
+    public static float windOverallPower;
+    public static float windGustSize;
+    public static float windFrequency;
+    public static float windRainingMultiplier;
+    public static float windSpeedMultiplier;
+    public static float windHeightMultiplier;
 
     public static boolean durabilityEnabled;
     public static int durabilityTotal;
@@ -60,11 +61,12 @@ public class ConfigHandler {
         category = "2) Wind";
         categories.add(category);
         windEnabled = config.getBoolean("1) Enable Wind", category, true, "Enables wind, making the player move unpredictably around when gliding.");
-        windGustSize = config.getFloat("2) Gust Size", category, 18, 1, 100, "The size of the wind gusts, larger values mean the gusts push the player around in greater angles from their intended direction.");
-        windFrequency = config.getFloat("3) Wind Frequency", category, 0.15F, 0, 100, "The frequency of the wind gusts, larger values mean the wind effects occur more often. 0 removes wind.");
-        windRainingMultiplier = config.getFloat("4) Rain Multiplier", category, 4, 1, 100, "How much stronger the wind should be while it is raining. 1 means the wind is the same if raining or not, 10 means the wind is 10x stronger while it is raining.");
-        windSpeedMultiplier = config.getFloat("5) Speed Multiplier", category, 0.4F, 0, 100, "When going fast, the overall wind effect is changed by this multiplier. 0 means no change.");
-        windHeightMultiplier = config.getFloat("6) Height Multiplier", category, 1.2F, 0, 100, "When high above the ground, the overall wind effect is changed by this multiplier. 0 means no change.");
+        windOverallPower = config.getFloat("2) Overall Power", category, 1, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available below.");
+        windGustSize = config.getFloat("3) Gust Size", category, 18, 1, 100, "The size of the wind gusts, larger values mean the gusts push the player around in greater angles from their intended direction. Default is moderately sized. Observable gameplay effects are highly tied with wind frequency.");
+        windFrequency = config.getFloat("4) Wind Frequency", category, 0.15F, 0, 5, "The frequency of the wind gusts, larger values mean the wind effects occur more often. 0 removes wind. Default is semi-common. Observable gameplay effects are highly tied with gust size.");
+        windRainingMultiplier = config.getFloat("5) Rain Multiplier", category, 4, 1, 10, "How much stronger the wind should be while it is raining. 1 means the wind is the same if raining or not, 10 means the wind is 10x stronger while it is raining.");
+        windSpeedMultiplier = config.getFloat("6) Speed Multiplier", category, 0.4F, -10, 10, "When going fast, the overall wind effect is changed by this multiplier. Default is that going fast reduces the wind effect by a moderate amount. 0 means the player's speed has no effect on the wind.");
+        windHeightMultiplier = config.getFloat("7) Height Multiplier", category, 1.2F, -10, 10, "The player's y-level/height changes the overall wind effect by this multiplier. Default is that the higher you are up in the world the stronger the wind is, but only by a moderate amount. 0 means the player's height has no effect on the wind.");
 
         category = "3) Durability";
         categories.add(category);
