@@ -131,7 +131,7 @@ public class ClientEventHandler extends Gui {
         //rotate the glider so it is forwards facing, as it should be
         GlStateManager.rotate(180F, 0, 1, 0);
         //move up to correct position (above player's head)
-        GlStateManager.translate(0, 2, 0);
+        GlStateManager.translate(0, ConfigHandler.gliderVisibilityFPPShiftAmount, 0);
 
         //move away if sneaking
         if (player.isSneaking())
