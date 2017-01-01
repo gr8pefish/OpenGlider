@@ -1,7 +1,18 @@
 ------------------------------------------------------
-Version 1.10.2 - 0.1.0 (versioning: major-minor-build)
+Version 1.10.2 - 0.1.2
 ------------------------------------------------------
-Initial Release
+Additions
+- None
+
+Changes
+- None
+
+Bug Fixes
+- None
+------------------------------------------------------
+Version 1.10.2 - 0.1.1 (versioning: major-minor-build)
+------------------------------------------------------
+Initial (Alpha) Release
 
 Additions
 - All the features!
