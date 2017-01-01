@@ -1,18 +1,44 @@
 To Do:
 
+    - Update Readme
+    - Cover/Logo Images
+    - Fill out CF page
+
+    BUGS:
+        VISUAL:
+            Multiple gliders oddness (gliding w/ one means all change to bar texture)
+            "broken" texture doesn't always update in-hand
+
     NOW:
 
     LATER:
 
         DEFINITE:
-            Config file for tweaking values
-            Balance with durability/inaccuracy (configurable)
-            Investigate shift and "[player] moved wrongly"
+            JEI for repair (and for info b/c why not)
+            Print out message of elytra equipped if can't enable glider
+            Disable offhand rendering if flying
+            Durability depends on blocks traveled, not time in the air (intelligent durability usage)
+            Sturdy glider crafted w/ elytra, invulnerable to wind
+                    New model
         MAYBE:
+            Longer hold shift the faster you go?
+            Collision redirect (so hit a tree in midair and you turn)
+            Air currents? Forward/backward/up/down momentum?
+                3D wind
             Make model for bars hanging down.
             Add tiers of gliders?
             Blow up the item perspective in fpp of wings to be huge?
             add red/white dye to recipes?
+            Enchants only specific ones possible
+            Investigate shift and "[player] moved wrongly"
+            Enforce lighting correctly in dark settings (e.g. raining):
+                    /* from jamieswhiteshirt
+                     you'll have to re-enable culling and draw the quad twice, one for the bottom face and one for the top face
+                     normals are transformed like your vertices
+                     the thing is that you need to render both sides of the hangglider separately when you use normals
+                     the bottom side has the normal [0, -1, 0] and the top side has the normal [0, 1, 0]
+                     the only reason it's rendering both sides now is because you disabled culling
+                     */
 
     EVENTUAL FEATURES:
 
