@@ -3,6 +3,7 @@ package gr8pefish.openglider.common.wind;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.wind.generator.OpenSimplexNoise;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 public class WindHelper {
 
@@ -12,7 +13,7 @@ public class WindHelper {
         noiseGenerator = new OpenSimplexNoise();
     }
 
-    public static void applyWind(EntityPlayer player){
+    public static void applyWind(EntityPlayer player, ItemStack glider){
 
         if (!ConfigHandler.windEnabled) return; //if no wind, then do nothing
 
@@ -38,6 +39,12 @@ public class WindHelper {
 
         //apply stabilized speed with height
         double wind = speedStabilized * height;
+
+        //apply durability modifier
+        double damagePercentage = glider.isItemDamaged() ? ConfigHandler.windDurabilityMultiplier * ((double)glider.getItemDamage() / (glider.getMaxDamage())) : 0; //1.x where x is the percent of durability used
+        System.out.println(damagePercentage);
+        System.out.println(1 + damagePercentage);
+        wind *= ConfigHandler.windDurabilityMultiplier == 0 ? 1 : 1 + damagePercentage;
 
         //apply overall wind power multiplier
         wind *= windOverallPower;

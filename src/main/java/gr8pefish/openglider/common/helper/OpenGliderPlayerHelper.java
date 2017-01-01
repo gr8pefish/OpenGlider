@@ -34,7 +34,7 @@ public class OpenGliderPlayerHelper {
                         verticalSpeed = ConfigHandler.verticalMovement;
                     }
 
-                    WindHelper.applyWind(player);
+                    WindHelper.applyWind(player, glider);
 
                     player.motionY *= verticalSpeed;
 
