@@ -1,7 +1,7 @@
 ------------------------------------------------------
-Version 1.10.2 - 1.0.0 (versioning: major-minor-build)
+Version 1.10.2 - 0.1.0 (versioning: major-minor-build)
 ------------------------------------------------------
-Initial Port to Minecraft 1.10.2
+Initial Release
 
 Additions
 - All the features!

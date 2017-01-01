@@ -10,6 +10,7 @@ To Do:
 
     NOW:
 
+
     LATER:
 
         DEFINITE:
@@ -18,7 +19,8 @@ To Do:
             Disable offhand rendering if flying
             Durability depends on blocks traveled, not time in the air (intelligent durability usage)
             Sturdy glider crafted w/ elytra, invulnerable to wind
-                    New model
+                New model
+            Release for 1.11
         MAYBE:
             Longer hold shift the faster you go?
             Collision redirect (so hit a tree in midair and you turn)
