@@ -6,6 +6,7 @@ import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
+import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,19 +33,22 @@ public class ItemHangGlider extends Item {
         super();
         setCreativeTab(OpenGlider.creativeTab);
         setUnlocalizedName(ModInfo.MODID +":" + ModInfo.ITEM_GLIDER_NAME);
+        setMaxStackSize(1);
 
         //Add different icons for if the glider is deployed or not
-        this.addPropertyOverride(new ResourceLocation("deployed"), new IItemPropertyGetter() {
+        this.addPropertyOverride(new ResourceLocation("status"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-                return entityIn != null && entityIn instanceof EntityPlayer && OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer)entityIn) ? 1.0F : 0.0F;
+                return entityIn != null && entityIn instanceof EntityPlayer && OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer)entityIn) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F;
             }
         });
 
         setMaxDamage(ConfigHandler.durabilityTotal);
     }
 
-    //ToDo: set broken
+    public static boolean isBroken(ItemStack stack) {
+        return stack.isItemDamaged() && (stack.getItemDamage() >= stack.getMaxDamage() - 1);
+    }
 
 
     @Override
@@ -73,6 +77,8 @@ public class ItemHangGlider extends Item {
 
         //if no elytra equipped
         if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
+
+            if (ItemHangGlider.isBroken(itemStack)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //nothing if broken
 
             //old deployment state
             boolean isDeployed = OpenGliderCapabilities.getIsGliderDeployed(player);

@@ -6,9 +6,21 @@
   "overrides": [
     {
       "predicate": {
-        "deployed": 1
+        "status": 0
+      },
+      "model": "openglider:item/hang_glider"
+    },
+    {
+      "predicate": {
+        "status": 1
       },
       "model": "openglider:item/hang_glider_deployed"
+    },
+    {
+      "predicate": {
+        "status": 2
+      },
+      "model": "openglider:item/hang_glider_broken"
     }
   ]
 }

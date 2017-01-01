@@ -12,6 +12,7 @@ public class PacketHandler {
         int id = 0;
         HANDLER.registerMessage(PacketClientGliding.Handler.class, PacketClientGliding.class, id++, Side.CLIENT);
         HANDLER.registerMessage(PacketUpdateClientTarget.Handler.class, PacketUpdateClientTarget.class, id++, Side.CLIENT);
+        HANDLER.registerMessage(PacketUpdateGliderDamage.Handler.class, PacketUpdateGliderDamage.class, id++, Side.CLIENT);
         HANDLER.registerMessage(PacketServerGliding.Handler.class, PacketServerGliding.class, id, Side.SERVER); //Unused
     }
 
