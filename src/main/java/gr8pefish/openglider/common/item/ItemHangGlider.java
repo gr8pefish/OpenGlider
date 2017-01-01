@@ -18,6 +18,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -101,6 +102,10 @@ public class ItemHangGlider extends Item {
                 tracker.sendToAllTrackingEntity(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, OpenGliderCapabilities.getIsGliderDeployed(player))));
             }
 
+        } else {
+            if (world.isRemote) { //client
+                player.addChatMessage(new TextComponentTranslation("openglider.elytra.error"));
+            }
         }
 
         return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);

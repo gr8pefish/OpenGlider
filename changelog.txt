@@ -2,7 +2,7 @@
 Version 1.10.2 - 0.1.2
 ------------------------------------------------------
 Additions
-- None
+- Message to alert the player they can't hang glide with an elytra equipped, instead of failing silently.
 
 Changes
 - None

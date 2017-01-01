@@ -6,3 +6,6 @@ item.openglider:glider_part.scaffolding.name=Scaffolding
 
 # Creative tab Localization
 itemGroup.openglider=Open Glider
+
+# Other
+openglider.elytra.error=You cannot hang glide with an elytra equipped!
