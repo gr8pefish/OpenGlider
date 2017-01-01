@@ -2,13 +2,10 @@ package gr8pefish.openglider.client.model;
 
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
 
 public class ModelGlider extends ModelBase {
 
