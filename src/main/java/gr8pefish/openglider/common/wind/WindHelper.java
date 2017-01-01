@@ -41,10 +41,8 @@ public class WindHelper {
         double wind = speedStabilized * height;
 
         //apply durability modifier
-        double damagePercentage = glider.isItemDamaged() ? ConfigHandler.windDurabilityMultiplier * ((double)glider.getItemDamage() / (glider.getMaxDamage())) : 0; //1.x where x is the percent of durability used
-        System.out.println(damagePercentage);
-        System.out.println(1 + damagePercentage);
-        wind *= ConfigHandler.windDurabilityMultiplier == 0 ? 1 : 1 + damagePercentage;
+        double additionalDamagePercentage = glider.isItemDamaged() ? ConfigHandler.windDurabilityMultiplier * ((double)glider.getItemDamage() / (glider.getMaxDamage())) : 0; //1.x where x is the percent of durability used
+        wind *= 1 + additionalDamagePercentage;
 
         //apply overall wind power multiplier
         wind *= windOverallPower;
