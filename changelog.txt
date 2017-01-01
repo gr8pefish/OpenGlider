@@ -5,7 +5,7 @@ Additions
 - Message to alert the player they can't hang glide with an elytra equipped, instead of failing silently.
 
 Changes
-- None
+- (Configurable) Disable offhand rendering when gliding.
 
 Bug Fixes
 - None

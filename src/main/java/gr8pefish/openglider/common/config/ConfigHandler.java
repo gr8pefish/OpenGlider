@@ -37,6 +37,7 @@ public class ConfigHandler {
 
     public static boolean enableRendering;
     public static float gliderVisibilityFPPShiftAmount;
+    public static boolean disableOffhandRenderingWhenGliding;
 
     @SubscribeEvent
     public void configChanged(ConfigChangedEvent event) {
@@ -85,6 +86,7 @@ public class ConfigHandler {
         categories.add(category);
         enableRendering = config.getBoolean("1) Enable Rendering", category, true, "Enables rendering of the hang glider on the player.");
         gliderVisibilityFPPShiftAmount = config.getFloat("2) First-Person Glider Visibility", category, 1.8F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
+        disableOffhandRenderingWhenGliding = config.getBoolean("3) Disable Offhand Rendering While Gliding", category, true, "Disables rendering of the offhand while the player is gliding.");
 
         if (config.hasChanged())
             config.save();

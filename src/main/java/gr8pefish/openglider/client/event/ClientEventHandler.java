@@ -1,16 +1,20 @@
 package gr8pefish.openglider.client.event;
 
 import gr8pefish.openglider.client.model.ModelGlider;
+import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
+import gr8pefish.openglider.common.item.ItemHangGlider;
 import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -139,5 +143,26 @@ public class ClientEventHandler extends Gui {
     }
 
 
+    //================================================================Miscellaneous===========================================
+
+
+    /**
+     * Disable the offhand rendering if the player has a glider deployed (and is holding a glider)
+     *
+     * @param event - the render hand event
+     */
+    @SubscribeEvent
+    public void onHandRender(RenderSpecificHandEvent event){
+        EntityPlayer player = OpenGlider.proxy.getClientPlayer();
+        if (ConfigHandler.disableOffhandRenderingWhenGliding) { //configurable
+            if (OpenGliderCapabilities.getIsGliderDeployed(player)) { //if glider deployed
+                if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemHangGlider && !ItemHangGlider.isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang glider
+                    if (event.getHand() == EnumHand.OFF_HAND) { //offhand rendering
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
 
 }

@@ -15,8 +15,6 @@ To Do:
 
         DEFINITE:
             JEI for repair (and for info b/c why not)
-            Print out message of elytra equipped if can't enable glider
-            Disable offhand rendering if flying
             Durability depends on blocks traveled, not time in the air (intelligent durability usage)
             Sturdy glider crafted w/ elytra, invulnerable to wind
                 New model
