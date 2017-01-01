@@ -1,11 +1,10 @@
 To Do:
 
-    - Update Readme
-    - Cover/Logo Images
-    - Fill out CF page
+    - Refine CF page
 
     BUGS:
         VISUAL:
+            Lighting bug is actually annoying, fix that. Also may conflict w/ Optifine and odd tree rending when flying over (conflicts with shaders for sure in fpp).
             Multiple gliders oddness (gliding w/ one means all change to bar texture)
             "broken" texture doesn't always update in-hand
 
