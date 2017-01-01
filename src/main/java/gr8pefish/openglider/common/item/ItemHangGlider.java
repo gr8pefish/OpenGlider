@@ -3,6 +3,7 @@ package gr8pefish.openglider.common.item;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
+import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
@@ -39,8 +40,13 @@ public class ItemHangGlider extends Item {
         this.addPropertyOverride(new ResourceLocation("status"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-                return entityIn != null && entityIn instanceof EntityPlayer && OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer)entityIn) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F;
+                return isGlidingGlider(entityIn, stack) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F;
             }
+
+            private boolean isGlidingGlider(EntityLivingBase entityIn, ItemStack stack){
+                return entityIn != null && entityIn instanceof EntityPlayer && OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer)entityIn); //ToDo: something like this fancyness for multiple gliders -> && OpenGliderPlayerHelper.getGlider((EntityPlayer)entityIn) == stack;
+            }
+
         });
 
         setMaxDamage(ConfigHandler.durabilityTotal);
@@ -53,6 +59,10 @@ public class ItemHangGlider extends Item {
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        //ToDo: Allow broken stacks to reequip, need to alter fp rotation in the json files
+//        if (newStack != null && newStack.getItem() != null && newStack.getItem() instanceof ItemHangGlider && isBroken(newStack))
+//            return true;
+//        else
         return !(oldStack.getItem().equals(newStack.getItem())); //no more bobbing when damaged if it is the same exact item
     }
 
