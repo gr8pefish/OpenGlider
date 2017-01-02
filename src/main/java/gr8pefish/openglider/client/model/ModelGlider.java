@@ -20,9 +20,13 @@ public class ModelGlider extends ModelBase {
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 
         GlStateManager.disableRescaleNormal();
-        GlStateManager.disableCull();
+//        GlStateManager.disableCull();
 
-        GlStateManager.disableCull();
+//        GlStateManager.disableCull();
+
+        //Bottom Face
+        GlStateManager.enableCull();
+        GlStateManager.glNormal3f(0.0F, -1.0F, 0.0F);
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.glBegin(GL11.GL_QUADS);
 
@@ -39,7 +43,28 @@ public class ModelGlider extends ModelBase {
         GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
 
         GlStateManager.glEnd();
-        GlStateManager.enableCull();
+
+        //Top Face
+        GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
+        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+        GlStateManager.glBegin(GL11.GL_QUADS);
+
+        GlStateManager.glTexCoord2f(1, 0);
+        GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+
+        GlStateManager.glTexCoord2f(0, 0);
+        GlStateManager.glVertex3f(-QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+
+        GlStateManager.glTexCoord2f(0, 1);
+        GlStateManager.glVertex3f(-QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+
+        GlStateManager.glTexCoord2f(1, 1);
+        GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+
+        GlStateManager.glEnd();
+
+
+//        GlStateManager.enableCull();
 
     }
 
