@@ -3,10 +3,6 @@ To Do:
     - Refine CF page
 
     BUGS:
-        VISUAL:
-            Lighting bug is actually annoying, fix that. Also may conflict w/ Optifine and odd tree rending when flying over (conflicts with shaders for sure in fpp).
-            Multiple gliders oddness (gliding w/ one means all change to bar texture)
-            "broken" texture doesn't always update in-hand
 
     NOW:
 
@@ -21,7 +17,7 @@ To Do:
             Release for 1.11
         MAYBE:
             Longer hold shift the faster you go?
-            Collision redirect (so hit a tree in midair and you turn)
+            Collision redirect (so hit a tree in midair and you turn)?
             Air currents? Forward/backward/up/down momentum?
                 3D wind
             Make model for bars hanging down.
@@ -30,16 +26,13 @@ To Do:
             add red/white dye to recipes?
             Enchants only specific ones possible
             Investigate shift and "[player] moved wrongly"
-            Enforce lighting correctly in dark settings (e.g. raining):
-                    /* from jamieswhiteshirt
-                     you'll have to re-enable culling and draw the quad twice, one for the bottom face and one for the top face
-                     normals are transformed like your vertices
-                     the thing is that you need to render both sides of the hangglider separately when you use normals
-                     the bottom side has the normal [0, -1, 0] and the top side has the normal [0, 1, 0]
-                     the only reason it's rendering both sides now is because you disabled culling
-                     */
+            Non-instant deployment time?
+            Multiple gliders oddness (transferring from one to another directly, need UUIDs for deployed)
+            "broken" texture doesn't always update in-hand
 
     EVENTUAL FEATURES:
+        Add enable transparent glider in FPP by wrapping entire render model code in enable blend GL call.
+            See how easy it will be to do, if it is trivial then sure, why not
 
     BALANCE:
 
