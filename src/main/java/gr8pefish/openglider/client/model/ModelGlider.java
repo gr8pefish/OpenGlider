@@ -20,14 +20,13 @@ public class ModelGlider extends ModelBase {
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 
         GlStateManager.disableRescaleNormal();
-//        GlStateManager.disableCull();
 
-//        GlStateManager.disableCull();
+
+        GlStateManager.enableCull();
+        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 
         //Bottom Face
-        GlStateManager.enableCull();
         GlStateManager.glNormal3f(0.0F, -1.0F, 0.0F);
-        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.glBegin(GL11.GL_QUADS);
 
         GlStateManager.glTexCoord2f(1, 1);
@@ -44,7 +43,33 @@ public class ModelGlider extends ModelBase {
 
         GlStateManager.glEnd();
 
-        //Top Face
+        //Blend to make shading less powerful on bottom face
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color(1, 1, 1, 0.5F);
+
+        //Bottom Face re-rendered
+        GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F); //normal inverted
+        GlStateManager.glBegin(GL11.GL_QUADS);
+
+        GlStateManager.glTexCoord2f(1, 1);
+        GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+
+        GlStateManager.glTexCoord2f(0, 1);
+        GlStateManager.glVertex3f(-QUAD_HALF_SIZE, 0, QUAD_HALF_SIZE);
+
+        GlStateManager.glTexCoord2f(0, 0);
+        GlStateManager.glVertex3f(-QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+
+        GlStateManager.glTexCoord2f(1, 0);
+        GlStateManager.glVertex3f(QUAD_HALF_SIZE, 0, -QUAD_HALF_SIZE);
+
+        GlStateManager.glEnd();
+
+        //Stop Blending
+        GlStateManager.disableBlend();
+
+        //Top Face (normal)
         GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.glBegin(GL11.GL_QUADS);
@@ -63,8 +88,15 @@ public class ModelGlider extends ModelBase {
 
         GlStateManager.glEnd();
 
+        GlStateManager.disableBlend();
 
-//        GlStateManager.enableCull();
+//        * Render face with correct normal
+//                * Enable blending
+//                * Set blend func to SRC_ALPHA, ONE_MINUS_SRC_ALPHA
+//* Set color to [1, 1, 1, 0.5 (or something)]
+//* Render face with opposite normal
+//                * Disable blending
+
 
     }
 
