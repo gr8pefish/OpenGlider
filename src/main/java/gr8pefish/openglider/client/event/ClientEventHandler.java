@@ -91,7 +91,7 @@ public class ClientEventHandler extends Gui {
      */
     @SubscribeEvent
     public void onRenderOverlay(RenderWorldLastEvent event){
-        if (ConfigHandler.enableRendering && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //rendering enabled and first person perspective
+        if (ConfigHandler.enableRenderingFPP && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //rendering enabled and first person perspective
             EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
             if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) { //if glider deployed
                 if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) { //if flying

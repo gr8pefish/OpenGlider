@@ -35,7 +35,8 @@ public class ConfigHandler {
     public static int durabilityPerUse;
     public static int durabilityTimeframe;
 
-    public static boolean enableRendering;
+    public static boolean enableRendering3PP;
+    public static boolean enableRenderingFPP;
     public static float gliderVisibilityFPPShiftAmount;
     public static boolean disableOffhandRenderingWhenGliding;
 
@@ -84,8 +85,9 @@ public class ConfigHandler {
 
         category = "4) Visuals";
         categories.add(category);
-        enableRendering = config.getBoolean("1) Enable Rendering", category, true, "Enables rendering of the hang glider on the player.");
-        gliderVisibilityFPPShiftAmount = config.getFloat("2) First-Person Glider Visibility", category, 1.8F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
+        enableRendering3PP = config.getBoolean("1) Enable Rendering 3PP", category, true, "Enables rendering of the hang glider on the player in third-person perspective (or to others).");
+        enableRenderingFPP = config.getBoolean("1) Enable Rendering FPP", category, true, "Enables rendering of the hang glider above the player's head in first person perspective.");
+        gliderVisibilityFPPShiftAmount = config.getFloat("2) First-Person Glider Visibility", category, 1.9F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
         disableOffhandRenderingWhenGliding = config.getBoolean("3) Disable Offhand Rendering While Gliding", category, true, "Disables rendering of the offhand while the player is gliding.");
 
         if (config.hasChanged())
