@@ -10,7 +10,10 @@ import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -115,10 +118,23 @@ public class ClientEventHandler extends Gui {
         GlStateManager.pushMatrix();
         //set the rotation correctly for fpp
         setRotationFirstPersonPerspective(entityPlayer, event.getPartialTicks());
+        //set the correct lighting
+        setLightingBeforeRendering(entityPlayer, event.getPartialTicks());
         //render the glider
         modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
         //pop matrix
         GlStateManager.popMatrix();
+
+    }
+
+    private void setLightingBeforeRendering(EntityPlayer player, float partialTicks) {
+        GlStateManager.enableLighting();
+
+        int i = player.getBrightnessForRender(partialTicks);
+        int j = i % 65536;
+        int k = i / 65536;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
+        Minecraft.getMinecraft().entityRenderer.enableLightmap();
 
     }
 
