@@ -1,10 +1,17 @@
 package gr8pefish.openglider.api.capabilities;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.INBTSerializable;
+
 /**
- * An interface to deal with the gliding status of a player.
- * Handled internally through capabilities.
+ * This interface defines the contract to deal with the gliding status of a player.
+ * Handled internally/exposed through capabilities.
+ *
+ * Acquire an instance of this using {@link net.minecraft.entity.Entity#getCapability(Capability, EnumFacing)}.
  */
-public interface IGliderCapabilityHandler {
+public interface IGliderCapabilityHandler extends INBTSerializable<NBTTagCompound> {
 
     /**
      * Get the current gliding status of the player.

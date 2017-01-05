@@ -85,18 +85,18 @@ public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<N
 
     }
 
-    // Not sure what this does honestly
+    // Delegates to the capability's NBT methods
     public static class Storage implements Capability.IStorage<DefaultGliderCapabilityHandler> {
 
         @Override
         public NBTBase writeNBT(Capability<DefaultGliderCapabilityHandler> capability, DefaultGliderCapabilityHandler instance, EnumFacing side) {
             return instance.serializeNBT();
-//            return null; //old unused
         }
 
         @Override
         public void readNBT(Capability<DefaultGliderCapabilityHandler> capability, DefaultGliderCapabilityHandler instance, EnumFacing side, NBTBase nbt) {
-            //empty
+            if (nbt instanceof NBTTagCompound)
+                instance.deserializeNBT(((NBTTagCompound) nbt));
         }
 
     }
@@ -105,7 +105,7 @@ public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<N
     public static class Factory implements Callable<DefaultGliderCapabilityHandler> {
         @Override
         public DefaultGliderCapabilityHandler call() throws Exception {
-            return null;
+            return null; //ToDo
         }
     }
 
@@ -113,6 +113,7 @@ public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<N
 
     //Register the capability
     public static void register() {
-        CapabilityManager.INSTANCE.register(DefaultGliderCapabilityHandler.class, new DefaultGliderCapabilityHandler.Storage(), new DefaultGliderCapabilityHandler.Factory());
+        CapabilityManager.INSTANCE.register(DefaultGliderCapabilityHandler.class, new DefaultGliderCapabilityHandler.Storage(), DefaultGliderCapabilityHandler::new);
+        //ToDo: Cleanup
     }
 }
