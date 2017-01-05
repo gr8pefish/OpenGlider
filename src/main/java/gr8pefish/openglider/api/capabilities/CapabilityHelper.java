@@ -1,25 +1,19 @@
 package gr8pefish.openglider.api.capabilities;
 
+import gr8pefish.openglider.common.capabilities.DefaultGliderCapabilityHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
+import java.util.Optional;
+
+import static gr8pefish.openglider.api.capabilities.CapabilityRegistration.data;
+
 public class CapabilityHelper {
 
-    //ignore for now
-    public static final String GLIDING_CAPABILITY_STRING = "glidingCap";
-
-
-//    @CapabilityInject(IGliderCapabilityHandler.class)
     /** Holds the capability **/
-    public static Capability<IGliderCapabilityHandler> GLIDER_CAPABILITY = null;
-
-    /** Inject the capability **/
     @CapabilityInject(IGliderCapabilityHandler.class)
-    public static void initCapability(Capability<IGliderCapabilityHandler> capability) {
-        if (capability != null)
-            GLIDER_CAPABILITY = capability;
-    }
+    public static final Capability<IGliderCapabilityHandler> GLIDER_CAPABILITY = null;
 
 
     //===================================== Helper Methods ==================================================
@@ -66,12 +60,12 @@ public class CapabilityHelper {
      * Wrapper method for {@link IGliderCapabilityHandler#setIsGliderDeployed(boolean)}, taking into account capabilities.
      *
      * @param player - the player to check
-     * @param deployed - the glider deployment state to set
+     * @param isDeployed - the glider deployment state to set
      */
-    public static void setIsGliderDeployed(EntityPlayer player, boolean deployed) {
+    public static void setIsGliderDeployed(EntityPlayer player, boolean isDeployed) {
         IGliderCapabilityHandler cap = getGlidingCapability(player);
         if (cap != null)
-            cap.setIsGliderDeployed(deployed);
+            cap.setIsGliderDeployed(isDeployed);
     }
 
     /**
