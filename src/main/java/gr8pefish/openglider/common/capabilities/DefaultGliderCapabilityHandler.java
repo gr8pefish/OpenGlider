@@ -1,6 +1,6 @@
 package gr8pefish.openglider.common.capabilities;
 
-import gr8pefish.openglider.api.capabilities.IGliderHandler;
+import gr8pefish.openglider.api.capabilities.IGliderCapabilityHandler;
 import gr8pefish.openglider.common.helper.Logger;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,7 +14,7 @@ import java.util.concurrent.Callable;
 import static gr8pefish.openglider.api.ModNameInfo.MODID;
 import static gr8pefish.openglider.api.capabilities.CapabilityHelper.GLIDER_CAPABILITY;
 
-public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<NBTTagCompound>, IGliderHandler {
+public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<NBTTagCompound>, IGliderCapabilityHandler {
 
     private static final String CAP_PLAYER_GLIDING = MODID+"isPlayerGliding";
     private static final String CAP_GLIDER_DEPLOYED = MODID+"isGliderDeployed";
@@ -27,7 +27,7 @@ public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<N
         this.isGliderDeployed = false;
     }
 
-    //==========================================IGliderHandler===========================================
+    //==========================================IGliderCapabilityHandler===========================================
 
     @Override
     public boolean getIsPlayerGliding() {

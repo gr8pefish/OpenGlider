@@ -4,7 +4,7 @@ package gr8pefish.openglider.api.capabilities;
  * An interface to deal with the gliding status of a player.
  * Handled internally through capabilities.
  */
-public interface IGliderHandler {
+public interface IGliderCapabilityHandler {
 
     /**
      * Get the current gliding status of the player.
