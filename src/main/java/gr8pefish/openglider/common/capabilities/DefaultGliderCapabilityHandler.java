@@ -90,7 +90,8 @@ public class DefaultGliderCapabilityHandler implements ICapabilitySerializable<N
 
         @Override
         public NBTBase writeNBT(Capability<DefaultGliderCapabilityHandler> capability, DefaultGliderCapabilityHandler instance, EnumFacing side) {
-            return null; //unused?
+            return instance.serializeNBT();
+//            return null; //old unused
         }
 
         @Override
