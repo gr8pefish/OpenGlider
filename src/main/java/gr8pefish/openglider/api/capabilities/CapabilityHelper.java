@@ -1,13 +1,9 @@
 package gr8pefish.openglider.api.capabilities;
 
-import gr8pefish.openglider.common.capabilities.DefaultGliderCapabilityHandler;
+import gr8pefish.openglider.common.helper.Logger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-
-import java.util.Optional;
-
-import static gr8pefish.openglider.api.capabilities.CapabilityRegistration.data;
 
 public class CapabilityHelper {
 
@@ -28,6 +24,8 @@ public class CapabilityHelper {
         IGliderCapabilityHandler cap = getGlidingCapability(player);
         if (cap != null)
             return cap.getIsPlayerGliding();
+        else
+            Logger.error("Cannot get player gliding status, glider capability not present.");
         return false;
     }
 
@@ -41,6 +39,8 @@ public class CapabilityHelper {
         IGliderCapabilityHandler cap = getGlidingCapability(player);
         if (cap != null)
             cap.setIsPlayerGliding(isGliding);
+        else
+            Logger.error("Cannot set player gliding, glider capability not present.");
     }
 
     /**
@@ -53,6 +53,8 @@ public class CapabilityHelper {
         IGliderCapabilityHandler cap = getGlidingCapability(player);
         if (cap != null)
             return cap.getIsGliderDeployed();
+        else
+            Logger.error("Cannot get glider deployment status, glider capability not present.");
         return false;
     }
 
@@ -66,6 +68,8 @@ public class CapabilityHelper {
         IGliderCapabilityHandler cap = getGlidingCapability(player);
         if (cap != null)
             cap.setIsGliderDeployed(isDeployed);
+        else
+            Logger.error("Cannot set glider deployed, glider capability not present.");
     }
 
     /**
