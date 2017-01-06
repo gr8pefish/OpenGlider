@@ -2,6 +2,7 @@ package gr8pefish.openglider.common.capabilities;
 
 import gr8pefish.openglider.api.OpenGliderInfo;
 import gr8pefish.openglider.api.capabilities.IGliderCapabilityHandler;
+import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.common.helper.Logger;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketSyncGliderDataToClient;
@@ -39,10 +40,12 @@ public final class GliderCapabilityImplementation {
 
         private boolean isPlayerGliding;
         private boolean isGliderDeployed;
+        private IGlider glider;
 
         public DefaultGliderCapImplementation() {
             this.isPlayerGliding = false;
             this.isGliderDeployed = false;
+            this.glider = null;
         }
 
         //Glider data
@@ -67,13 +70,28 @@ public final class GliderCapabilityImplementation {
 
         @Override
         public void setIsGliderDeployed(boolean isDeployed) {
-            isGliderDeployed = isDeployed;
+            if (isPlayerGliding && isDeployed)
+                Logger.error("Player is already flying, deploying now is not needed.");
+            else
+                isGliderDeployed = isDeployed;
         }
+
+        @Override
+        public IGlider getGlider() {
+            return glider;
+        }
+
+        @Override
+        public void setGlider(IGlider gliderUsed) {
+            glider = gliderUsed;
+        }
+
 
         //Serializing and Deserializing NBT
 
         private static final String CAP_PLAYER_GLIDING = MODID+".isPlayerGliding";
         private static final String CAP_GLIDER_DEPLOYED = MODID+".isGliderDeployed";
+        private static final String CAP_GLIDER_USED = MODID+".gliderUsed";
 
         @Override
         public NBTTagCompound serializeNBT() {
@@ -82,6 +100,7 @@ public final class GliderCapabilityImplementation {
             NBTTagCompound compound = new NBTTagCompound();
             compound.setBoolean(CAP_PLAYER_GLIDING, isPlayerGliding);
             compound.setBoolean(CAP_GLIDER_DEPLOYED, isGliderDeployed);
+            compound.setTag(CAP_GLIDER_USED, glider.serializeNBT());
 
             //return compound
             return compound;
@@ -93,6 +112,7 @@ public final class GliderCapabilityImplementation {
             //load and set
             setIsPlayerGliding(compound.getBoolean(CAP_PLAYER_GLIDING));
             setIsGliderDeployed(compound.getBoolean(CAP_GLIDER_DEPLOYED));
+            glider.deserializeNBT(compound.getCompoundTag(CAP_GLIDER_USED)); //ToDo: set it somehow
 
         }
 

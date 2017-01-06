@@ -55,8 +55,22 @@ public interface IGliderCapabilityHandler extends INBTSerializable<NBTTagCompoun
 
     //ToDo: getIGlider/setIGlider
 
+    /**
+     * Get the glider used, contains all the stats/modifiers of it.
+     * Should only be needed when {@link IGliderCapabilityHandler#getIsPlayerGliding} is true.
+     * See {@link IGlider} for details.
+     *
+     * @return - the IGlider the player is using, null if not using any.
+     */
     IGlider getGlider();
 
+    /**
+     * Sets the glider the player is using.
+     * Should only be needed when {@link IGliderCapabilityHandler#getIsGliderDeployed()} is false.
+     * See {@link IGlider} for details.
+     *
+     * @param glider - The glider to use, pass in null to set it to nothing.
+     */
     void setGlider(IGlider glider);
 
 }

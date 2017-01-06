@@ -1,6 +1,9 @@
 package gr8pefish.openglider.api.item;
 
-public interface IGlider {
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.INBTSerializable;
+
+public interface IGlider extends INBTSerializable<NBTTagCompound> {
     //ToDo
 
     //==============Flight==================
@@ -10,6 +13,7 @@ public interface IGlider {
 
     void setFlightAngle(double angle);
 
+    //speed traveling that angle
     double getFlightSpeed();
 
     void setFlightSpeed(double speed);
