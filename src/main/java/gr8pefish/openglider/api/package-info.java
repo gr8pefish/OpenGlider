@@ -3,5 +3,5 @@ package gr8pefish.openglider.api;
 
 import net.minecraftforge.fml.common.API;
 
-import static gr8pefish.openglider.api.ModNameInfo.MODID;
-import static gr8pefish.openglider.api.ModNameInfo.MOD_NAME;
+import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+import static gr8pefish.openglider.api.OpenGliderInfo.MOD_NAME;

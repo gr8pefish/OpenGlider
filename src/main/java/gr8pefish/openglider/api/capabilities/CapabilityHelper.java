@@ -21,7 +21,7 @@ public class CapabilityHelper {
      * @return - True if gliding, False otherwise (includes no capability)
      */
     public static boolean getIsPlayerGliding(EntityPlayer player) {
-        IGliderCapabilityHandler cap = getGlidingCapability(player);
+        IGliderCapabilityHandler cap = getGliderCapability(player);
         if (cap != null)
             return cap.getIsPlayerGliding();
         else
@@ -36,7 +36,7 @@ public class CapabilityHelper {
      * @param isGliding - the gliding state to set
      */
     public static void setIsPlayerGliding(EntityPlayer player, boolean isGliding) {
-        IGliderCapabilityHandler cap = getGlidingCapability(player);
+        IGliderCapabilityHandler cap = getGliderCapability(player);
         if (cap != null)
             cap.setIsPlayerGliding(isGliding);
         else
@@ -50,7 +50,7 @@ public class CapabilityHelper {
      * @return - True if deployed, False otherwise (includes no capability)
      */
     public static boolean getIsGliderDeployed(EntityPlayer player) {
-        IGliderCapabilityHandler cap = getGlidingCapability(player);
+        IGliderCapabilityHandler cap = getGliderCapability(player);
         if (cap != null)
             return cap.getIsGliderDeployed();
         else
@@ -65,7 +65,7 @@ public class CapabilityHelper {
      * @param isDeployed - the glider deployment state to set
      */
     public static void setIsGliderDeployed(EntityPlayer player, boolean isDeployed) {
-        IGliderCapabilityHandler cap = getGlidingCapability(player);
+        IGliderCapabilityHandler cap = getGliderCapability(player);
         if (cap != null)
             cap.setIsGliderDeployed(isDeployed);
         else
@@ -76,10 +76,21 @@ public class CapabilityHelper {
      * Gets the gliding capability of a given player.
      *
      * @param player - the player to check
-     * @return True if the player has the capability, False otherwise
+     * @return The capability if the player has the capability, null otherwise
      */
-    public static IGliderCapabilityHandler getGlidingCapability(EntityPlayer player) {
+    public static IGliderCapabilityHandler getGliderCapability(EntityPlayer player) {
         return player.getCapability(GLIDER_CAPABILITY, null);
+    }
+
+    /**
+     * Checks if the player has the glider capability.
+     * Should theoretically always be true if using this API, as it injects the capability.
+     *
+     * @param player - the player to check
+     * @return - True if the player has the capability, False otherwise
+     */
+    public static boolean hasGliderCapability(EntityPlayer player) {
+        return player.hasCapability(GLIDER_CAPABILITY, null);
     }
 
 

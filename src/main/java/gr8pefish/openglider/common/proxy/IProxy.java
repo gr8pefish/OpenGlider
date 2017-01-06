@@ -1,5 +1,6 @@
 package gr8pefish.openglider.common.proxy;
 
+import gr8pefish.openglider.api.capabilities.IGliderCapabilityHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,4 +18,6 @@ public interface IProxy {
     public EntityPlayer getClientPlayer();
 
     public World getClientWorld();
+
+    public IGliderCapabilityHandler getClientGliderCapability();
 }

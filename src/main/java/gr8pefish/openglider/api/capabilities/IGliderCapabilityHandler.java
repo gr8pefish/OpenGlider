@@ -1,5 +1,6 @@
 package gr8pefish.openglider.api.capabilities;
 
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -43,5 +44,14 @@ public interface IGliderCapabilityHandler extends INBTSerializable<NBTTagCompoun
      * @param isGliderDeployed - True if the glider is deployed, False otherwise.
      */
     void setIsGliderDeployed(boolean isGliderDeployed);
+
+    /**
+     * Sync the (above) data stored in the capability to a given player.
+     *
+     * @param player - the player to sync the data to.
+     */
+    void sync(EntityPlayerMP player);
+
+    //ToDo: getIGlider/setIGlider
 
 }

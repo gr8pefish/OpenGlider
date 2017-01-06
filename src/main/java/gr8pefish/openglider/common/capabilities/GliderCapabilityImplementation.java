@@ -3,6 +3,9 @@ package gr8pefish.openglider.common.capabilities;
 import gr8pefish.openglider.api.OpenGliderInfo;
 import gr8pefish.openglider.api.capabilities.IGliderCapabilityHandler;
 import gr8pefish.openglider.common.helper.Logger;
+import gr8pefish.openglider.common.network.PacketHandler;
+import gr8pefish.openglider.common.network.PacketSyncGliderData;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -93,13 +96,20 @@ public final class GliderCapabilityImplementation {
 
         }
 
+        //Sync
+
+        @Override
+        public void sync(EntityPlayerMP player) {
+            PacketHandler.HANDLER.sendTo(new PacketSyncGliderData(serializeNBT()), player);
+        }
+
     }
 
     public static class Provider implements ICapabilitySerializable<NBTTagCompound> {
 
         public static final ResourceLocation NAME = new ResourceLocation(OpenGliderInfo.MODID, "cap");
 
-        private final IGliderCapabilityHandler cap = new DefaultGliderCapImplementation();
+        private final IGliderCapabilityHandler capabilityImplementation = new DefaultGliderCapImplementation();
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -109,20 +119,23 @@ public final class GliderCapabilityImplementation {
         @Override
         public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
             if (capability == GLIDER_CAPABILITY) {
-                return GLIDER_CAPABILITY.cast(cap);
+                return GLIDER_CAPABILITY.cast(capabilityImplementation);
             }
             return null;
         }
 
         @Override
         public NBTTagCompound serializeNBT() {
-            return cap.serializeNBT();
+            return capabilityImplementation.serializeNBT();
         }
 
         @Override
         public void deserializeNBT(NBTTagCompound nbt) {
-            cap.deserializeNBT(nbt);
+            capabilityImplementation.deserializeNBT(nbt);
         }
     }
+
+    //make it un-constructable, as it is just a container for the other nested classes and static methods
+    private GliderCapabilityImplementation() {}
 
 }

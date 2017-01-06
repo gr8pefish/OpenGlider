@@ -1,5 +1,6 @@
 package gr8pefish.openglider.common.proxy;
 
+import gr8pefish.openglider.api.capabilities.IGliderCapabilityHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -25,11 +26,16 @@ public class CommonProxy implements IProxy {
 
     @Override
     public EntityPlayer getClientPlayer(){
-        throw new RuntimeException("Can't get client player from server side");
+        return null; //nothing on server
     }
 
     @Override
     public World getClientWorld() {
         return null; //Nothing on server
+    }
+
+    @Override
+    public IGliderCapabilityHandler getClientGliderCapability() {
+        return null; //nothing on server
     }
 }
