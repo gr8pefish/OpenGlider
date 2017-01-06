@@ -10,13 +10,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketSyncGliderData implements IMessage {
+public class PacketSyncGliderDataToClient implements IMessage {
 
     private NBTTagCompound nbt;
 
-    public PacketSyncGliderData() {}
+    public PacketSyncGliderDataToClient() {}
 
-    public PacketSyncGliderData(NBTTagCompound nbt) {
+    public PacketSyncGliderDataToClient(NBTTagCompound nbt) {
         this.nbt = nbt;
     }
 
@@ -30,10 +30,10 @@ public class PacketSyncGliderData implements IMessage {
         ByteBufUtils.writeTag(buf, nbt);
     }
 
-    public static class Handler implements IMessageHandler<PacketSyncGliderData, IMessage> {
+    public static class Handler implements IMessageHandler<PacketSyncGliderDataToClient, IMessage> {
 
         @Override
-        public IMessage onMessage(final PacketSyncGliderData message, MessageContext ctx) {
+        public IMessage onMessage(final PacketSyncGliderDataToClient message, MessageContext ctx) {
 
             Minecraft.getMinecraft().addScheduledTask(() -> {
                 OpenGlider.proxy.getClientGliderCapability().deserializeNBT(message.nbt);
