@@ -1,7 +1,7 @@
 package gr8pefish.openglider.common.network;
 
+import gr8pefish.openglider.api.capabilities.CapabilityHelper;
 import gr8pefish.openglider.common.OpenGlider;
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.item.ItemHangGlider;
@@ -38,7 +38,7 @@ public class PacketUpdateGliderDamage implements IMessage{
                     if (glider != null) {
                         glider.damageItem(ConfigHandler.durabilityPerUse, player);
                         if (ItemHangGlider.isBroken(glider)) { //broken item
-                            OpenGliderCapabilities.setIsGliderDeployed(player, false);
+                            CapabilityHelper.setIsGliderDeployed(player, false);
                         }
                     }
                 }

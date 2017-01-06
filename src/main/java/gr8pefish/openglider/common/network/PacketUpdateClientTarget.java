@@ -1,7 +1,7 @@
 package gr8pefish.openglider.common.network;
 
+import gr8pefish.openglider.api.capabilities.CapabilityHelper;
 import gr8pefish.openglider.common.OpenGlider;
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +44,7 @@ public class PacketUpdateClientTarget implements IMessage{
                 World world = OpenGlider.proxy.getClientWorld();
                 EntityPlayer targetEntity = (EntityPlayer) world.getEntityByID(message.targetEntityID);
                 if (targetEntity != null) {
-                    OpenGliderCapabilities.setIsGliderDeployed(targetEntity, message.isGliding);
+                    CapabilityHelper.setIsGliderDeployed(targetEntity, message.isGliding);
                 }
             });
             return null;

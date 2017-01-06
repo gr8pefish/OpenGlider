@@ -4,7 +4,7 @@ import gr8pefish.openglider.api.OpenGliderInfo;
 import gr8pefish.openglider.api.capabilities.IGliderCapabilityHandler;
 import gr8pefish.openglider.common.helper.Logger;
 import gr8pefish.openglider.common.network.PacketHandler;
-import gr8pefish.openglider.common.network.PacketSyncGliderData;
+import gr8pefish.openglider.common.network.PacketSyncGliderDataToClient;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -100,7 +100,7 @@ public final class GliderCapabilityImplementation {
 
         @Override
         public void sync(EntityPlayerMP player) {
-            PacketHandler.HANDLER.sendTo(new PacketSyncGliderData(serializeNBT()), player);
+            PacketHandler.HANDLER.sendTo(new PacketSyncGliderDataToClient(serializeNBT()), player);
         }
 
     }

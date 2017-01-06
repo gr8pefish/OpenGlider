@@ -68,8 +68,8 @@ public class ServerEventHandler {
         Entity targetEntity = event.getTarget(); //the target that is being tracked
         if (targetEntity instanceof EntityPlayerMP) { //only entityPlayerMP ( MP part is very important!)
             EntityPlayer targetPlayer = (EntityPlayer) targetEntity; //typecast to entityPlayer
-            if (targetPlayer.hasCapability(GliderCapabilityDispatcher.PLAYER_GLIDING_CAPABILITY, null)) { //if have the capability
-                if (GliderCapabilityDispatcher.getIsGliderDeployed(targetPlayer)) { //if the target has capability need to update
+            if (CapabilityHelper.hasGliderCapability(targetPlayer)) { //if have the capability
+                if (CapabilityHelper.getIsGliderDeployed(targetPlayer)) { //if the target has capability need to update
                     PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, true), (EntityPlayerMP) tracker); //send a packet to the tracker's client to update their target
                 } else {
                     PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, false), (EntityPlayerMP) tracker);
