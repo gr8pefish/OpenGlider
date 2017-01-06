@@ -19,8 +19,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
 import static gr8pefish.openglider.api.OpenGliderInfo.MOD_NAME;
+import static gr8pefish.openglider.common.lib.ModInfo.FORGE_UPDATE_JSON_URL;
 
-@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY)
+@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY, updateJSON = FORGE_UPDATE_JSON_URL)
 public class OpenGlider {
 
     //Proxies
