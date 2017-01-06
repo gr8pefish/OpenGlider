@@ -1,7 +1,6 @@
 package gr8pefish.openglider.client.gui;
 
 import gr8pefish.openglider.common.config.ConfigHandler;
-import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
@@ -10,10 +9,13 @@ import net.minecraftforge.fml.client.config.IConfigElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+import static gr8pefish.openglider.api.OpenGliderInfo.MOD_NAME;
+
 public class ConfigGuiOpenGlider extends GuiConfig {
 
     public ConfigGuiOpenGlider(GuiScreen parentScreen) {
-        super(parentScreen, getConfigElements(parentScreen), ModInfo.MODID, false, false, ModInfo.MOD_NAME);
+        super(parentScreen, getConfigElements(parentScreen), MODID, false, false, MOD_NAME);
     }
 
     private static List<IConfigElement> getConfigElements(GuiScreen parentScreen) {

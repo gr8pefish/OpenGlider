@@ -1,7 +1,7 @@
 package gr8pefish.openglider.common.item;
 
+import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.OpenGlider;
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.lib.ModInfo;
@@ -28,12 +28,14 @@ import net.minecraftforge.oredict.OreDictionary;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+
 public class ItemHangGlider extends Item {
 
     public ItemHangGlider() {
         super();
         setCreativeTab(OpenGlider.creativeTab);
-        setUnlocalizedName(ModInfo.MODID +":" + ModInfo.ITEM_GLIDER_NAME);
+        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_NAME);
         setMaxStackSize(1);
 
         //Add different icons for if the glider is deployed or not
@@ -44,7 +46,7 @@ public class ItemHangGlider extends Item {
             }
 
             private boolean isGlidingGlider(EntityLivingBase entityIn, ItemStack stack){
-                return entityIn != null && entityIn instanceof EntityPlayer && OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer)entityIn) && OpenGliderPlayerHelper.getGlider((EntityPlayer)entityIn) == stack;
+                return entityIn != null && entityIn instanceof EntityPlayer && GliderHelper.getIsGliderDeployed((EntityPlayer)entityIn) && OpenGliderPlayerHelper.getGlider((EntityPlayer)entityIn) == stack;
             }
 
         });
@@ -91,16 +93,16 @@ public class ItemHangGlider extends Item {
             if (ItemHangGlider.isBroken(itemStack)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //nothing if broken
 
             //old deployment state
-            boolean isDeployed = OpenGliderCapabilities.getIsGliderDeployed(player);
+            boolean isDeployed = GliderHelper.getIsGliderDeployed(player);
 
             //toggle state of glider deployment
-            OpenGliderCapabilities.setIsGliderDeployed(player, !isDeployed);
+            GliderHelper.setIsGliderDeployed(player, !isDeployed);
 
             //client only
             if (!world.isRemote) {
                 //send packet to nearby players to update visually
                 EntityTracker tracker = world.getMinecraftServer().worldServerForDimension(player.dimension).getEntityTracker();
-                tracker.sendToAllTrackingEntity(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, OpenGliderCapabilities.getIsGliderDeployed(player))));
+                tracker.sendToAllTrackingEntity(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, GliderHelper.getIsGliderDeployed(player))));
             }
 
         } else {

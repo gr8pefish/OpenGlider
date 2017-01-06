@@ -1,11 +1,11 @@
 package gr8pefish.openglider.common;
 
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.event.ServerEventHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.proxy.IProxy;
+import gr8pefish.openglider.common.registry.CapabilityRegistry;
 import gr8pefish.openglider.common.registry.ItemRegistry;
 import gr8pefish.openglider.common.wind.WindHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +17,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = ModInfo.MODID, name = ModInfo.MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY)
+import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+import static gr8pefish.openglider.api.OpenGliderInfo.MOD_NAME;
+
+@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY)
 public class OpenGlider {
 
     //Proxies
@@ -25,7 +28,7 @@ public class OpenGlider {
     public static IProxy proxy;
 
     //Creative Tab
-    public static final CreativeTabs creativeTab = new CreativeTabs(ModInfo.MODID) {
+    public static final CreativeTabs creativeTab = new CreativeTabs(MODID) {
         @Override
         public Item getTabIconItem() {
             return ItemRegistry.glider;
@@ -47,7 +50,7 @@ public class OpenGlider {
         WindHelper.initNoiseGenerator();
 
         //register capabilities
-        OpenGliderCapabilities.registerAllCapabilities();
+        CapabilityRegistry.registerAllCapabilities();
 
         //packets
         PacketHandler.init();

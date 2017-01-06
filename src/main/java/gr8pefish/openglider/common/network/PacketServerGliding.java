@@ -1,6 +1,6 @@
 package gr8pefish.openglider.common.network;
 
-import gr8pefish.openglider.api.capabilities.CapabilityHelper;
+import gr8pefish.openglider.api.lib.GliderHelper;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -40,7 +40,7 @@ public class PacketServerGliding implements IMessage {
         @Override
         public IMessage onMessage(PacketServerGliding message, MessageContext ctx) {
 
-            CapabilityHelper.setIsGliderDeployed(ctx.getServerHandler().playerEntity, message.isGliding == IS_GLIDING);
+            GliderHelper.setIsGliderDeployed(ctx.getServerHandler().playerEntity, message.isGliding == IS_GLIDING);
 
             return null; //no return message
         }

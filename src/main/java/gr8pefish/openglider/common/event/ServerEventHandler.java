@@ -1,6 +1,7 @@
 package gr8pefish.openglider.common.event;
 
 import gr8pefish.openglider.api.capabilities.CapabilityHelper;
+import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.capabilities.GliderCapabilityImplementation;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.network.PacketHandler;
@@ -52,7 +53,7 @@ public class ServerEventHandler {
      */
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event){
-        if (CapabilityHelper.getIsGliderDeployed(event.player)){
+        if (GliderHelper.getIsGliderDeployed(event.player)){
             OpenGliderPlayerHelper.updatePosition(event.player);
         }
     }
@@ -69,7 +70,7 @@ public class ServerEventHandler {
         if (targetEntity instanceof EntityPlayerMP) { //only entityPlayerMP ( MP part is very important!)
             EntityPlayer targetPlayer = (EntityPlayer) targetEntity; //typecast to entityPlayer
             if (CapabilityHelper.hasGliderCapability(targetPlayer)) { //if have the capability
-                if (CapabilityHelper.getIsGliderDeployed(targetPlayer)) { //if the target has capability need to update
+                if (GliderHelper.getIsGliderDeployed(targetPlayer)) { //if the target has capability need to update
                     PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, true), (EntityPlayerMP) tracker); //send a packet to the tracker's client to update their target
                 } else {
                     PacketHandler.HANDLER.sendTo(new PacketUpdateClientTarget(targetPlayer, false), (EntityPlayerMP) tracker);

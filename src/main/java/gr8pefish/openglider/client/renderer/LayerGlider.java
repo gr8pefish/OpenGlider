@@ -1,7 +1,7 @@
 package gr8pefish.openglider.client.renderer;
 
+import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.client.model.ModelGlider;
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
@@ -29,7 +29,7 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
 
         if (!entitylivingbaseIn.isInvisible() && ConfigHandler.enableRendering3PP) { //if not invisible and should render
 
-            boolean gliding = OpenGliderCapabilities.getIsGliderDeployed(entitylivingbaseIn); //get if gliding (to render or not)
+            boolean gliding = GliderHelper.getIsGliderDeployed(entitylivingbaseIn); //get if gliding (to render or not)
             if (gliding) { //if there is one
 
                 //bind texture of the current backpack

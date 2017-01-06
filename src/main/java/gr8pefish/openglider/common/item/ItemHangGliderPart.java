@@ -10,6 +10,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+
 public class ItemHangGliderPart extends Item {
 
     public static String[] names = {"wing_left", "wing_right", "scaffolding"};
@@ -18,7 +20,7 @@ public class ItemHangGliderPart extends Item {
         super();
         setCreativeTab(OpenGlider.creativeTab);
         setHasSubtypes(true);
-        setUnlocalizedName(ModInfo.MODID +":" +ModInfo.ITEM_GLIDER_PART_NAME+ ".");
+        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_PART_NAME+ ".");
     }
 
     @Override

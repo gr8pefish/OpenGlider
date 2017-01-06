@@ -1,6 +1,6 @@
 package gr8pefish.openglider.common.helper;
 
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
+import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.item.ItemHangGlider;
 import gr8pefish.openglider.common.network.PacketHandler;
@@ -58,14 +58,16 @@ public class OpenGliderPlayerHelper {
                             PacketHandler.HANDLER.sendTo(new PacketUpdateGliderDamage(), (EntityPlayerMP) player); //send to client
                             glider.damageItem(ConfigHandler.durabilityPerUse, player);
                             if (ItemHangGlider.isBroken(glider)) { //broken item
-                                OpenGliderCapabilities.setIsGliderDeployed(player, false);
+                                GliderHelper.setIsGliderDeployed(player, false);
                             }
                         }
                     }
                 }
 
+                //SetPositionAndUpdate on server only
+
             } else { //Invalid item (likely changed selected item slot, update)
-                OpenGliderCapabilities.setIsGliderDeployed(player, false);
+                GliderHelper.setIsGliderDeployed(player, false);
             }
         }
 

@@ -1,8 +1,8 @@
 package gr8pefish.openglider.client.event;
 
+import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.OpenGlider;
-import gr8pefish.openglider.common.capabilities.OpenGliderCapabilities;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.item.ItemHangGlider;
@@ -10,10 +10,8 @@ import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -36,7 +34,7 @@ public class ClientEventHandler extends Gui {
     public void onRender(RenderPlayerEvent.Pre event) {
         if (event.getEntity() instanceof EntityPlayer) {
             EntityPlayer playerEntity = (EntityPlayer) event.getEntity();
-            if (OpenGliderCapabilities.getIsGliderDeployed((EntityPlayer) event.getEntity())) { //if glider deployed
+            if (GliderHelper.getIsGliderDeployed((EntityPlayer) event.getEntity())) { //if glider deployed
                 if (!OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) return; //don't continue if player is not flying
                 if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) return; //don't rotate if the player rendered is in an inventory
                 rotateToHorizontal(event.getEntityPlayer(), event.getX(), event.getY(), event.getZ()); //rotate player to flying position
@@ -93,7 +91,7 @@ public class ClientEventHandler extends Gui {
     public void onRenderOverlay(RenderWorldLastEvent event){
         if (ConfigHandler.enableRenderingFPP && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //rendering enabled and first person perspective
             EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
-            if (OpenGliderCapabilities.getIsGliderDeployed(playerEntity)) { //if glider deployed
+            if (GliderHelper.getIsGliderDeployed(playerEntity)) { //if glider deployed
                 if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) { //if flying
                     renderGliderFirstPersonPerspective(event); //render hang glider above head
                 }
@@ -171,7 +169,7 @@ public class ClientEventHandler extends Gui {
     public void onHandRender(RenderSpecificHandEvent event){
         EntityPlayer player = OpenGlider.proxy.getClientPlayer();
         if (ConfigHandler.disableOffhandRenderingWhenGliding) { //configurable
-            if (OpenGliderCapabilities.getIsGliderDeployed(player)) { //if glider deployed
+            if (GliderHelper.getIsGliderDeployed(player)) { //if glider deployed
                 if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemHangGlider && !ItemHangGlider.isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang glider
                     if (event.getHand() == EnumHand.OFF_HAND) { //offhand rendering
                         event.setCanceled(true);

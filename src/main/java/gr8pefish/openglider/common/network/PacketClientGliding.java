@@ -1,6 +1,6 @@
 package gr8pefish.openglider.common.network;
 
-import gr8pefish.openglider.api.capabilities.CapabilityHelper;
+import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.OpenGlider;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -46,7 +46,7 @@ public class PacketClientGliding implements IMessage{
             Minecraft.getMinecraft().addScheduledTask(() -> {
                 EntityPlayer player = OpenGlider.proxy.getClientPlayer();
                 if (player != null) {
-                    CapabilityHelper.setIsGliderDeployed(player, message.isGliding);
+                    GliderHelper.setIsGliderDeployed(player, message.isGliding);
                 }
             });
 
