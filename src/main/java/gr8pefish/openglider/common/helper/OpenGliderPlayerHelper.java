@@ -1,5 +1,6 @@
 package gr8pefish.openglider.common.helper;
 
+import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.item.ItemHangGlider;
@@ -20,18 +21,26 @@ public class OpenGliderPlayerHelper {
      */
     public static void updatePosition(EntityPlayer player){
         if (shouldBeGliding(player)) {
-            ItemStack glider = getGlider(player);
+            ItemStack glider = GliderHelper.getGlider(player);
             if (isValidGlider(glider)) {
                 if (player.motionY < 0) {
+
+                    //ToDo: this
+//                    player.moveEntity(direction.x * motionStrength, ...)
+//                    player.moveEntity(player.rotationYaw * iGlider.getFlightSpeed(), player.);
+
                     final double horizontalSpeed;
                     final double verticalSpeed;
-
-                    if (player.isSneaking()) {
-                        horizontalSpeed = ConfigHandler.forwardMovementShift;
-                        verticalSpeed = ConfigHandler.verticalMovementShift;
+//                    IGlider iGlider = (IGlider) glider.getItem();
+//
+                    if (!player.isSneaking()) {
+                        horizontalSpeed = ConfigHandler.basicGliderFlightForward; //iGlider.getFlightSpeed();
+                        verticalSpeed = ConfigHandler.basicGliderFlightVertical; //iGlider.getFlightAngle();
                     } else {
-                        horizontalSpeed = ConfigHandler.forwardMovement;
-                        verticalSpeed = ConfigHandler.verticalMovement;
+                        //basic * speed (* eff?)
+                        //basic * speed (* eff?)
+                        horizontalSpeed = ConfigHandler.basicGliderFlightForward * (3 * ConfigHandler.basicGliderShiftFlightSpeedMultiplier);//4 multiplier default//iGlider.getFlightSpeed() * iGlider.getShiftSpeedMultiplier(); //ConfigHandler.forwardMovement;
+                        verticalSpeed = ConfigHandler.basicGliderFlightVertical * (1.15 * ConfigHandler.basicGliderShiftFlightSpeedMultiplier);//1.5 multiplier default// * ConfigHandler.basicGliderShiftInefficiencyPercentage; //iGlider.getFlightAngle() * iGlider.getShiftSpeedMultiplier() * iGlider.getShiftEfficiencyPercent(); //ConfigHandler.verticalMovement;
                     }
 
                     WindHelper.applyWind(player, glider);
@@ -42,6 +51,9 @@ public class OpenGliderPlayerHelper {
                     double z = Math.sin(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
                     player.motionX += x;
                     player.motionZ += z;
+
+
+
                     player.fallDistance = 0f; /* Don't like getting hurt :( */
                 }
 
@@ -108,18 +120,19 @@ public class OpenGliderPlayerHelper {
      * @return - the first glider found (as an itemstack), null otherwise
      */
     public static ItemStack getGlider(EntityPlayer player) {
-        if (ConfigHandler.holdingGliderEnforced) return player.getHeldItemMainhand();
-        if (player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemHangGlider) {
-            return player.getHeldItemOffhand();
-        }
-        for (ItemStack stack : player.inventory.mainInventory) {
-            if (stack != null) {
-                if (stack.getItem() instanceof ItemHangGlider) {
-                    return stack;
-                }
-            }
-        }
-        return null;
+//        if (ConfigHandler.holdingGliderEnforced)
+              return player.getHeldItemMainhand();
+//        if (player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemHangGlider) {
+//            return player.getHeldItemOffhand();
+//        }
+//        for (ItemStack stack : player.inventory.mainInventory) {
+//            if (stack != null) {
+//                if (stack.getItem() instanceof ItemHangGlider) {
+//                    return stack;
+//                }
+//            }
+//        }
+//        return null;
     }
 
 }

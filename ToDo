@@ -1,5 +1,35 @@
 To Do:
 
+    //just provide interface
+    //people can cap inject and do their thing
+
+    Update IssueTemplate/Contributing
+    elytra wind sound
+    check durability of right item being taken away
+    test on servers
+
+    tone down y-level param a little
+    enforce config sync from server to client for non-visual options
+
+    check rocket boosting works
+    german translation PR
+
+    check @Celtic PM discord for feedback
+    check reddit teaser and mod release pages for feedback
+
+    remove ability to not hold glider
+
+    secret naussica model for glider?
+
+    damage based on fall distance already (so hurt yourself if you are falling super far and hang glide to stop), and make it smoother motion?
+
+    Test gradle forge version updates
+
+    gradle api built
+
+    add API-way to change rendering (so other mods can alter it)
+        startGliderRenderEvent?
+
     - Refine CF page
 
     BUGS:
