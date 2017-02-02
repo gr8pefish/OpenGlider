@@ -8,7 +8,7 @@ Open Glider is a [Minecraft](https://minecraft.net/) mod that adds a hang glider
 
 For all the juicy information (and downloads) see the CurseForge page [here](http://minecraft.curseforge.com/projects/open-glider). Enjoy!
 
-![](https://github.com/gr8pefish/OpenGlider/blob/master-1.10/art/banner.png) 
+![](https://github.com/gr8pefish/OpenGlider/blob/1.10/art/banner.png) 
 
 
 
