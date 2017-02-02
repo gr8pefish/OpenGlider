@@ -40,12 +40,10 @@ public final class GliderCapabilityImplementation {
 
         private boolean isPlayerGliding;
         private boolean isGliderDeployed;
-        private IGlider glider;
 
         public DefaultGliderCapImplementation() {
             this.isPlayerGliding = false;
             this.isGliderDeployed = false;
-            this.glider = null;
         }
 
         //Glider data
@@ -74,18 +72,8 @@ public final class GliderCapabilityImplementation {
                 Logger.error("Player is already flying, deploying now is not needed.");
             else
                 isGliderDeployed = isDeployed;
+            if (!isDeployed) isPlayerGliding = false; //if not deployed, cannot be flying either
         }
-
-        @Override
-        public IGlider getGlider() {
-            return glider;
-        }
-
-        @Override
-        public void setGlider(IGlider gliderUsed) {
-            glider = gliderUsed;
-        }
-
 
         //Serializing and Deserializing NBT
 
@@ -100,7 +88,6 @@ public final class GliderCapabilityImplementation {
             NBTTagCompound compound = new NBTTagCompound();
             compound.setBoolean(CAP_PLAYER_GLIDING, isPlayerGliding);
             compound.setBoolean(CAP_GLIDER_DEPLOYED, isGliderDeployed);
-            compound.setTag(CAP_GLIDER_USED, glider.serializeNBT());
 
             //return compound
             return compound;
@@ -112,7 +99,6 @@ public final class GliderCapabilityImplementation {
             //load and set
             setIsPlayerGliding(compound.getBoolean(CAP_PLAYER_GLIDING));
             setIsGliderDeployed(compound.getBoolean(CAP_GLIDER_DEPLOYED));
-            glider.deserializeNBT(compound.getCompoundTag(CAP_GLIDER_USED)); //ToDo: set it somehow
 
         }
 

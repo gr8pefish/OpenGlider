@@ -1,5 +1,6 @@
 package gr8pefish.openglider.common.wind;
 
+import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.wind.generator.OpenSimplexNoise;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,6 +47,9 @@ public class WindHelper {
 
         //apply overall wind power multiplier
         wind *= windOverallPower;
+
+        //apply tier specific wind power multiplier
+        wind *= ((IGlider)glider.getItem()).getWindMultiplier();
 
         //apply final rotation based on all the above
         player.rotationYaw += wind;
