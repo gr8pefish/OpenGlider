@@ -23,4 +23,10 @@ public class ModInfo {
 
     public static final ResourceLocation MODEL_GLIDER_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider.png");
 
+    public static final class NBT_KEYS {
+
+        public static final String UPGRADES = "upgrades";
+
+    }
+
 }

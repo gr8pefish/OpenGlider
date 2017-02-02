@@ -1,5 +1,6 @@
 package gr8pefish.openglider.common;
 
+import gr8pefish.openglider.api.upgrade.UpgradeItems;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.event.ServerEventHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
@@ -66,6 +67,9 @@ public class OpenGlider {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+
+        //upgrades
+        UpgradeItems.initUpgradesList();
 
         //recipes
         ItemRegistry.registerRecipes();

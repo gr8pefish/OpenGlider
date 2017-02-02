@@ -1,8 +1,11 @@
 package gr8pefish.openglider.common.registry;
 
+import gr8pefish.openglider.api.upgrade.UpgradeItems;
 import gr8pefish.openglider.common.item.ItemHangGlider;
 import gr8pefish.openglider.common.item.ItemHangGliderPart;
 import gr8pefish.openglider.common.lib.ModInfo;
+import gr8pefish.openglider.common.recipe.AddUpgradeToGliderRecipe;
+import gr8pefish.openglider.common.recipe.RemoveUpgradeFromGliderRecipe;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,12 +47,19 @@ public class ItemRegistry {
                 'i', "ingotIron"));
 
         //Glider
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.glider, 1),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.glider),
                 "   ",
                 "lsr",
                 "   ",
                 'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 's', new ItemStack(ItemRegistry.gliderPart, 1, 2),
                 'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)).setMirrored(false));
+
+        //Upgrades
+        for (ItemStack upgrade : UpgradeItems.getPossibleUpgradeList()) {
+            GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.glider), new ItemStack(ItemRegistry.glider), upgrade));
+            GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.glider), new ItemStack(ItemRegistry.glider)));
+        }
+
     }
 
     public static void registerRenders(){
