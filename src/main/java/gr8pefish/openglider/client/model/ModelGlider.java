@@ -101,7 +101,7 @@ public class ModelGlider extends ModelBase {
     }
 
     /**
-     * Set all the details of the glider to render.
+     * Set all the details of the gliderBasic to render.
      */
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn){

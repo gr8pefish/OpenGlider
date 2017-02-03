@@ -3,7 +3,6 @@ package gr8pefish.openglider.common.helper;
 import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.config.ConfigHandler;
-import gr8pefish.openglider.common.item.ItemHangGlider;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateGliderDamage;
 import gr8pefish.openglider.common.wind.WindHelper;
@@ -69,7 +68,7 @@ public class OpenGliderPlayerHelper {
                         if (player.worldObj.rand.nextInt(ConfigHandler.durabilityTimeframe) == 0) { //damage about once per x ticks
                             PacketHandler.HANDLER.sendTo(new PacketUpdateGliderDamage(), (EntityPlayerMP) player); //send to client
                             glider.damageItem(ConfigHandler.durabilityPerUse, player);
-                            if (ItemHangGlider.isBroken(glider)) { //broken item
+                            if (((IGlider)(glider.getItem())).isBroken(glider)) { //broken item
                                 GliderHelper.setIsGliderDeployed(player, false);
                             }
                         }
@@ -106,7 +105,7 @@ public class OpenGliderPlayerHelper {
      */
     private static boolean isValidGlider(ItemStack stack) {
         if (stack != null) {
-            if (stack.getItem() instanceof ItemHangGlider && (!ItemHangGlider.isBroken(stack))) { //hang glider, not broken
+            if (stack.getItem() instanceof IGlider && (!((IGlider)(stack.getItem())).isBroken(stack))) { //hang glider, not broken
                 return true;
             }
         }
@@ -122,12 +121,12 @@ public class OpenGliderPlayerHelper {
     public static ItemStack getGlider(EntityPlayer player) {
 //        if (ConfigHandler.holdingGliderEnforced)
               return player.getHeldItemMainhand();
-//        if (player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemHangGlider) {
+//        if (player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemHangglider) {
 //            return player.getHeldItemOffhand();
 //        }
 //        for (ItemStack stack : player.inventory.mainInventory) {
 //            if (stack != null) {
-//                if (stack.getItem() instanceof ItemHangGlider) {
+//                if (stack.getItem() instanceof ItemHangglider) {
 //                    return stack;
 //                }
 //            }

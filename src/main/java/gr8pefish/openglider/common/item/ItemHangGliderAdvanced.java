@@ -22,15 +22,15 @@ import java.util.List;
 
 import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
 
-public class ItemHangGlider extends ItemHangGliderBase {
+public class ItemHangGliderAdvanced extends ItemHangGliderBase {
 
-    public ItemHangGlider() {
+    public ItemHangGliderAdvanced() {
         super();
         setCreativeTab(OpenGlider.creativeTab);
-        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_NAME);
+        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_ADV_NAME);
         setMaxStackSize(1);
 
-        //Add different icons for if the glider is deployed or not
+        //Add different icons for if the gliderBasic is deployed or not
         this.addPropertyOverride(new ResourceLocation("status"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
@@ -46,9 +46,9 @@ public class ItemHangGlider extends ItemHangGliderBase {
 //        angle = ConfigHandler.basicGliderFlightAngle;
 //        speed = ConfigHandler.basicGliderFlightSpeed;
 
-        setWindMultiplier(ConfigHandler.basicGliderWindModifier);
+        setWindMultiplier(ConfigHandler.advancedGliderWindModifier);
 
-        totalDurability = ConfigHandler.basicGliderTotalDurability;
+        totalDurability = ConfigHandler.advancedGliderTotalDurability;
         setMaxDamage(totalDurability);
 
 //        setFlightSpeed(ConfigHandler.basicGliderFlightSpeed);

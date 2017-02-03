@@ -18,7 +18,8 @@ public class ModInfo {
 
     public static final String NETWORK_CHANNEL = "opngldr";
 
-    public static final String ITEM_GLIDER_NAME = "hang_glider";
+    public static final String ITEM_GLIDER_BASIC_NAME = "hang_glider_basic";
+    public static final String ITEM_GLIDER_ADV_NAME = "hang_glider_adv";
     public static final String ITEM_GLIDER_PART_NAME = "glider_part";
 
     public static final ResourceLocation MODEL_GLIDER_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider.png");

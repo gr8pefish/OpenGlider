@@ -1,12 +1,14 @@
 package gr8pefish.openglider.common.registry;
 
 import gr8pefish.openglider.api.upgrade.UpgradeItems;
-import gr8pefish.openglider.common.item.ItemHangGlider;
+import gr8pefish.openglider.common.item.ItemHangGliderAdvanced;
+import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import gr8pefish.openglider.common.item.ItemHangGliderPart;
 import gr8pefish.openglider.common.lib.ModInfo;
 import gr8pefish.openglider.common.recipe.AddUpgradeToGliderRecipe;
 import gr8pefish.openglider.common.recipe.RemoveUpgradeFromGliderRecipe;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
@@ -15,11 +17,15 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry {
 
-    public static ItemHangGlider glider;
+    //ToDo: Some registry for tiers of gliders
+
+    public static ItemHangGliderBasic gliderBasic;
+    public static ItemHangGliderAdvanced gliderAdv;
     public static ItemHangGliderPart gliderPart;
 
     public static void registerItems(){
-        glider = (ItemHangGlider)registerItem(new ItemHangGlider(), ModInfo.ITEM_GLIDER_NAME);
+        gliderBasic = (ItemHangGliderBasic)registerItem(new ItemHangGliderBasic(), ModInfo.ITEM_GLIDER_BASIC_NAME);
+        gliderAdv = (ItemHangGliderAdvanced)registerItem(new ItemHangGliderAdvanced(), ModInfo.ITEM_GLIDER_ADV_NAME);
         gliderPart = (ItemHangGliderPart)registerItem(new ItemHangGliderPart(), ModInfo.ITEM_GLIDER_PART_NAME);
     }
 
@@ -46,24 +52,39 @@ public class ItemRegistry {
                 "iii",
                 'i', "ingotIron"));
 
-        //Glider
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.glider),
+        //Glider Basic
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderBasic),
                 "   ",
                 "lsr",
                 "   ",
                 'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 's', new ItemStack(ItemRegistry.gliderPart, 1, 2),
                 'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)).setMirrored(false));
 
+        //Glider Adv
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderAdv),
+                " e ",
+                "lbr",
+                " e ",
+                'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 'b', new ItemStack(ItemRegistry.gliderBasic, 1),
+                'r', new ItemStack(ItemRegistry.gliderPart, 1, 1), 'e', new ItemStack(Items.ELYTRA)).setMirrored(false));
+
         //Upgrades
         for (ItemStack upgrade : UpgradeItems.getPossibleUpgradeList()) {
-            GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.glider), new ItemStack(ItemRegistry.glider), upgrade));
-            GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.glider), new ItemStack(ItemRegistry.glider)));
+
+            //basic
+            GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.gliderBasic), new ItemStack(ItemRegistry.gliderBasic), upgrade));
+            GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.gliderBasic), new ItemStack(ItemRegistry.gliderBasic)));
+
+            //advanced
+            GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.gliderAdv), new ItemStack(ItemRegistry.gliderAdv), upgrade));
+            GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.gliderAdv), new ItemStack(ItemRegistry.gliderAdv)));
         }
 
     }
 
     public static void registerRenders(){
-        itemRender(glider, 0, ModInfo.ITEM_GLIDER_NAME);
+        itemRender(gliderBasic, 0, ModInfo.ITEM_GLIDER_BASIC_NAME);
+        itemRender(gliderAdv, 0, ModInfo.ITEM_GLIDER_ADV_NAME);
         itemRender(gliderPart, 0, ItemHangGliderPart.names[0]);
         itemRender(gliderPart, 1, ItemHangGliderPart.names[1]);
         itemRender(gliderPart, 2, ItemHangGliderPart.names[2]);

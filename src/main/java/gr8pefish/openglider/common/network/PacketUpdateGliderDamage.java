@@ -1,10 +1,11 @@
 package gr8pefish.openglider.common.network;
 
+import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
-import gr8pefish.openglider.common.item.ItemHangGlider;
+import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +38,7 @@ public class PacketUpdateGliderDamage implements IMessage{
                     ItemStack glider = OpenGliderPlayerHelper.getGlider(player);
                     if (glider != null) {
                         glider.damageItem(ConfigHandler.durabilityPerUse, player);
-                        if (ItemHangGlider.isBroken(glider)) { //broken item
+                        if (((IGlider)glider.getItem()).isBroken(glider)) { //broken item
                             GliderHelper.setIsGliderDeployed(player, false);
                         }
                     }

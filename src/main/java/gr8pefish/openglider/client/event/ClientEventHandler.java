@@ -1,11 +1,12 @@
 package gr8pefish.openglider.client.event;
 
+import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
-import gr8pefish.openglider.common.item.ItemHangGlider;
+import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -34,7 +35,7 @@ public class ClientEventHandler extends Gui {
     public void onRender(RenderPlayerEvent.Pre event) {
         if (event.getEntity() instanceof EntityPlayer) {
             EntityPlayer playerEntity = (EntityPlayer) event.getEntity();
-            if (GliderHelper.getIsGliderDeployed((EntityPlayer) event.getEntity())) { //if glider deployed
+            if (GliderHelper.getIsGliderDeployed((EntityPlayer) event.getEntity())) { //if gliderBasic deployed
                 if (!OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) return; //don't continue if player is not flying
                 if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) return; //don't rotate if the player rendered is in an inventory
                 rotateToHorizontal(event.getEntityPlayer(), event.getX(), event.getY(), event.getZ()); //rotate player to flying position
@@ -91,9 +92,9 @@ public class ClientEventHandler extends Gui {
     public void onRenderOverlay(RenderWorldLastEvent event){
         if (ConfigHandler.enableRenderingFPP && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //rendering enabled and first person perspective
             EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
-            if (GliderHelper.getIsGliderDeployed(playerEntity)) { //if glider deployed
+            if (GliderHelper.getIsGliderDeployed(playerEntity)) { //if gliderBasic deployed
                 if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) { //if flying
-                    renderGliderFirstPersonPerspective(event); //render hang glider above head
+                    renderGliderFirstPersonPerspective(event); //render hang gliderBasic above head
                 }
             }
         }
@@ -103,7 +104,7 @@ public class ClientEventHandler extends Gui {
     private final ModelGlider modelGlider = new ModelGlider();
 
     /**
-     * Renders the glider above the player
+     * Renders the gliderBasic above the player
      *
      * @param event - the render world event
      */
@@ -118,7 +119,7 @@ public class ClientEventHandler extends Gui {
         setRotationFirstPersonPerspective(entityPlayer, event.getPartialTicks());
         //set the correct lighting
         setLightingBeforeRendering(entityPlayer, event.getPartialTicks());
-        //render the glider
+        //render the gliderBasic
         modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
         //pop matrix
         GlStateManager.popMatrix();
@@ -137,23 +138,23 @@ public class ClientEventHandler extends Gui {
     }
 
     /**
-     * Sets the rotation of the hang glider to work for first person rendering in-world.
+     * Sets the rotation of the hang gliderBasic to work for first person rendering in-world.
      *
      * @param player - the player
      * @param partialTicks - the partial ticks
      */
     private void setRotationFirstPersonPerspective(EntityPlayer player, float partialTicks) {
         double interpolatedYaw = (player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks);
-        //rotate the glider to the same orientation as the player is facing
+        //rotate the gliderBasic to the same orientation as the player is facing
         GlStateManager.rotate((float) -interpolatedYaw, 0, 1, 0);
-        //rotate the glider so it is forwards facing, as it should be
+        //rotate the gliderBasic so it is forwards facing, as it should be
         GlStateManager.rotate(180F, 0, 1, 0);
         //move up to correct position (above player's head)
         GlStateManager.translate(0, ConfigHandler.gliderVisibilityFPPShiftAmount, 0);
 
         //move away if sneaking
         if (player.isSneaking())
-            GlStateManager.translate(0, 0, -0.25); //subtle speed effect (makes glider smaller looking)
+            GlStateManager.translate(0, 0, -0.25); //subtle speed effect (makes gliderBasic smaller looking)
     }
 
 
@@ -161,7 +162,7 @@ public class ClientEventHandler extends Gui {
 
 
     /**
-     * Disable the offhand rendering if the player has a glider deployed (and is holding a glider)
+     * Disable the offhand rendering if the player has a gliderBasic deployed (and is holding a gliderBasic)
      *
      * @param event - the render hand event
      */
@@ -169,8 +170,8 @@ public class ClientEventHandler extends Gui {
     public void onHandRender(RenderSpecificHandEvent event){
         EntityPlayer player = OpenGlider.proxy.getClientPlayer();
         if (ConfigHandler.disableOffhandRenderingWhenGliding) { //configurable
-            if (GliderHelper.getIsGliderDeployed(player)) { //if glider deployed
-                if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemHangGlider && !ItemHangGlider.isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang glider
+            if (GliderHelper.getIsGliderDeployed(player)) { //if gliderBasic deployed
+                if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemHangGliderBasic && !((IGlider)player.getHeldItemMainhand().getItem()).isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang gliderBasic
                     if (event.getHand() == EnumHand.OFF_HAND) { //offhand rendering
                         event.setCanceled(true);
                     }

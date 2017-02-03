@@ -1,26 +1,26 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "openglider:items/hang_glider"
+    "layer0": "openglider:items/hang_glider_basic"
   },
   "overrides": [
     {
       "predicate": {
         "status": 0
       },
-      "model": "openglider:item/hang_glider"
+      "model": "openglider:item/hang_glider_basic"
     },
     {
       "predicate": {
         "status": 1
       },
-      "model": "openglider:item/hang_glider_deployed"
+      "model": "openglider:item/hang_glider_basic_deployed"
     },
     {
       "predicate": {
         "status": 2
       },
-      "model": "openglider:item/hang_glider_broken"
+      "model": "openglider:item/hang_glider_basic_broken"
     }
   ]
 }

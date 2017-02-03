@@ -46,6 +46,8 @@ public interface IGlider extends INBTSerializable<NBTTagCompound> {
 
     void setCurrentDurability(ItemStack glider, int durability);
 
+    boolean isBroken(ItemStack glider);
+
     //==============Upgrades====================
     ArrayList<ItemStack> getUpgrades(ItemStack glider);
 

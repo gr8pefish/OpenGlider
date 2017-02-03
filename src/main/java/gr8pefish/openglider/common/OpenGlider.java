@@ -33,7 +33,7 @@ public class OpenGlider {
     public static final CreativeTabs creativeTab = new CreativeTabs(MODID) {
         @Override
         public Item getTabIconItem() {
-            return ItemRegistry.glider;
+            return ItemRegistry.gliderBasic;
         }
     };
 

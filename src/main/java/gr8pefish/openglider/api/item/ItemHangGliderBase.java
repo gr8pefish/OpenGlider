@@ -1,7 +1,7 @@
 package gr8pefish.openglider.api.item;
 
 import gr8pefish.openglider.api.lib.GliderHelper;
-import gr8pefish.openglider.common.item.ItemHangGlider;
+import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import gr8pefish.openglider.common.util.OpenGliderHelper;
@@ -46,7 +46,7 @@ public class ItemHangGliderBase extends Item implements IGlider {
         //if no elytra equipped
         if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
 
-            if (ItemHangGlider.isBroken(itemStack)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //nothing if broken
+            if (this.isBroken(itemStack)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //nothing if broken
             if (!hand.equals(EnumHand.MAIN_HAND)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //return if not using main hand
 
             //old deployment state
@@ -86,14 +86,15 @@ public class ItemHangGliderBase extends Item implements IGlider {
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         if (slotChanged) return true;
         //ToDo: Allow broken stacks to reequip, need to alter fp rotation in the json files
-//        if (newStack != null && newStack.getItem() != null && newStack.getItem() instanceof ItemHangGlider && isBroken(newStack))
+//        if (newStack != null && newStack.getItem() != null && newStack.getItem() instanceof ItemHangGliderBasic && isBroken(newStack))
 //            return true;
 //        else
         return !(oldStack.getItem().equals(newStack.getItem())); //no more bobbing when damaged if it is the same exact item
     }
 
     //Helper method for checking if a hang glider is broken (1 durability left)
-    public static boolean isBroken(ItemStack stack) {
+    @Override
+    public boolean isBroken(ItemStack stack) {
         return stack.isItemDamaged() && (stack.getItemDamage() >= stack.getMaxDamage() - 1);
     }
 

@@ -1,6 +1,5 @@
 package gr8pefish.openglider.api.capabilities;
 
-import gr8pefish.openglider.api.item.IGlider;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

@@ -18,7 +18,7 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
 
     /** Instance of the player renderer. */
     private final RenderPlayer playerRenderer;
-    /** The model used by the glider. */
+    /** The model used by the gliderBasic. */
     private final ModelGlider modelGlider = new ModelGlider();
 
     public LayerGlider(RenderPlayer playerRendererIn) {
