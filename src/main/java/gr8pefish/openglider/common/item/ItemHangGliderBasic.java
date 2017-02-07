@@ -51,6 +51,8 @@ public class ItemHangGliderBasic extends ItemHangGliderBase {
         totalDurability = ConfigHandler.basicGliderTotalDurability;
         setMaxDamage(totalDurability);
 
+        setModelTexture(ModInfo.MODEL_GLIDER_BASIC_TEXTURE_RL);
+
 //        setFlightSpeed(ConfigHandler.basicGliderFlightSpeed);
 //        setFlightAngle(ConfigHandler.basicGliderFlightAngle);
 //        setShiftSpeedMultiplier(ConfigHandler.basicGliderFlightSpeedShifting);

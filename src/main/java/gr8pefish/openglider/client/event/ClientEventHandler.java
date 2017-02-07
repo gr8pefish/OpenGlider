@@ -14,6 +14,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
@@ -111,7 +112,8 @@ public class ClientEventHandler extends Gui {
     private void renderGliderFirstPersonPerspective(RenderWorldLastEvent event){
 
         EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
-        Minecraft.getMinecraft().getTextureManager().bindTexture(ModInfo.MODEL_GLIDER_TEXTURE_RL); //bind texture
+        ItemStack gliderStack = GliderHelper.getGlider(Minecraft.getMinecraft().thePlayer);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(((IGlider)gliderStack.getItem()).getModelTexture(gliderStack)); //bind texture
 
         //push matrix
         GlStateManager.pushMatrix();

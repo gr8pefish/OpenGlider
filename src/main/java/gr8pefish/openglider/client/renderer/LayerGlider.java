@@ -1,5 +1,6 @@
 package gr8pefish.openglider.client.renderer;
 
+import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
@@ -10,6 +11,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import javax.annotation.Nonnull;
@@ -32,8 +34,9 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
             boolean gliding = GliderHelper.getIsGliderDeployed(entitylivingbaseIn); //get if gliding (to render or not)
             if (gliding) { //if there is one
 
-                //bind texture of the current backpack
-                this.playerRenderer.bindTexture(ModInfo.MODEL_GLIDER_TEXTURE_RL);
+                //bind texture of the current glider
+                ItemStack gliderStack = GliderHelper.getGlider(entitylivingbaseIn);
+                this.playerRenderer.bindTexture(((IGlider)gliderStack.getItem()).getModelTexture(gliderStack));
 
                 //push matrix
                 GlStateManager.pushMatrix();

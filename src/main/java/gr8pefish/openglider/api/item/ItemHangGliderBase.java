@@ -16,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -113,6 +114,7 @@ public class ItemHangGliderBase extends Item implements IGlider {
     public static double speed;
     public static double windMultiplier;
     public static int totalDurability;
+    public static ResourceLocation modelRL;
 
     @Override
     public double getFlightAngle() {
@@ -199,6 +201,16 @@ public class ItemHangGliderBase extends Item implements IGlider {
     @Override
     public void addUpgrade(ItemStack glider, ItemStack upgrade) {
         //ToDo
+    }
+
+    @Override
+    public ResourceLocation getModelTexture(ItemStack glider) {
+        return modelRL;
+    }
+
+    @Override
+    public void setModelTexture(ResourceLocation resourceLocation) {
+        modelRL = resourceLocation;
     }
 
 

@@ -27,7 +27,7 @@ public class ItemHangGliderAdvanced extends ItemHangGliderBase {
     public ItemHangGliderAdvanced() {
         super();
         setCreativeTab(OpenGlider.creativeTab);
-        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_ADV_NAME);
+        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_ADVANCED_NAME);
         setMaxStackSize(1);
 
         //Add different icons for if the gliderBasic is deployed or not
@@ -50,6 +50,8 @@ public class ItemHangGliderAdvanced extends ItemHangGliderBase {
 
         totalDurability = ConfigHandler.advancedGliderTotalDurability;
         setMaxDamage(totalDurability);
+
+        setModelTexture(ModInfo.MODEL_GLIDER_ADVANCED_TEXTURE_RL);
 
 //        setFlightSpeed(ConfigHandler.basicGliderFlightSpeed);
 //        setFlightAngle(ConfigHandler.basicGliderFlightAngle);
