@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -113,7 +114,8 @@ public class ClientEventHandler extends Gui {
 
         EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
         ItemStack gliderStack = GliderHelper.getGlider(Minecraft.getMinecraft().thePlayer);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(((IGlider)gliderStack.getItem()).getModelTexture(gliderStack)); //bind texture
+        ResourceLocation resourceLocation = ((IGlider)gliderStack.getItem()).getModelTexture(gliderStack);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation); //bind texture
 
         //push matrix
         GlStateManager.pushMatrix();

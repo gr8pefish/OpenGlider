@@ -29,6 +29,22 @@ public class ItemHangGliderBase extends Item implements IGlider {
 
     //ToDo: NBT saving tags of upgrade (need IRecipe for them)
 
+    private double angle;
+    private double speed;
+    private double windMultiplier;
+    private int totalDurability;
+    private ResourceLocation modelRL;
+
+    public ItemHangGliderBase(double angle, double speed, double windMultiplier, int totalDurability, ResourceLocation modelRL) {
+        this.angle = angle;
+        this.speed = speed;
+        this.windMultiplier = windMultiplier;
+        this.totalDurability = totalDurability;
+        this.modelRL = modelRL;
+
+        setMaxDamage(totalDurability);
+    }
+
     /**
      * Handles a right click of the item attempting to deploy the hang glider.
      *
@@ -110,11 +126,7 @@ public class ItemHangGliderBase extends Item implements IGlider {
 
     //==============================================IGlider========================================
 
-    public static double angle;
-    public static double speed;
-    public static double windMultiplier;
-    public static int totalDurability;
-    public static ResourceLocation modelRL;
+
 
     @Override
     public double getFlightAngle() {

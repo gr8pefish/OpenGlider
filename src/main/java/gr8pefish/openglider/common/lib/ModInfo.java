@@ -23,7 +23,7 @@ public class ModInfo {
     public static final String ITEM_GLIDER_PART_NAME = "glider_part";
 
     public static final ResourceLocation MODEL_GLIDER_BASIC_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider.png");
-    public static final ResourceLocation MODEL_GLIDER_ADVANCED_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider.png");
+    public static final ResourceLocation MODEL_GLIDER_ADVANCED_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider_advanced.png");
 
     public static final class NBT_KEYS {
 

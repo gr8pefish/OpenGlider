@@ -25,7 +25,7 @@ import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
 public class ItemHangGliderAdvanced extends ItemHangGliderBase {
 
     public ItemHangGliderAdvanced() {
-        super();
+        super(0, 0, ConfigHandler.advancedGliderWindModifier, ConfigHandler.advancedGliderTotalDurability, ModInfo.MODEL_GLIDER_ADVANCED_TEXTURE_RL);
         setCreativeTab(OpenGlider.creativeTab);
         setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_ADVANCED_NAME);
         setMaxStackSize(1);
@@ -45,13 +45,6 @@ public class ItemHangGliderAdvanced extends ItemHangGliderBase {
 
 //        angle = ConfigHandler.basicGliderFlightAngle;
 //        speed = ConfigHandler.basicGliderFlightSpeed;
-
-        setWindMultiplier(ConfigHandler.advancedGliderWindModifier);
-
-        totalDurability = ConfigHandler.advancedGliderTotalDurability;
-        setMaxDamage(totalDurability);
-
-        setModelTexture(ModInfo.MODEL_GLIDER_ADVANCED_TEXTURE_RL);
 
 //        setFlightSpeed(ConfigHandler.basicGliderFlightSpeed);
 //        setFlightAngle(ConfigHandler.basicGliderFlightAngle);
