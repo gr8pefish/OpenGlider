@@ -25,7 +25,7 @@ public class ItemRegistry {
 
     public static void registerItems(){
         gliderBasic = (ItemHangGliderBasic)registerItem(new ItemHangGliderBasic(), ModInfo.ITEM_GLIDER_BASIC_NAME);
-        gliderAdv = (ItemHangGliderAdvanced)registerItem(new ItemHangGliderAdvanced(), ModInfo.ITEM_GLIDER_ADV_NAME);
+        gliderAdv = (ItemHangGliderAdvanced)registerItem(new ItemHangGliderAdvanced(), ModInfo.ITEM_GLIDER_ADVANCED_NAME);
         gliderPart = (ItemHangGliderPart)registerItem(new ItemHangGliderPart(), ModInfo.ITEM_GLIDER_PART_NAME);
     }
 
@@ -84,7 +84,7 @@ public class ItemRegistry {
 
     public static void registerRenders(){
         itemRender(gliderBasic, 0, ModInfo.ITEM_GLIDER_BASIC_NAME);
-        itemRender(gliderAdv, 0, ModInfo.ITEM_GLIDER_ADV_NAME);
+        itemRender(gliderAdv, 0, ModInfo.ITEM_GLIDER_ADVANCED_NAME);
         itemRender(gliderPart, 0, ItemHangGliderPart.names[0]);
         itemRender(gliderPart, 1, ItemHangGliderPart.names[1]);
         itemRender(gliderPart, 2, ItemHangGliderPart.names[2]);

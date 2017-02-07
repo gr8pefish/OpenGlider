@@ -32,6 +32,8 @@ To Do:
 
     - Refine CF page
 
+    Make jsons extend from base_glider.json and base_glider_broken, etc.
+
     BUGS:
 
     NOW:
