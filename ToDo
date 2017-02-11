@@ -3,38 +3,15 @@ To Do:
     //just provide interface
     //people can cap inject and do their thing
 
-    Update IssueTemplate/Contributing
-    elytra wind sound
-    check durability of right item being taken away
-    test on servers
-
-    tone down y-level param a little
-    enforce config sync from server to client for non-visual options
-
-    check rocket boosting works
     german translation PR
 
-    check @Celtic PM discord for feedback
-    check reddit teaser and mod release pages for feedback
+    Refine CF page
 
-    remove ability to not hold glider
-
-    secret naussica model for glider?
-
-    damage based on fall distance already (so hurt yourself if you are falling super far and hang glide to stop), and make it smoother motion?
-
-    Test gradle forge version updates
-
-    gradle api built
-
-    add API-way to change rendering (so other mods can alter it)
-        startGliderRenderEvent?
-
-    - Refine CF page
-
-    Make jsons extend from base_glider.json and base_glider_broken, etc.
 
     BUGS:
+        check durability of right item being taken away
+        test on servers
+        check rocket boosting works
 
     NOW:
 
@@ -44,18 +21,31 @@ To Do:
         DEFINITE:
             JEI for repair (and for info b/c why not)
             Durability depends on blocks traveled, not time in the air (intelligent durability usage)
-            Sturdy glider crafted w/ elytra, invulnerable to wind
-                New model
+            Lighten models in fpp
+            Tone down y-level param a little
+            Elytra wind sound
             Release for 1.11
-        MAYBE:
+        EVENTUAL:
+            Update IssueTemplate/Contributing
+            Test gradle forge version updates
+            Gradle api built
             Longer hold shift the faster you go?
+            Make jsons extend from base_glider.json and base_glider_broken, etc.
+            Secret naussica model for glider?
+            Enforce config sync from server to client for non-visual options
+        MAYBE:
+            Add API-way to change rendering (so other mods can alter it)
+                startGliderRenderEvent?
+            Damage based on fall distance already (so hurt yourself if you are falling super far and hang glide to stop), and make it smoother motion?
             Collision redirect (so hit a tree in midair and you turn)?
             Air currents? Forward/backward/up/down momentum?
                 3D wind
+                Updrafts with certain blocks (i.e. lava)
             Make model for bars hanging down.
             Add tiers of gliders?
+            Upgrades for more durability/less wind/etc?
             Blow up the item perspective in fpp of wings to be huge?
-            add red/white dye to recipes?
+            Add red/white dye to recipes?
             Enchants only specific ones possible
             Investigate shift and "[player] moved wrongly"
             Non-instant deployment time?
@@ -65,6 +55,8 @@ To Do:
     EVENTUAL FEATURES:
         Add enable transparent glider in FPP by wrapping entire render model code in enable blend GL call.
             See how easy it will be to do, if it is trivial then sure, why not
+
+        Add in possibility to not enforce holding glider while flying.
 
     BALANCE:
 
