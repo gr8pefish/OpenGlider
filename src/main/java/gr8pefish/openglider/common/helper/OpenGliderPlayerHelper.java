@@ -8,7 +8,9 @@ import gr8pefish.openglider.common.network.PacketUpdateGliderDamage;
 import gr8pefish.openglider.common.wind.WindHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 public class OpenGliderPlayerHelper {
 
@@ -22,7 +24,7 @@ public class OpenGliderPlayerHelper {
         if (shouldBeGliding(player)) {
             ItemStack glider = GliderHelper.getGlider(player);
             if (isValidGlider(glider)) {
-                if (player.motionY < 0) {
+                if (player.motionY < 0 && player.motionZ != 0) {
 
                     //ToDo: this
 //                    player.moveEntity(direction.x * motionStrength, ...)
@@ -51,9 +53,9 @@ public class OpenGliderPlayerHelper {
                     player.motionX += x;
                     player.motionZ += z;
 
-
-
                     player.fallDistance = 0f; /* Don't like getting hurt :( */
+
+//                    playWindSound(player); //ToDo: sounds
                 }
 
                 //no wild arm swinging while flying
@@ -82,6 +84,34 @@ public class OpenGliderPlayerHelper {
             }
         }
 
+    }
+
+    //Currently sounds awful with crazy reverb, need to fix it somehow (probably custom ElytraSound without the check for isElytraFlying)
+    private static void playWindSound(EntityPlayer player) {
+
+        float volume;
+        float pitch;
+
+        float f = MathHelper.sqrt_double(player.motionX * player.motionX + player.motionZ * player.motionZ + player.motionY * player.motionY);
+        float f1 = f / 2.0F;
+
+        if ((double)f >= 0.01D) {
+            volume = MathHelper.clamp_float(f1 * f1, 0.0F, 1.0F);
+        }
+        else {
+            volume = 0.0F;
+        }
+
+        if (volume > 0.8F) {
+            pitch = 1.0F + (volume - 0.8F);
+        }
+        else {
+            pitch = 1.0F;
+        }
+
+        player.playSound(SoundEvents.ITEM_ELYTRA_FLYING, volume, pitch);
+
+//        Minecraft.getMinecraft().getSoundHandler().playSound(new ElytraSound((EntityPlayerSP) player)); //doesn't work b/c hardcoded to isElytraFlying?
     }
 
     /**
