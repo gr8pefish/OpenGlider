@@ -24,7 +24,7 @@ public class OpenGliderPlayerHelper {
         if (shouldBeGliding(player)) {
             ItemStack glider = GliderHelper.getGlider(player);
             if (isValidGlider(glider)) {
-                if (player.motionY < 0 && player.motionZ != 0) {
+                if (player.motionY < 0) {
 
                     final double horizontalSpeed;
                     final double verticalSpeed;
