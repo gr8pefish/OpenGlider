@@ -16,19 +16,19 @@ public class ConfigHandler {
     public static List<String> categories = new ArrayList<>();
 
     //Basic Glider
-    public static float basicGliderFlightForward;
-    public static float basicGliderFlightVertical;
-    public static float basicGliderShiftInefficiencyPercentage;
-    public static float basicGliderShiftFlightSpeedMultiplier;
+    public static float basicGliderHorizSpeed;
+    public static float basicGliderVertSpeed;
+    public static float basicGliderShiftHorizSpeed;
+    public static float basicGliderShiftVertSpeed;
 
     public static float basicGliderWindModifier;
     public static int basicGliderTotalDurability;
 
     //Advanced Glider
-    public static float advancedGliderFlightAngle;
-    public static float advancedGliderFlightSpeed;
-    public static float advancedGliderFlightAngleShifting;
-    public static float advancedGliderFlightSpeedShifting;
+    public static float advancedGliderHorizSpeed;
+    public static float advancedGliderVertSpeed;
+    public static float advancedGliderShiftHorizSpeed;
+    public static float advancedGliderShiftVertSpeed;
 
     public static float advancedGliderWindModifier;
     public static int advancedGliderTotalDurability;
@@ -73,22 +73,20 @@ public class ConfigHandler {
 
         category = "1) Basic Hang Glider Stats";
         categories.add(category);
-        //ToDo: Angle and speed eventually, right now it's not right either even
-//        basicGliderFlightForward = config.getFloat("1) Normal Forward Movement", category, 0.02F, 0, 100,"The angle of flight. A steeper angle will result in less overall distance traveled.");
-//        basicGliderFlightVertical = config.getFloat("2) Normal Vertical Movement", category, 0.55F, 0, 100,"How fast the player travels when gliding.");
-        basicGliderFlightForward = config.getFloat("1) Normal Forward Movement", category, 0.02F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding normally.");
-        basicGliderFlightVertical = config.getFloat("2) Normal Vertical Movement", category, 0.55F, 0, 100,"The amount of blocks a player falls (per-tick) while gliding normally.");
-        basicGliderShiftInefficiencyPercentage = config.getFloat("3) Fast Forward Inefficiency Percentage", category, 1.20F, 0, 10,"The efficiency of pressing flying fast. Note that it is 20% less blocks traveled overall to discourage just pressing shift all the time.");
-        basicGliderShiftFlightSpeedMultiplier = config.getFloat("4) Fast Forward Speed Multiplier", category, 1.3F, 0, 100,"How much faster (multiplicative) it is to fly in fast mode.");
+        //ToDo: Angle and speed eventually
+        basicGliderHorizSpeed = config.getFloat("1) Normal Forward Movement", category, 0.02F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding normally.");
+        basicGliderVertSpeed = config.getFloat("2) Normal Fall Distance", category, 0.55F, 0, 100,"The amount of blocks a player falls (per-tick) while gliding normally.");
+        basicGliderShiftHorizSpeed = config.getFloat("3) Fast Forward Movement", category, 0.04F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift')."); //ToDo: lessen as per insomnia's suggestion, she halved it
+        basicGliderShiftVertSpeed = config.getFloat("4) Fast Fall Distance", category, 0.6F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
         basicGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 1.3F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config.");
         basicGliderTotalDurability = config.getInt("6) Total Durability", category, 206, 1, 10000, "The maximum durability of an unused hang glider.");
 
         category = "2) Advanced Hang Glider Stats";
         categories.add(category);
-        advancedGliderFlightAngle = config.getFloat("1) Normal Forward Angle", category, 0.02F, 0, 100,"The angle of flight. A steeper angle will result in less overall distance traveled.");
-        advancedGliderFlightSpeed = config.getFloat("2) Normal Forward Speed", category, 0.55F, 0, 100,"How fast the player travels when gliding.");
-        advancedGliderFlightAngleShifting = config.getFloat("3) Fast Forward Angle", category, 0.02F, 0, 100,"When pressing Shift/Speed-Up, the angle of flight. A steeper angle will result in less overall distance traveled. Note that the angle is higher here than slow flight to discourage just pressing shift all the time.");
-        advancedGliderFlightSpeedShifting = config.getFloat("4) Fast Forward Speed", category, 0.55F, 0, 100,"When pressing Shift/Speed-Up, how fast the player travels when gliding.");
+        advancedGliderHorizSpeed = config.getFloat("1) Normal Forward Movement", category, 0.04F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding normally.");
+        advancedGliderVertSpeed = config.getFloat("2) Normal Fall Distance", category, 0.7F, 0, 100,"The amount of blocks a player falls (per-tick) while gliding normally.");
+        advancedGliderShiftHorizSpeed = config.getFloat("3) Fast Forward Movement", category, 0.08F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift')."); //ToDo: lessen as per insomnia's suggestion, she halved it
+        advancedGliderShiftVertSpeed = config.getFloat("4) Fast Fall Distance", category, 0.8F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
         advancedGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 0.5F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall quite weak wind, with mild gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config.");
         advancedGliderTotalDurability = config.getInt("6) Total Durability", category, 2602, 1, 100000, "The maximum durability of an unused advanced hang glider.");
 

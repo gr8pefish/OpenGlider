@@ -26,22 +26,16 @@ public class OpenGliderPlayerHelper {
             if (isValidGlider(glider)) {
                 if (player.motionY < 0 && player.motionZ != 0) {
 
-                    //ToDo: this
-//                    player.moveEntity(direction.x * motionStrength, ...)
-//                    player.moveEntity(player.rotationYaw * iGlider.getFlightSpeed(), player.);
-
                     final double horizontalSpeed;
                     final double verticalSpeed;
-//                    IGlider iGlider = (IGlider) glider.getItem();
+                    IGlider iGlider = (IGlider) glider.getItem();
 //
                     if (!player.isSneaking()) {
-                        horizontalSpeed = ConfigHandler.basicGliderFlightForward; //iGlider.getFlightSpeed();
-                        verticalSpeed = ConfigHandler.basicGliderFlightVertical; //iGlider.getFlightAngle();
+                        horizontalSpeed = iGlider.getHorizontalFlightSpeed();
+                        verticalSpeed = iGlider.getVerticalFlightSpeed();
                     } else {
-                        //basic * speed (* eff?)
-                        //basic * speed (* eff?)
-                        horizontalSpeed = ConfigHandler.basicGliderFlightForward * (3 * ConfigHandler.basicGliderShiftFlightSpeedMultiplier);//4 multiplier default//iGlider.getFlightSpeed() * iGlider.getShiftSpeedMultiplier(); //ConfigHandler.forwardMovement;
-                        verticalSpeed = ConfigHandler.basicGliderFlightVertical * (1.15 * ConfigHandler.basicGliderShiftFlightSpeedMultiplier);//1.5 multiplier default// * ConfigHandler.basicGliderShiftInefficiencyPercentage; //iGlider.getFlightAngle() * iGlider.getShiftSpeedMultiplier() * iGlider.getShiftEfficiencyPercent(); //ConfigHandler.verticalMovement;
+                        horizontalSpeed = iGlider.getShiftHorizontalFlightSpeed();
+                        verticalSpeed = iGlider.getShiftVerticalFlightSpeed();
                     }
 
                     WindHelper.applyWind(player, glider);

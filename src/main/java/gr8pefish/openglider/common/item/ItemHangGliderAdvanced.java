@@ -25,45 +25,9 @@ import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
 public class ItemHangGliderAdvanced extends ItemHangGliderBase {
 
     public ItemHangGliderAdvanced() {
-        super(0, 0, ConfigHandler.advancedGliderWindModifier, ConfigHandler.advancedGliderTotalDurability, ModInfo.MODEL_GLIDER_ADVANCED_TEXTURE_RL);
+        super(ConfigHandler.advancedGliderHorizSpeed, ConfigHandler.advancedGliderVertSpeed, ConfigHandler.advancedGliderShiftHorizSpeed, ConfigHandler.advancedGliderShiftVertSpeed, ConfigHandler.advancedGliderWindModifier, ConfigHandler.advancedGliderTotalDurability, ModInfo.MODEL_GLIDER_ADVANCED_TEXTURE_RL);
         setCreativeTab(OpenGlider.creativeTab);
         setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_ADVANCED_NAME);
-        setMaxStackSize(1);
-
-        //Add different icons for if the gliderBasic is deployed or not
-        this.addPropertyOverride(new ResourceLocation("status"), new IItemPropertyGetter() {
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-                return isGlidingGlider(entityIn, stack) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F;
-            }
-
-            private boolean isGlidingGlider(EntityLivingBase entityIn, ItemStack stack){
-                return entityIn != null && entityIn instanceof EntityPlayer && GliderHelper.getIsGliderDeployed((EntityPlayer)entityIn) && OpenGliderPlayerHelper.getGlider((EntityPlayer)entityIn) == stack;
-            }
-
-        });
-
-//        angle = ConfigHandler.basicGliderFlightAngle;
-//        speed = ConfigHandler.basicGliderFlightSpeed;
-
-//        setFlightSpeed(ConfigHandler.basicGliderFlightSpeed);
-//        setFlightAngle(ConfigHandler.basicGliderFlightAngle);
-//        setShiftSpeedMultiplier(ConfigHandler.basicGliderFlightSpeedShifting);
-
-    }
-
-    /**
-     * Return whether this item is repairable in an anvil. Uses leather.
-     */
-    @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-
-        List<ItemStack> leathers = OreDictionary.getOres("leather");
-        for (ItemStack stack : leathers) {
-            if (stack.getItem() == repair.getItem()) return true;
-        }
-        return false;
-
     }
 
     //ToDo: Needed?

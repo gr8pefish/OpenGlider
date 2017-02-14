@@ -12,24 +12,25 @@ public interface IGlider extends INBTSerializable<NBTTagCompound> {
 
     //==============Flight==================
 
-    //Blocks traveled horizontally per each block down.
-    double getFlightAngle();
+    //Blocks traveled horizontally per movement time.
+    double getHorizontalFlightSpeed();
 
-    void setFlightAngle(double angle);
+    void setHorizontalFlightSpeed(double speed);
 
-    //speed traveling that angle
-    double getFlightSpeed();
+    //Blocks traveled vertically per movement time.
+    double getVerticalFlightSpeed();
 
-    void setFlightSpeed(double speed);
+    void setVerticalFlightSpeed(double speed);
 
-    //speed up values
-    double getShiftSpeedMultiplier();
+    //Blocks traveled horizontally per movement time when going fast/pressing shift.
+    double getShiftHorizontalFlightSpeed();
 
-    void setShiftSpeedMultiplier(double shiftSpeedMultiplier);
+    void setShiftHorizontalFlightSpeed(double speed);
 
-    double getShiftEfficiencyPercent();
+    //Blocks traveled vertically per movement time when going fast/pressing shift.
+    double getShiftVerticalFlightSpeed();
 
-    void setShiftEfficiencyPercentage(double shiftEfficiencyPercentage);
+    void setShiftVerticalFlightSpeed(double speed);
 
     //===============Wind====================
 

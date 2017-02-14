@@ -1,14 +1,17 @@
 package gr8pefish.openglider.api.item;
 
 import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import gr8pefish.openglider.common.util.OpenGliderHelper;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemElytra;
 import net.minecraft.item.ItemStack;
@@ -21,7 +24,9 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,20 +34,39 @@ public class ItemHangGliderBase extends Item implements IGlider {
 
     //ToDo: NBT saving tags of upgrade (need IRecipe for them)
 
-    private double angle;
-    private double speed;
+    private double horizSpeed;
+    private double vertSpeed;
+    private double shiftHorizSpeed;
+    private double shiftVertSpeed;
     private double windMultiplier;
     private int totalDurability;
     private ResourceLocation modelRL;
 
-    public ItemHangGliderBase(double angle, double speed, double windMultiplier, int totalDurability, ResourceLocation modelRL) {
-        this.angle = angle;
-        this.speed = speed;
+    public ItemHangGliderBase(double horizSpeed, double vertSpeed, double shiftHorizSpeed, double shiftVertSpeed, double windMultiplier, int totalDurability, ResourceLocation modelRL) {
+        this.horizSpeed = horizSpeed;
+        this.vertSpeed = vertSpeed;
+        this.shiftHorizSpeed = shiftHorizSpeed;
+        this.shiftVertSpeed = shiftVertSpeed;
         this.windMultiplier = windMultiplier;
         this.totalDurability = totalDurability;
         this.modelRL = modelRL;
 
         setMaxDamage(totalDurability);
+        setMaxStackSize(1);
+
+        //Add different icons for if the glider is deployed or not
+        this.addPropertyOverride(new ResourceLocation("status"), new IItemPropertyGetter() {
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+                return isGlidingGlider(entityIn, stack) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F;
+            }
+
+            private boolean isGlidingGlider(EntityLivingBase entityIn, ItemStack stack){
+                return entityIn != null && entityIn instanceof EntityPlayer && GliderHelper.getIsGliderDeployed((EntityPlayer)entityIn) && OpenGliderPlayerHelper.getGlider((EntityPlayer)entityIn) == stack;
+            }
+
+        });
+
     }
 
     /**
@@ -123,49 +147,61 @@ public class ItemHangGliderBase extends Item implements IGlider {
         }
     }
 
+    /**
+     * Return whether this item is repairable in an anvil. Uses leather.
+     */
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+
+        List<ItemStack> leathers = OreDictionary.getOres("leather");
+        for (ItemStack stack : leathers) {
+            if (stack.getItem() == repair.getItem()) return true;
+        }
+        return false;
+
+    }
+
 
     //==============================================IGlider========================================
 
-
-
     @Override
-    public double getFlightAngle() {
-        return angle;
+    public double getHorizontalFlightSpeed() {
+        return horizSpeed;
     }
 
     @Override
-    public void setFlightAngle(double angleToSetTo) {
-        angle = angleToSetTo;
+    public void setHorizontalFlightSpeed(double speed) {
+        horizSpeed = speed;
     }
 
     @Override
-    public double getFlightSpeed() {
-        return speed;
+    public double getVerticalFlightSpeed() {
+        return vertSpeed;
     }
 
     @Override
-    public void setFlightSpeed(double speedToSetTo) {
-        speed = speedToSetTo;
+    public void setVerticalFlightSpeed(double speed) {
+        vertSpeed = speed;
     }
 
     @Override
-    public double getShiftSpeedMultiplier() {
-        return 0;
+    public double getShiftHorizontalFlightSpeed() {
+        return shiftHorizSpeed;
     }
 
     @Override
-    public void setShiftSpeedMultiplier(double shiftSpeedMultiplier) {
-
+    public void setShiftHorizontalFlightSpeed(double speed) {
+        shiftHorizSpeed = speed;
     }
 
     @Override
-    public double getShiftEfficiencyPercent() {
-        return 0;
+    public double getShiftVerticalFlightSpeed() {
+        return shiftVertSpeed;
     }
 
     @Override
-    public void setShiftEfficiencyPercentage(double shiftEfficiencyPercentage) {
-
+    public void setShiftVerticalFlightSpeed(double speed) {
+        shiftVertSpeed = speed;
     }
 
     @Override
