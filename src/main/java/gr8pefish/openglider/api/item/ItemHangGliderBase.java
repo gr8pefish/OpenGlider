@@ -51,6 +51,14 @@ public class ItemHangGliderBase extends Item implements IGlider {
         this.totalDurability = totalDurability;
         this.modelRL = modelRL;
 
+//        setHorizontalFlightSpeed(horizSpeed);
+//        setVerticalFlightSpeed(vertSpeed);
+//        setShiftHorizontalFlightSpeed(shiftHorizSpeed);
+//        setShiftVerticalFlightSpeed(vertSpeed);
+//        setWindMultiplier(windMultiplier);
+//        setTotalDurability(totalDurability);
+//        setModelTexture(modelRL);
+
         setMaxDamage(totalDurability);
         setMaxStackSize(1);
 
