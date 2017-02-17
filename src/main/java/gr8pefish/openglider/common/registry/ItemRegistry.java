@@ -13,7 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ItemRegistry {
 
@@ -79,6 +81,9 @@ public class ItemRegistry {
             GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.gliderAdv), new ItemStack(ItemRegistry.gliderAdv), upgrade));
             GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.gliderAdv), new ItemStack(ItemRegistry.gliderAdv)));
         }
+
+        RecipeSorter.register("GliderAddUpgrade", AddUpgradeToGliderRecipe.class, RecipeSorter.Category.SHAPELESS, "");
+        RecipeSorter.register("GliderRemoveUpgrade", RemoveUpgradeFromGliderRecipe.class, RecipeSorter.Category.SHAPED, "");
 
     }
 
