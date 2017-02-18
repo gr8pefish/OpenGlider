@@ -64,9 +64,10 @@ public class ItemHangGliderBase extends Item implements IGlider {
 
         //Add different icons for if the glider is deployed or not
         this.addPropertyOverride(new ResourceLocation("status"), new IItemPropertyGetter() {
+
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-                return isGlidingGlider(entityIn, stack) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F;
+                return isGlidingGlider(entityIn, stack) ? 1.0F : isBroken(stack) ? 2.0F : 0.0F; //0 = undeployed, 1 = deployed, 2 = broken
             }
 
             private boolean isGlidingGlider(EntityLivingBase entityIn, ItemStack stack){
@@ -131,15 +132,31 @@ public class ItemHangGliderBase extends Item implements IGlider {
      *
      * @return - True to cause re-equip, false otherwise
      */
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        if (slotChanged) return true;
-        //ToDo: Allow broken stacks to reequip, need to alter fp rotation in the json files
+
+    //ToDo: This bish (why does it error)
+    /**
+     Hmm, so I have an item that changes texture depending on the state the player is in. The issue is with item re-equipping animation.
+
+     The item is a glider that turns into handlebars if the player has deployed the glider. The glider has durability, so every flight tick there is a chance for the glider to be damaged, which, by default, causes the re-equip animation. This looks odd with it bobbing up and down a lot, so I'd like to remove it. Here's what it looks like bobbing: https://streamable.com/o4sak Note that it also changes to the other texture before reverting back to the handlebars.
+
+     This can be fixed with an override of shouldCauseReequipAnimation(), but that causes the dynamic texturing of the item to not occur correctly, so the item changes to the glider sprite (not the handlebars as it should) and stays there. Video example: https://streamable.com/z9qze
+
+     Now, anyone have an idea of how to make it not bob up and down when flying/taking damage, but still respect the changing/dynamic item texture (glider sprite -> handlebars)?
+
+     Here's all my code for reference: https://github.com/gr8pefish/OpenGlider
+     */
+
+//    @Override
+//    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+////        return newStack.getItem() instanceof ItemHangGliderBase;
+//        if (slotChanged) return true;
+//        //ToDo: Allow broken stacks to reequip, need to alter fp rotation in the json files
 //        if (newStack != null && newStack.getItem() != null && newStack.getItem() instanceof ItemHangGliderBasic && isBroken(newStack))
 //            return true;
 //        else
-        return !(oldStack.getItem().equals(newStack.getItem())); //no more bobbing when damaged if it is the same exact item
-    }
+//            return !(oldStack.getItem().equals(newStack.getItem())); //no more bobbing when damaged if it is the same exact item
+////        return !(oldStack.getItemDamage() == newStack.getItemDamage());
+//    }
 
     //Helper method for checking if a hang glider is broken (1 durability left)
     @Override

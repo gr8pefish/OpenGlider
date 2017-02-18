@@ -6,6 +6,8 @@ To Do:
     german translation PR
 
     Refine CF page
+        Add info about multiple tiers
+        Add info about upgrade(s)
 
 
     BUGS:
@@ -19,13 +21,15 @@ To Do:
     LATER:
 
         DEFINITE:
-            Make shift effect less
+            Fix re-equip nonsense
             JEI for repair (and for info b/c why not)
             Durability depends on blocks traveled, not time in the air (intelligent durability usage)
             Lighten models in fpp
-            Tone down y-level param a little
+            Tone down y-level param a little //Test
             Elytra wind sound
             Release for 1.11
+            Check update forge/JEI
+            Add in functionality for compass upgrade
         EVENTUAL:
             Update IssueTemplate/Contributing
             Test gradle forge version updates
@@ -43,14 +47,12 @@ To Do:
                 3D wind
                 Updrafts with certain blocks (i.e. lava)
             Make model for bars hanging down.
-            Add tiers of gliders?
             Upgrades for more durability/less wind/etc?
             Blow up the item perspective in fpp of wings to be huge?
             Add red/white dye to recipes?
             Enchants only specific ones possible
             Investigate shift and "[player] moved wrongly"
             Non-instant deployment time?
-            Multiple gliders oddness (transferring from one to another directly, need UUIDs for deployed)
             "broken" texture doesn't always update in-hand
 
     EVENTUAL FEATURES:
