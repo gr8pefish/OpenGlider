@@ -38,6 +38,7 @@ To Do:
             Make jsons extend from base_glider.json and base_glider_broken, etc.
             Secret naussica model for glider?
             Enforce config sync from server to client for non-visual options
+            Work on forge version increment via gradle replace task, make sure correct
         MAYBE:
             Add API-way to change rendering (so other mods can alter it)
                 startGliderRenderEvent?
