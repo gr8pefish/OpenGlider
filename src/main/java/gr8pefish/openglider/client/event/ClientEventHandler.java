@@ -158,7 +158,7 @@ public class ClientEventHandler extends Gui {
 
         //move away if sneaking
         if (player.isSneaking())
-            GlStateManager.translate(0, 0, -0.15); //subtle speed effect (makes gliderBasic smaller looking)
+            GlStateManager.translate(0, 0, -1 * ConfigHandler.shiftSpeedVisualShift); //subtle speed effect (makes gliderBasic smaller looking)
     }
 
 

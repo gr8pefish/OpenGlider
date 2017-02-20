@@ -53,6 +53,7 @@ public class ConfigHandler {
     public static boolean enableRenderingFPP;
     public static float gliderVisibilityFPPShiftAmount;
     public static boolean disableOffhandRenderingWhenGliding;
+    public static float shiftSpeedVisualShift;
 
     @SubscribeEvent
     public void configChanged(ConfigChangedEvent event) {
@@ -78,7 +79,7 @@ public class ConfigHandler {
         basicGliderVertSpeed = config.getFloat("2) Normal Fall Distance", category, 0.55F, 0, 100,"The amount of blocks a player falls (per-tick) while gliding normally.");
         basicGliderShiftHorizSpeed = config.getFloat("3) Fast Forward Movement", category, 0.04F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift').");
         basicGliderShiftVertSpeed = config.getFloat("4) Fast Fall Distance", category, 0.675F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
-        basicGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 1.3F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config.");
+        basicGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 1.4F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config.");
         basicGliderTotalDurability = config.getInt("6) Total Durability", category, 206, 1, 10000, "The maximum durability of an unused hang glider.");
 
         category = "2) Advanced Hang Glider Stats";
@@ -110,9 +111,10 @@ public class ConfigHandler {
         category = "5) Visuals";
         categories.add(category);
         enableRendering3PP = config.getBoolean("1) Enable Rendering 3PP", category, true, "Enables rendering of the hang glider on the player in third-person perspective (or to others).");
-        enableRenderingFPP = config.getBoolean("1) Enable Rendering FPP", category, true, "Enables rendering of the hang glider above the player's head in first person perspective.");
-        gliderVisibilityFPPShiftAmount = config.getFloat("2) First-Person Glider Visibility", category, 1.9F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
-        disableOffhandRenderingWhenGliding = config.getBoolean("3) Disable Offhand Rendering While Gliding", category, true, "Disables rendering of the offhand while the player is gliding.");
+        enableRenderingFPP = config.getBoolean("2) Enable Rendering FPP", category, true, "Enables rendering of the hang glider above the player's head in first person perspective.");
+        gliderVisibilityFPPShiftAmount = config.getFloat("3) First-Person Glider Visibility", category, 1.9F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
+        disableOffhandRenderingWhenGliding = config.getBoolean("4) Disable Offhand Rendering While Gliding", category, true, "Disables rendering of the offhand while the player is gliding.");
+        shiftSpeedVisualShift = config.getFloat("5) First-Person Glider Speed Shift", category, 0.1F, 0, 1, "How much the glider should shift visually when in fast/shift mode. 0 is none.");
 
         if (config.hasChanged())
             config.save();
