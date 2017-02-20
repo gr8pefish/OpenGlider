@@ -11,9 +11,6 @@ To Do:
 
 
     BUGS:
-        check durability of right item being taken away
-        test on servers
-        check rocket boosting works
 
     NOW:
 
@@ -23,14 +20,15 @@ To Do:
         DEFINITE:
             Fix re-equip nonsense
             JEI for repair (and for info b/c why not)
-            Durability depends on blocks traveled, not time in the air (intelligent durability usage)
+            Add in functionality for compass upgrade
             Lighten models in fpp
             Tone down y-level param a little //Test
             Elytra wind sound
-            Release for 1.11
             Check update forge/JEI
-            Add in functionality for compass upgrade
+
         EVENTUAL:
+            Durability depends on blocks traveled, not time in the air (intelligent durability usage)
+            Release for 1.11
             Update IssueTemplate/Contributing
             Test gradle forge version updates
             Gradle api built
