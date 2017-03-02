@@ -9,6 +9,13 @@ To Do:
         Add info about multiple tiers
         Add info about upgrade(s)
 
+    Swiss cheese theory - layers for broken gliders
+
+    Make separate/new model for glider
+        Make appear in FPP, finish side struts in 3PP as well
+
+        can change scale to 0,0,0 to disappear
+
 
     BUGS:
 
@@ -19,12 +26,14 @@ To Do:
 
         DEFINITE:
             Fix re-equip nonsense
+                broken basic glider not showing up
             JEI for repair (and for info b/c why not)
             Add in functionality for compass upgrade
             Lighten models in fpp
             Tone down y-level param a little //Test
             Elytra wind sound
             Check update forge/JEI
+            Make model for bars hanging down.
 
         EVENTUAL:
             Durability depends on blocks traveled, not time in the air (intelligent durability usage)
@@ -45,7 +54,6 @@ To Do:
             Air currents? Forward/backward/up/down momentum?
                 3D wind
                 Updrafts with certain blocks (i.e. lava)
-            Make model for bars hanging down.
             Upgrades for more durability/less wind/etc?
             Blow up the item perspective in fpp of wings to be huge?
             Add red/white dye to recipes?
