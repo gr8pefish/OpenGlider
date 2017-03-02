@@ -5,9 +5,15 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+
 public class ModelGlider extends ModelBase {
+
+    public static final ResourceLocation MODEL_GLIDER_BASIC_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider.png");
+    public static final ResourceLocation MODEL_GLIDER_ADVANCED_TEXTURE_RL = new ResourceLocation(MODID, "textures/models/hang_glider_advanced.png");
 
     private static final float QUAD_HALF_SIZE = 2.4f;
     private static final float ONGROUND_ROTATION = 90f;
