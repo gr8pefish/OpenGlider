@@ -2,6 +2,7 @@ package gr8pefish.openglider.client.renderer;
 
 import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.client.model.ModelBars;
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.lib.ModInfo;
@@ -22,6 +23,7 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
     private final RenderPlayer playerRenderer;
     /** The model used by the gliderBasic. */
     private final ModelGlider modelGlider = new ModelGlider();
+//    private final ModelBars modelBars = new ModelBars();
 
     public LayerGlider(RenderPlayer playerRendererIn) {
         this.playerRenderer = playerRendererIn;
@@ -41,9 +43,13 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
                 //push matrix
                 GlStateManager.pushMatrix();
 
-                //set rotation angles of the backpack and render it
+                //set rotation angles of the glider and render it
                 this.modelGlider.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn);
                 this.modelGlider.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+
+                //render bars
+//                this.playerRenderer.bindTexture(ModelBars.MODEL_GLIDER_BARS_RL);
+//                this.modelBars.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 
                 //special glint for me xD
                 if (entitylivingbaseIn.getName().equals("gr8pefish")) {
