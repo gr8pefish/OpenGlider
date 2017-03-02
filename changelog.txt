@@ -5,7 +5,8 @@ Additions
 - None
 
 Changes
-- None
+- Removed handlebar rendering for now, until the re-equip visual bug is fixed.
+    - Configurable if you want it in anyway.
 
 Bug Fixes
 - Fix lang file localizations.
