@@ -16,6 +16,9 @@ To Do:
 
         can change scale to 0,0,0 to disappear
 
+    Check out OpenMods for vertical movement algorithm?
+        https://github.com/OpenMods/OpenBlocks/commit/6ed4c303ba73eb16763a321903c6235697066578
+
 
     BUGS:
 

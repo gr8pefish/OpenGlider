@@ -4,7 +4,7 @@
     "1.10.2-latest": "0.2.0",
     "1.10.2-recommended": "0.2.0"
   },
-  "1.10.2": {
+  "1.10.2": {"2": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
     "0.2.0": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
     "0.1.2": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
     "0.1.1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt"
