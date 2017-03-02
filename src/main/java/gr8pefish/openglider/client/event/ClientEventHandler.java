@@ -2,6 +2,7 @@ package gr8pefish.openglider.client.event;
 
 import gr8pefish.openglider.api.item.IGlider;
 import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.client.model.ModelBars;
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
@@ -104,6 +105,7 @@ public class ClientEventHandler extends Gui {
 
     //The model to display
     private final ModelGlider modelGlider = new ModelGlider();
+//    private final ModelBars modelBars = new ModelBars();
 
     /**
      * Renders the gliderBasic above the player
@@ -125,6 +127,9 @@ public class ClientEventHandler extends Gui {
         setLightingBeforeRendering(entityPlayer, event.getPartialTicks());
         //render the gliderBasic
         modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
+        //render the bars
+//        Minecraft.getMinecraft().getTextureManager().bindTexture(ModelBars.MODEL_GLIDER_BARS_RL); //bind texture
+//        modelBars.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
         //pop matrix
         GlStateManager.popMatrix();
 
@@ -173,11 +178,14 @@ public class ClientEventHandler extends Gui {
     @SubscribeEvent
     public void onHandRender(RenderSpecificHandEvent event){
         EntityPlayer player = OpenGlider.proxy.getClientPlayer();
-        if (ConfigHandler.disableOffhandRenderingWhenGliding) { //configurable
+        if (ConfigHandler.disableOffhandRenderingWhenGliding || ConfigHandler.disableHandleBarRenderingWhenGliding) { //configurable
             if (GliderHelper.getIsGliderDeployed(player)) { //if gliderBasic deployed
-                if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemHangGliderBasic && !((IGlider)player.getHeldItemMainhand().getItem()).isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang gliderBasic
-                    if (event.getHand() == EnumHand.OFF_HAND) { //offhand rendering
-                        event.setCanceled(true);
+                if (ConfigHandler.disableHandleBarRenderingWhenGliding) event.setCanceled(true);
+                else if (ConfigHandler.disableOffhandRenderingWhenGliding) {
+                    if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IGlider && !((IGlider) player.getHeldItemMainhand().getItem()).isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang gliderBasic
+                        if (event.getHand() == EnumHand.OFF_HAND) { //offhand rendering
+                            event.setCanceled(true);
+                        }
                     }
                 }
             }

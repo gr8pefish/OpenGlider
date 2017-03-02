@@ -53,6 +53,7 @@ public class ConfigHandler {
     public static boolean enableRenderingFPP;
     public static float gliderVisibilityFPPShiftAmount;
     public static boolean disableOffhandRenderingWhenGliding;
+    public static boolean disableHandleBarRenderingWhenGliding;
     public static float shiftSpeedVisualShift;
 
     @SubscribeEvent
@@ -112,8 +113,9 @@ public class ConfigHandler {
         categories.add(category);
         enableRendering3PP = config.getBoolean("1) Enable Rendering 3PP", category, true, "Enables rendering of the hang glider on the player in third-person perspective (or to others).");
         enableRenderingFPP = config.getBoolean("2) Enable Rendering FPP", category, true, "Enables rendering of the hang glider above the player's head in first person perspective.");
-        gliderVisibilityFPPShiftAmount = config.getFloat("3) First-Person Glider Visibility", category, 1.9F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
         disableOffhandRenderingWhenGliding = config.getBoolean("4) Disable Offhand Rendering While Gliding", category, true, "Disables rendering of the offhand while the player is gliding.");
+        disableHandleBarRenderingWhenGliding = config.getBoolean("4) Disable Handlebar Rendering While Gliding", category, true, "Disables rendering of the handlebar (and also therefore any items held) while the player is gliding.");
+        gliderVisibilityFPPShiftAmount = config.getFloat("3) First-Person Glider Visibility", category, 1.9F, 1, 4, "How high above the player's head the glider appears as in first person perspective while flying. Lower values will make it more visible/intrusive.");
         shiftSpeedVisualShift = config.getFloat("5) First-Person Glider Speed Shift", category, 0.1F, 0, 1, "How much the glider should shift visually when in fast/shift mode. 0 is none.");
 
         if (config.hasChanged())

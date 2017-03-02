@@ -6,12 +6,6 @@
   "overrides": [
     {
       "predicate": {
-        "status": 0
-      },
-      "model": "openglider:item/hang_glider_advanced"
-    },
-    {
-      "predicate": {
         "status": 1
       },
       "model": "openglider:item/hang_glider_advanced_deployed"

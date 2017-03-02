@@ -6,6 +6,7 @@ import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateClientTarget;
 import gr8pefish.openglider.common.util.OpenGliderHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
@@ -134,6 +135,7 @@ public class ItemHangGliderBase extends Item implements IGlider {
      */
 
     //ToDo: This bish (why does it error)
+    //ToDo: Possible solution: Ignore rendering when gliding, and add in model for bars.
     /**
      Hmm, so I have an item that changes texture depending on the state the player is in. The issue is with item re-equipping animation.
 
@@ -148,14 +150,23 @@ public class ItemHangGliderBase extends Item implements IGlider {
 
 //    @Override
 //    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-////        return newStack.getItem() instanceof ItemHangGliderBase;
+//        if (oldStack.getItem() == newStack.getItem()) {
+//            if (newStack.getItem() instanceof ItemHangGliderBasic && isBroken(newStack))
+//                return true;
+//            else if (GliderHelper.getIsGliderDeployed(Minecraft.getMinecraft().thePlayer)) {
+//                return false;
+//            }
+//        }
+//        return !oldStack.equals(newStack);
+//    }
+//        return newStack.getItem() instanceof ItemHangGliderBase;
 //        if (slotChanged) return true;
 //        //ToDo: Allow broken stacks to reequip, need to alter fp rotation in the json files
 //        if (newStack != null && newStack.getItem() != null && newStack.getItem() instanceof ItemHangGliderBasic && isBroken(newStack))
 //            return true;
 //        else
 //            return !(oldStack.getItem().equals(newStack.getItem())); //no more bobbing when damaged if it is the same exact item
-////        return !(oldStack.getItemDamage() == newStack.getItemDamage());
+//        return !(oldStack.getItemDamage() == newStack.getItemDamage());
 //    }
 
     //Helper method for checking if a hang glider is broken (1 durability left)
