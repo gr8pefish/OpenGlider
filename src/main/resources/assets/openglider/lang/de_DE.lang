@@ -1,0 +1,11 @@
+# Item Localizations
+item.openglider:hang_glider.name=Hängegleiter
+item.openglider:glider_part.wing_left.name=Gleitersegel (Links)
+item.openglider:glider_part.wing_right.name=Gleitersegel (Rechts)
+item.openglider:glider_part.scaffolding.name=Halterung
+
+# Creative tab Localization
+itemGroup.openglider=Open Glider
+
+# Other
+openglider.elytra.error=Du kannst nicht mit angezogenen Elytren gleiten!
