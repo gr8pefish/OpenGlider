@@ -8,7 +8,7 @@ public class ModInfo {
 
     public static final String DOMAIN = MODID.toLowerCase(Locale.ENGLISH) + ":"; //for resources
     public static final String VERSION = "@VERSION@";
-    public static final String FORGE_UPDATE_JSON_URL = "https://github.com/gr8pefish/OpenGlider/blob/1.10/versions/update.json";
+    public static final String FORGE_UPDATE_JSON_URL = "https://raw.githubusercontent.com/gr8pefish/OpenGlider/1.10/versions/update.json";
     public static final String GUI_FACTORY = "gr8pefish.openglider.client.gui.GuiFactory"; //for in-game config
 
     public static final String COMMON_PROXY = "gr8pefish.openglider.common.proxy.CommonProxy";
