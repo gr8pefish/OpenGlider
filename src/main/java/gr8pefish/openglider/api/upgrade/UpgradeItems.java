@@ -11,7 +11,7 @@ public class UpgradeItems {
 
     public static void initUpgradesList() {
         possibleUpgradeList = new ArrayList<>();
-        addToUpgradesList(new ItemStack(Items.COMPASS));
+//        addToUpgradesList(new ItemStack(Items.COMPASS)); //ToDo: Add back with functionality at some point
     }
 
     public static void addToUpgradesList(ItemStack stack) {

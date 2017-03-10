@@ -2,13 +2,13 @@
 Version 1.10.2 - 0.2.2
 ------------------------------------------------------
 Additions
-- None
+- Added German translation (thanks ACGaming)
 
 Changes
-- None
+- Temporarily disabled upgrade so as to not cause confusion.
 
 Bug Fixes
-- None
+- Fix update URL (thanks TheRandomLabs)
 ------------------------------------------------------
 Version 1.10.2 - 0.2.1
 ------------------------------------------------------
