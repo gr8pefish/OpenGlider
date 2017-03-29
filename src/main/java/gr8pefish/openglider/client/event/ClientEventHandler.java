@@ -116,6 +116,7 @@ public class ClientEventHandler extends Gui {
 
         EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
         ItemStack gliderStack = GliderHelper.getGlider(Minecraft.getMinecraft().thePlayer);
+        if (gliderStack == null) return; //just in case the other null check don't work somehow, return
         ResourceLocation resourceLocation = ((IGlider)gliderStack.getItem()).getModelTexture(gliderStack);
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation); //bind texture
 
