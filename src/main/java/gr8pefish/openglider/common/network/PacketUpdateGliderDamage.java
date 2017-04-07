@@ -1,11 +1,10 @@
 package gr8pefish.openglider.common.network;
 
 import gr8pefish.openglider.api.item.IGlider;
-import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.api.helper.GliderHelper;
 import gr8pefish.openglider.common.OpenGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
-import gr8pefish.openglider.common.item.ItemHangGliderBasic;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

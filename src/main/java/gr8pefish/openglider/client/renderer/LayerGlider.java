@@ -1,11 +1,9 @@
 package gr8pefish.openglider.client.renderer;
 
 import gr8pefish.openglider.api.item.IGlider;
-import gr8pefish.openglider.api.lib.GliderHelper;
-import gr8pefish.openglider.client.model.ModelBars;
+import gr8pefish.openglider.api.helper.GliderHelper;
 import gr8pefish.openglider.client.model.ModelGlider;
 import gr8pefish.openglider.common.config.ConfigHandler;
-import gr8pefish.openglider.common.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;

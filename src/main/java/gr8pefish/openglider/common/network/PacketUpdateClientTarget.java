@@ -1,6 +1,6 @@
 package gr8pefish.openglider.common.network;
 
-import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.api.helper.GliderHelper;
 import gr8pefish.openglider.common.OpenGlider;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

@@ -1,7 +1,7 @@
 package gr8pefish.openglider.common.helper;
 
 import gr8pefish.openglider.api.item.IGlider;
-import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.api.helper.GliderHelper;
 import gr8pefish.openglider.common.config.ConfigHandler;
 import gr8pefish.openglider.common.network.PacketHandler;
 import gr8pefish.openglider.common.network.PacketUpdateGliderDamage;

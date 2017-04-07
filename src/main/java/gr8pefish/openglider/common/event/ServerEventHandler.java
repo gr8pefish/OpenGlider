@@ -1,7 +1,7 @@
 package gr8pefish.openglider.common.event;
 
 import gr8pefish.openglider.api.capabilities.CapabilityHelper;
-import gr8pefish.openglider.api.lib.GliderHelper;
+import gr8pefish.openglider.api.helper.GliderHelper;
 import gr8pefish.openglider.common.capabilities.GliderCapabilityImplementation;
 import gr8pefish.openglider.common.helper.OpenGliderPlayerHelper;
 import gr8pefish.openglider.common.network.PacketHandler;
