@@ -5,7 +5,7 @@ Additions
 - None
 
 Changes
-- None
+- Greatly increased default durability
 
 Bug Fixes
 - Fix changing items from glider not updating sprites
