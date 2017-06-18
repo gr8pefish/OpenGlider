@@ -24,12 +24,14 @@ public class OpenGliderPlayerHelper {
         if (shouldBeGliding(player)) {
             ItemStack glider = GliderHelper.getGlider(player);
             if (isValidGlider(glider)) {
-                if (player.motionY < 0) {
+                if (player.motionY < 0) { //if falling (flying)
 
+                    // Init variables
                     final double horizontalSpeed;
                     final double verticalSpeed;
                     IGlider iGlider = (IGlider) glider.getItem();
-//
+
+                    // Get speed depending on glider and if player is sneaking
                     if (!player.isSneaking()) {
                         horizontalSpeed = iGlider.getHorizontalFlightSpeed();
                         verticalSpeed = iGlider.getVerticalFlightSpeed();
@@ -38,16 +40,26 @@ public class OpenGliderPlayerHelper {
                         verticalSpeed = iGlider.getShiftVerticalFlightSpeed();
                     }
 
+                    // Apply wind effects
                     WindHelper.applyWind(player, glider);
 
+                    // Apply falling motion
                     player.motionY *= verticalSpeed;
 
+                    // Apply forward motion
                     double x = Math.cos(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
                     double z = Math.sin(Math.toRadians(player.rotationYaw + 90)) * horizontalSpeed;
                     player.motionX += x;
                     player.motionZ += z;
 
-                    player.fallDistance = 0f; /* Don't like getting hurt :( */
+                    // Apply air resistance
+                    if (ConfigHandler.airResistanceEnabled) { //placeholder for config air resistance
+                        player.motionX *= iGlider.getAirResistance();
+                        player.motionZ *= iGlider.getAirResistance();
+                    }
+
+                    // Stop fall damage
+                    player.fallDistance = 0f;
 
 //                    playWindSound(player); //ToDo: sounds
                 }

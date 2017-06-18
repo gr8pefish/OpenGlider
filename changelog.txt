@@ -2,7 +2,10 @@
 Version 1.10.2 - 1.0.0
 ------------------------------------------------------
 Additions
-- None
+- Added air resistance to gliders, so you (slowly) slow down over time.
+    - Different values for different glider tiers.
+    - Also fixes mod interactions like slime string causing you to glide way faster than intended.
+    - Fully configurable (as always).
 
 Changes
 - Greatly increased default durability

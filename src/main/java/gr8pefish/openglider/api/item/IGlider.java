@@ -38,6 +38,10 @@ public interface IGlider extends INBTSerializable<NBTTagCompound> {
 
     void setWindMultiplier(double windMultiplier);
 
+    double getAirResistance();
+
+    void setAirResistance(double airResistance);
+
     //=============Durability================
 
     int getTotalDurability();

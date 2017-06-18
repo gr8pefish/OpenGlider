@@ -22,6 +22,7 @@ public class ConfigHandler {
     public static float basicGliderShiftVertSpeed;
 
     public static float basicGliderWindModifier;
+    public static float basicGliderAirResistance;
     public static int basicGliderTotalDurability;
 
     //Advanced Glider
@@ -31,9 +32,11 @@ public class ConfigHandler {
     public static float advancedGliderShiftVertSpeed;
 
     public static float advancedGliderWindModifier;
+    public static float advancedGliderAirResistance;
     public static int advancedGliderTotalDurability;
 
     //Wind
+    public static boolean airResistanceEnabled;
     public static boolean windEnabled;
     public static float windOverallPower;
     public static float windGustSize;
@@ -81,7 +84,8 @@ public class ConfigHandler {
         basicGliderShiftHorizSpeed = config.getFloat("3) Fast Forward Movement", category, 0.04F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift').");
         basicGliderShiftVertSpeed = config.getFloat("4) Fast Fall Distance", category, 0.675F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
         basicGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 1.4F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config.");
-        basicGliderTotalDurability = config.getInt("6) Total Durability", category, 618, 1, 10000, "The maximum durability of an unused hang glider.");
+        basicGliderAirResistance = config.getFloat("6) Air Resistance", category, 0.98F, 0, 1, "The rate at which air resistance hinders your movement. 1 is no resistance, 0.5 is 1/2 as fast each tick.");
+        basicGliderTotalDurability = config.getInt("7) Total Durability", category, 618, 1, 10000, "The maximum durability of an unused hang glider.");
 
         category = "2) Advanced Hang Glider Stats";
         categories.add(category);
@@ -90,10 +94,12 @@ public class ConfigHandler {
         advancedGliderShiftHorizSpeed = config.getFloat("3) Fast Forward Movement", category, 0.08F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift').");
         advancedGliderShiftVertSpeed = config.getFloat("4) Fast Fall Distance", category, 0.675F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
         advancedGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 0.75F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall quite weak wind, with mild gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config."); //ToDo: playtest
-        advancedGliderTotalDurability = config.getInt("6) Total Durability", category, 2802, 1, 100000, "The maximum durability of an unused advanced hang glider.");
+        advancedGliderAirResistance = config.getFloat("6) Air Resistance", category, 0.999F, 0, 1, "The rate at which air resistance hinders your movement. 1 is no resistance, 0.5 is 1/2 as fast each tick.");
+        advancedGliderTotalDurability = config.getInt("7) Total Durability", category, 2802, 1, 100000, "The maximum durability of an unused advanced hang glider.");
 
         category = "3) Wind";
         categories.add(category);
+        airResistanceEnabled = config.getBoolean("1) Enable Air Resistance", category, true, "Enables air resistance, making the player slow down over time when flying. Values conditional on tier of glider.");
         windEnabled = config.getBoolean("1) Enable Wind", category, true, "Enables wind, making the player move unpredictably around when gliding.");
         windOverallPower = config.getFloat("2) Overall Power", category, 1.0F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for all gliders. Default is an overall relatively weak wind, with moderate gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available below.");
         windGustSize = config.getFloat("3) Gust Size", category, 19, 1, 100, "The size of the wind gusts, larger values mean the gusts push the player around in greater angles from their intended direction. Default is moderately sized. Observable gameplay effects are highly tied with wind frequency.");
