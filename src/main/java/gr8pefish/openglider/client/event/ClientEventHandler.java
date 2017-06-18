@@ -126,7 +126,7 @@ public class ClientEventHandler extends Gui {
         //set the correct lighting
         setLightingBeforeRendering(entityPlayer, event.getPartialTicks());
         //render the gliderBasic
-        modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
+        modelGlider.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.ticksExisted, entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);
         //render the bars
 //        Minecraft.getMinecraft().getTextureManager().bindTexture(ModelBars.MODEL_GLIDER_BARS_RL); //bind texture
 //        modelBars.render(entityPlayer, entityPlayer.limbSwing, entityPlayer.limbSwingAmount, entityPlayer.getAge(), entityPlayer.rotationYawHead, entityPlayer.rotationPitch, 1);

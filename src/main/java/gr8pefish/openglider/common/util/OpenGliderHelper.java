@@ -18,7 +18,7 @@ public class OpenGliderHelper {
                     NBTTagList tagList = nbtTagCompound.getTagList(ModInfo.NBT_KEYS.UPGRADES, net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND);
                     for (int i = 0; i < tagList.tagCount(); i++) {
                         NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
-                        ItemStack upgrade = ItemStack.loadItemStackFromNBT(stackTag);
+                        ItemStack upgrade = new ItemStack(stackTag);
                         if (upgrade != null)
                             upgradesArrayList.add(upgrade);
                     }

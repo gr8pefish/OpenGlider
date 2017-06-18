@@ -6,6 +6,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -149,18 +150,18 @@ public class RemoveUpgradeFromGliderRecipe extends ShapelessOreRecipe {
         return recipeOutput;
     }
 
-    @Override
-    public ItemStack[] getRemainingItems(InventoryCrafting inv){ //needs matches overridden due to (Forge?) bug
-        if (upgradeRemovedStack != null){
-            ItemStack[] ret = new ItemStack[inv.getSizeInventory()];
-            ret[0] = upgradeRemovedStack.copy();
-            for (int i = 1; i < ret.length; i++) {
-                ret[i] = null; //remove everything else (i.e can't leave glider)
-            }
-            return ret;
-        }else{
-            return super.getRemainingItems(inv);
-        }
-    }
+//    @Override
+//    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv){ //needs matches overridden due to (Forge?) bug
+//        if (upgradeRemovedStack != null){
+//            NonNullList<ItemStack> ret = new NonNullList<ItemStack>();
+//            ret[0] = upgradeRemovedStack.copy();
+//            for (int i = 1; i < ret.length; i++) {
+//                ret[i] = null; //remove everything else (i.e can't leave glider)
+//            }
+//            return ret;
+//        }else{
+//            return super.getRemainingItems(inv);
+//        }
+//    }
 
 }

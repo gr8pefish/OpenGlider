@@ -10,7 +10,7 @@ import gr8pefish.openglider.common.registry.CapabilityRegistry;
 import gr8pefish.openglider.common.registry.ItemRegistry;
 import gr8pefish.openglider.common.wind.WindHelper;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -32,8 +32,8 @@ public class OpenGlider {
     //Creative Tab
     public static final CreativeTabs creativeTab = new CreativeTabs(MODID) {
         @Override
-        public Item getTabIconItem() {
-            return ItemRegistry.gliderBasic;
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ItemRegistry.gliderBasic);
         }
     };
 

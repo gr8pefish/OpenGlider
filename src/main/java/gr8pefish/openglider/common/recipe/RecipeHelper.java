@@ -41,7 +41,7 @@ public class RecipeHelper {
                     for (ItemStack upgrade : UpgradeItems.getPossibleUpgradeList()) {
                         if (ItemStack.areItemStacksEqual(upgrade, itemstack)) {
                             ItemStack returnStack = itemstack.copy(); //copy stack
-                            returnStack.stackSize = 1; //only apply 1 upgrade (stack size of 1)
+                            returnStack.setCount(1); //only apply 1 upgrade (stack size of 1)
                             return returnStack;
                         }
                     }

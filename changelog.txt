@@ -1,19 +1,5 @@
 ------------------------------------------------------
-Version 1.10.2 - 1.0.0
-------------------------------------------------------
-Additions
-- Added air resistance to gliders, so you (slowly) slow down over time.
-    - Different values for different glider tiers.
-    - Also fixes mod interactions like slime string causing you to glide way faster than intended.
-    - Fully configurable (as always).
-
-Changes
-- Greatly increased default durability
-
-Bug Fixes
-- Fix changing items from glider not updating sprites
-------------------------------------------------------
-Version 1.10.2 - 0.2.3
+Version 1.11.2 - 1.0.2
 ------------------------------------------------------
 Additions
 - None
@@ -22,62 +8,27 @@ Changes
 - None
 
 Bug Fixes
-- Fix crash due to server closing creating a NPE for client
+- None
 ------------------------------------------------------
-Version 1.10.2 - 0.2.2
-------------------------------------------------------
-Additions
-- Added German translation (thanks ACGaming)
-
-Changes
-- Temporarily disabled upgrade so as to not cause confusion.
-
-Bug Fixes
-- Fix update URL (thanks TheRandomLabs)
-------------------------------------------------------
-Version 1.10.2 - 0.2.1
+Version 1.11.2 - 1.0.1
 ------------------------------------------------------
 Additions
 - None
 
 Changes
-- Removed handlebar rendering for now, until the re-equip visual bug is fixed.
-    - Configurable if you want it in anyway.
+- None
 
 Bug Fixes
-- Fix lang file localizations.
+- None
 ------------------------------------------------------
-Version 1.10.2 - 0.2.0
+Version 1.11.2 - 1.0.0
 ------------------------------------------------------
-Additions
-- New advanced glider.
 
-Changes
-- Lots!
-
-Bug Fixes
-- Lots!
-------------------------------------------------------
-Version 1.10.2 - 0.1.2
-------------------------------------------------------
-Additions
-- Message to alert the player they can't hang glide with an elytra equipped, instead of failing silently.
-
-Changes
-- (Configurable) Disable offhand rendering when gliding.
-- Split config option for enabling rendering into first and third person perspectives.
-
-Bug Fixes
-- Fixed lighting of the hang glider correctly in both 3rd and 1st person modes.
-- Fixed multiple hang gliders changing texture when flying with multiple at once.
-------------------------------------------------------
-Version 1.10.2 - 0.1.1 (versioning: major-minor-build)
-------------------------------------------------------
-Initial (Alpha) Release
+Initial port to 1.11.2
+Same features as 1.10.2-1.0.0: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt
 
 Additions
-- All the features!
-    - If you're actually curious check CurseForge for an overview or GitHub commit history for details.
+- None
 
 Changes
 - None

@@ -82,7 +82,6 @@ public class ItemHangGliderBase extends Item implements IGlider {
     /**
      * Handles a right click of the item attempting to deploy the hang glider.
      *
-     * @param itemStack - the stack clicked
      * @param world - the world this occurs in
      * @param player - the player clicking
      * @param hand - the hand used
@@ -90,9 +89,11 @@ public class ItemHangGliderBase extends Item implements IGlider {
      * @return - an ActionResult of the occurrence
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+
         //ToDo: test enforce mainhand only
         ItemStack chestItem = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        ItemStack itemStack = player.getHeldItem(hand);
 
         //if no elytra equipped
         if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
@@ -109,7 +110,7 @@ public class ItemHangGliderBase extends Item implements IGlider {
             //client only
             if (!world.isRemote) {
                 //send packet to nearby players to update visually
-                EntityTracker tracker = world.getMinecraftServer().worldServerForDimension(player.dimension).getEntityTracker();
+                EntityTracker tracker = world.getMinecraftServer().getWorld(player.dimension).getEntityTracker();
                 tracker.sendToTracking(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, GliderHelper.getIsGliderDeployed(player))));
             }
 
