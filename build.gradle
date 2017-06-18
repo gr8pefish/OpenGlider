@@ -170,7 +170,7 @@ curseforge {
         changelog = getChangelogText()
         releaseType = release_type.toString()
 
-        addGameVersion '1.10.2'
+        addGameVersion '1.11.2'
 
         relations curseRelations
     }
