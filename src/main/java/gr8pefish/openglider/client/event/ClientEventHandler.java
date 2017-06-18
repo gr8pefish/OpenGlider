@@ -91,7 +91,7 @@ public class ClientEventHandler extends Gui {
     @SubscribeEvent
     public void onRenderOverlay(RenderWorldLastEvent event){
         if (ConfigHandler.enableRenderingFPP && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) { //rendering enabled and first person perspective
-            EntityPlayer playerEntity = Minecraft.getMinecraft().thePlayer;
+            EntityPlayer playerEntity = Minecraft.getMinecraft().player;
             if (GliderHelper.getIsGliderDeployed(playerEntity)) { //if gliderBasic deployed
                 if (OpenGliderPlayerHelper.shouldBeGliding(playerEntity)) { //if flying
                     renderGliderFirstPersonPerspective(event); //render hang gliderBasic above head
@@ -111,8 +111,8 @@ public class ClientEventHandler extends Gui {
      */
     private void renderGliderFirstPersonPerspective(RenderWorldLastEvent event){
 
-        EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
-        ItemStack gliderStack = GliderHelper.getGlider(Minecraft.getMinecraft().thePlayer);
+        EntityPlayer entityPlayer = Minecraft.getMinecraft().player;
+        ItemStack gliderStack = GliderHelper.getGlider(Minecraft.getMinecraft().player);
         if (gliderStack == null) return; //just in case the other null check don't work somehow, return
         ResourceLocation resourceLocation = ((IGlider)gliderStack.getItem()).getModelTexture(gliderStack);
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation); //bind texture

@@ -53,15 +53,15 @@ public class OpenGliderPlayerHelper {
                 }
 
                 //no wild arm swinging while flying
-                if (player.worldObj.isRemote) {
+                if (player.world.isRemote) {
                     player.limbSwing = 0;
                     player.limbSwingAmount = 0;
                 }
 
                 //damage the hang glider
                 if (ConfigHandler.durabilityEnabled) { //durability should be taken away
-                    if (!player.worldObj.isRemote) { //server
-                        if (player.worldObj.rand.nextInt(ConfigHandler.durabilityTimeframe) == 0) { //damage about once per x ticks
+                    if (!player.world.isRemote) { //server
+                        if (player.world.rand.nextInt(ConfigHandler.durabilityTimeframe) == 0) { //damage about once per x ticks
                             PacketHandler.HANDLER.sendTo(new PacketUpdateGliderDamage(), (EntityPlayerMP) player); //send to client
                             glider.damageItem(ConfigHandler.durabilityPerUse, player);
                             if (((IGlider)(glider.getItem())).isBroken(glider)) { //broken item
@@ -86,11 +86,11 @@ public class OpenGliderPlayerHelper {
         float volume;
         float pitch;
 
-        float f = MathHelper.sqrt_double(player.motionX * player.motionX + player.motionZ * player.motionZ + player.motionY * player.motionY);
+        float f = MathHelper.sqrt(player.motionX * player.motionX + player.motionZ * player.motionZ + player.motionY * player.motionY);
         float f1 = f / 2.0F;
 
         if ((double)f >= 0.01D) {
-            volume = MathHelper.clamp_float(f1 * f1, 0.0F, 1.0F);
+            volume = MathHelper.clamp(f1 * f1, 0.0F, 1.0F);
         }
         else {
             volume = 0.0F;

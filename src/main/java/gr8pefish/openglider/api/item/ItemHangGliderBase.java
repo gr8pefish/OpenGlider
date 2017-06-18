@@ -108,12 +108,12 @@ public class ItemHangGliderBase extends Item implements IGlider {
             if (!world.isRemote) {
                 //send packet to nearby players to update visually
                 EntityTracker tracker = world.getMinecraftServer().worldServerForDimension(player.dimension).getEntityTracker();
-                tracker.sendToAllTrackingEntity(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, GliderHelper.getIsGliderDeployed(player))));
+                tracker.sendToTracking(player, PacketHandler.HANDLER.getPacketFrom(new PacketUpdateClientTarget(player, GliderHelper.getIsGliderDeployed(player))));
             }
 
         } else {
             if (world.isRemote) { //client
-                player.addChatMessage(new TextComponentTranslation("openglider.elytra.error"));
+                player.sendMessage(new TextComponentTranslation("openglider.elytra.error"));
             }
         }
 
