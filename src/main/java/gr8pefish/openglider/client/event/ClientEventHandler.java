@@ -115,7 +115,7 @@ public class ClientEventHandler extends Gui {
 
         EntityPlayer entityPlayer = Minecraft.getMinecraft().player;
         ItemStack gliderStack = GliderHelper.getGlider(Minecraft.getMinecraft().player);
-        if (gliderStack == null) return; //just in case the other null check don't work somehow, return
+        if (gliderStack == null || gliderStack.isEmpty()) return; //just in case the other null check don't work somehow, return
         ResourceLocation resourceLocation = ((IGlider)gliderStack.getItem()).getModelTexture(gliderStack);
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation); //bind texture
 
@@ -182,7 +182,7 @@ public class ClientEventHandler extends Gui {
             if (GliderHelper.getIsGliderDeployed(player)) { //if gliderBasic deployed
                 if (ConfigHandler.disableHandleBarRenderingWhenGliding) event.setCanceled(true);
                 else if (ConfigHandler.disableOffhandRenderingWhenGliding) {
-                    if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IGlider && !((IGlider) player.getHeldItemMainhand().getItem()).isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang gliderBasic
+                    if (player.getHeldItemMainhand() != null && !player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() instanceof IGlider && !((IGlider) player.getHeldItemMainhand().getItem()).isBroken(player.getHeldItemMainhand())) { //if holding a deployed hang gliderBasic
                         if (event.getHand() == EnumHand.OFF_HAND) { //offhand rendering
                             event.setCanceled(true);
                         }

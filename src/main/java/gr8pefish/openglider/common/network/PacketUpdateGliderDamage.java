@@ -35,7 +35,7 @@ public class PacketUpdateGliderDamage implements IMessage{
                 EntityPlayer player = OpenGlider.proxy.getClientPlayer();
                 if (player != null) {
                     ItemStack glider = OpenGliderPlayerHelper.getGlider(player);
-                    if (glider != null) {
+                    if (glider != null && !glider.isEmpty()) {
                         glider.damageItem(ConfigHandler.durabilityPerUse, player);
                         if (((IGlider)glider.getItem()).isBroken(glider)) { //broken item
                             GliderHelper.setIsGliderDeployed(player, false);

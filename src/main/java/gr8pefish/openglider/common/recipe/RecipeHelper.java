@@ -20,7 +20,7 @@ public class RecipeHelper {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 ItemStack itemstack = inventoryCrafting.getStackInRowAndColumn(j, i);
-                if (itemstack != null && (itemstack.getItem() instanceof IGlider)) {
+                if (itemstack != null && !itemstack.isEmpty() && (itemstack.getItem() instanceof IGlider)) {
                     return itemstack;
                 }
             }
@@ -37,7 +37,7 @@ public class RecipeHelper {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 ItemStack itemstack = inventoryCrafting.getStackInRowAndColumn(j, i);
-                if (itemstack != null) {
+                if (itemstack != null && !itemstack.isEmpty()) {
                     for (ItemStack upgrade : UpgradeItems.getPossibleUpgradeList()) {
                         if (ItemStack.areItemStacksEqual(upgrade, itemstack)) {
                             ItemStack returnStack = itemstack.copy(); //copy stack
@@ -59,7 +59,7 @@ public class RecipeHelper {
     public static int getFirstGliderInGridSlotNumber(InventoryCrafting inventoryCrafting) {
         for (int i = 0; i < 9; ++i) {
             ItemStack itemstack = inventoryCrafting.getStackInSlot(i);
-            if (itemstack != null && (itemstack.getItem() instanceof IGlider))
+            if (itemstack != null && !itemstack.isEmpty() && (itemstack.getItem() instanceof IGlider))
                 return i;
         }
         return -1;

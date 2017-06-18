@@ -28,7 +28,7 @@ public class GliderHelper {
         if (cap != null && cap.getIsGliderDeployed()) {
 
             //if player holding a gliderBasic
-            if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IGlider) {
+            if (player != null && player.getHeldItemMainhand() != null && !player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() instanceof IGlider) {
 
                 //return that held gliderBasic
                 return player.getHeldItemMainhand();

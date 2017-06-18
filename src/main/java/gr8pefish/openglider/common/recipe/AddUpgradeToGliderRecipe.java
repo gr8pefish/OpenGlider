@@ -47,7 +47,7 @@ public class AddUpgradeToGliderRecipe extends ShapelessOreRecipe {
     public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
 
         ItemStack glider = getFirstUpgradableGlider(inventoryCrafting); //get the upgradable glider in the recipes grid
-        if (glider == null) return null; //if no valid glider return nothing
+        if (glider == null || glider.isEmpty()) return null; //if no valid glider return nothing
         ItemStack result = glider.copy(); //the resulting glider, copied so it's data can be more easily manipulated
 
         ArrayList<ItemStack> upgrades = OpenGliderHelper.getUpgradesFromNBT(result); //get the upgrade
@@ -65,7 +65,7 @@ public class AddUpgradeToGliderRecipe extends ShapelessOreRecipe {
         boolean upgradeFound = false; //too determine if you need to return a new glider in the output slot
         NBTTagList tagList = new NBTTagList(); //the upgrade data base tag
 
-        if (upgradeToApply != null) { //if have more than zero upgrade slots
+        if (upgradeToApply != null && !upgradeToApply.isEmpty()) { //if have more than zero upgrade slots
             if (upgrades.isEmpty()) { //no upgrades
                 tagList.appendTag(upgradeToApply.writeToNBT(new NBTTagCompound())); //save the new upgrade
                 upgradeFound = true; //you applied an upgrade, congratulations
@@ -84,7 +84,7 @@ public class AddUpgradeToGliderRecipe extends ShapelessOreRecipe {
         if (upgradeFound) { //if you applied an upgrade
             return result; //return the new glider
         } else { //otherwise
-            return null; //return nothing
+            return ItemStack.EMPTY; //return nothing
         }
 
     }

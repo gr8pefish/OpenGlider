@@ -140,7 +140,7 @@ public class OpenGliderPlayerHelper {
      * @return - true if the item is an unbroken glider, false otherwise
      */
     private static boolean isValidGlider(ItemStack stack) {
-        if (stack != null) {
+        if (stack != null && !stack.isEmpty()) {
             if (stack.getItem() instanceof IGlider && (!((IGlider)(stack.getItem())).isBroken(stack))) { //hang glider, not broken
                 return true;
             }

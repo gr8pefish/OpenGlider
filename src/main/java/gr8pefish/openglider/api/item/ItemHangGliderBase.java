@@ -96,7 +96,7 @@ public class ItemHangGliderBase extends Item implements IGlider {
         ItemStack itemStack = player.getHeldItem(hand);
 
         //if no elytra equipped
-        if (!(chestItem != null && chestItem.getItem() instanceof ItemElytra)) {
+        if (!(chestItem != null && !chestItem.isEmpty() && chestItem.getItem() instanceof ItemElytra)) {
 
             if (this.isBroken(itemStack)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //nothing if broken
             if (!hand.equals(EnumHand.MAIN_HAND)) return ActionResult.newResult(EnumActionResult.PASS, itemStack); //return if not using main hand
