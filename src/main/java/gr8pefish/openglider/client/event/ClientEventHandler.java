@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -22,6 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Mouse;
 
 @SideOnly(Side.CLIENT)
 public class ClientEventHandler extends Gui {
@@ -189,5 +191,29 @@ public class ClientEventHandler extends Gui {
             }
         }
     }
+
+    /**
+     * Fix mouse wheel scroll on deployed glider to changes active item away from the glider not undeploying it.
+     *
+     * @param event - mouse event, fires before the slot is changed
+     */
+    @SubscribeEvent
+    public void onScroll(MouseEvent event) {
+
+        // Mouse Wheel
+        int wheelState = event.getDwheel();
+
+        // Mouse wheel scrolled
+        if (wheelState != 0) {
+            EntityPlayer player = OpenGlider.proxy.getClientPlayer();
+            // Player has a deployed glider
+            if (GliderHelper.getIsGliderDeployed(player)) {
+                //Undeploy it
+                GliderHelper.setIsGliderDeployed(player, false);
+            }
+        }
+
+    }
+
 
 }
