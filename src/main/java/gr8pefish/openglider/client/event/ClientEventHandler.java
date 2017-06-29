@@ -138,7 +138,7 @@ public class ClientEventHandler extends Gui {
     private void setLightingBeforeRendering(EntityPlayer player, float partialTicks) {
         GlStateManager.enableLighting();
 
-        int i = player.getBrightnessForRender(partialTicks);
+        int i = player.getBrightnessForRender();
         int j = i % 65536;
         int k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);

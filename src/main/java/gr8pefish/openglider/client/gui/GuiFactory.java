@@ -20,12 +20,7 @@ public class GuiFactory implements IModGuiFactory {
 
     @Override
     public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return null;
-    }
-
-    @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return ConfigGuiOpenGlider.class;
+        return new ConfigGuiOpenGlider(parentScreen);
     }
 
     @Override
@@ -33,9 +28,5 @@ public class GuiFactory implements IModGuiFactory {
         return null;
     }
 
-    @Override
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
-        return null;
-    }
 }
 
