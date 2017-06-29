@@ -26,16 +26,15 @@ public class ItemRegistry {
 
     // Items
     @GameRegistry.ObjectHolder(ModInfo.ITEM_GLIDER_PART_NAME)
-    public static ItemHangGliderPart GLIDER_PART = null;
+    public static final ItemHangGliderPart GLIDER_PART = null;
     @GameRegistry.ObjectHolder(ModInfo.ITEM_GLIDER_BASIC_NAME)
-    public static ItemHangGliderBasic GLIDER_BASIC = null;
+    public static final ItemHangGliderBasic GLIDER_BASIC = null;
     @GameRegistry.ObjectHolder(ModInfo.ITEM_GLIDER_ADVANCED_NAME)
-    public static ItemHangGliderAdvanced GLIDER_ADV = null;
+    public static final ItemHangGliderAdvanced GLIDER_ADV = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        GLIDER_PART = (ItemHangGliderPart) new ItemHangGliderPart().setRegistryName(ModInfo.ITEM_GLIDER_PART_NAME);
-        event.getRegistry().register(GLIDER_PART);
+        event.getRegistry().register(new ItemHangGliderPart().setRegistryName(ModInfo.ITEM_GLIDER_PART_NAME));
         event.getRegistry().register(new ItemHangGliderBasic().setRegistryName(ModInfo.ITEM_GLIDER_BASIC_NAME));
         event.getRegistry().register(new ItemHangGliderAdvanced().setRegistryName(ModInfo.ITEM_GLIDER_ADVANCED_NAME));
     }
@@ -57,58 +56,7 @@ public class ItemRegistry {
 
     public static void registerRecipes() {
 
-        //ToDo: 1.12 Recipe registry
-        //Left wing
-//        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderPart, 1, 0),
-//                " sl",
-//                "sll",
-//                "lll",
-//                's', "stickWood", 'l', "leather").setMirrored(false));
-//
-//        //Right wing
-//        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderPart, 1, 1),
-//                "ls ",
-//                "lls",
-//                "lll",
-//                's', "stickWood", 'l', "leather").setMirrored(false));
-//
-//        //Scaffolding
-//        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderPart, 1, 2),
-//                " i ",
-//                "i i",
-//                "iii",
-//                'i', "ingotIron"));
-//
-//        //Glider Basic
-//        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderBasic),
-//                "   ",
-//                "lsr",
-//                "   ",
-//                'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 's', new ItemStack(ItemRegistry.gliderPart, 1, 2),
-//                'r', new ItemStack(ItemRegistry.gliderPart, 1, 1)).setMirrored(false));
-//
-//        //Glider Adv
-//        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.gliderAdv),
-//                " e ",
-//                "lbr",
-//                " e ",
-//                'l', new ItemStack(ItemRegistry.gliderPart, 1, 0), 'b', new ItemStack(ItemRegistry.gliderBasic, 1),
-//                'r', new ItemStack(ItemRegistry.gliderPart, 1, 1), 'e', new ItemStack(Items.ELYTRA)).setMirrored(false));
-//
-//        //Upgrades
-//        for (ItemStack upgrade : UpgradeItems.getPossibleUpgradeList()) {
-//
-//            //basic
-//            GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.gliderBasic), new ItemStack(ItemRegistry.gliderBasic), upgrade));
-//            GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.gliderBasic), new ItemStack(ItemRegistry.gliderBasic)));
-//
-//            //advanced
-//            GameRegistry.addRecipe(new AddUpgradeToGliderRecipe(new ItemStack(ItemRegistry.gliderAdv), new ItemStack(ItemRegistry.gliderAdv), upgrade));
-//            GameRegistry.addRecipe(new RemoveUpgradeFromGliderRecipe(new ItemStack(ItemRegistry.gliderAdv), new ItemStack(ItemRegistry.gliderAdv)));
-//        }
 
-//        RecipeSorter.register("GliderAddUpgrade", AddUpgradeToGliderRecipe.class, RecipeSorter.Category.SHAPELESS, "");
-//        RecipeSorter.register("GliderRemoveUpgrade", RemoveUpgradeFromGliderRecipe.class, RecipeSorter.Category.SHAPED, "");
 
     }
 
