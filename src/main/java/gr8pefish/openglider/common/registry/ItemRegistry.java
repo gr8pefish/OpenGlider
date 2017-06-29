@@ -54,11 +54,5 @@ public class ItemRegistry {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(ModInfo.DOMAIN + name, "inventory"));
     }
 
-    public static void registerRecipes() {
-
-
-
-    }
-
 }
 

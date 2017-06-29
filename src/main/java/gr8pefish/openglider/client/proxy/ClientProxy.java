@@ -18,7 +18,7 @@ public class ClientProxy implements IProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-//        ItemRegistry.registerRenders(); //ToDo
+
     }
 
     @Override

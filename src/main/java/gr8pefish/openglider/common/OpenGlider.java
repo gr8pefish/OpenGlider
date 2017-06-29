@@ -57,9 +57,6 @@ public class OpenGlider {
         //packets
         PacketHandler.init();
 
-        //items
-//        ItemRegistry.registerItems();
-
         //init renderers and client event handlers
         proxy.preInit(event);
     }
@@ -70,9 +67,6 @@ public class OpenGlider {
 
         //upgrades
         UpgradeItems.initUpgradesList();
-
-        //recipes
-        ItemRegistry.registerRecipes();
 
         //register server events
         MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
