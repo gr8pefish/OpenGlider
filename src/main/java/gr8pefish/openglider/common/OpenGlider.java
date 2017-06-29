@@ -33,7 +33,7 @@ public class OpenGlider {
     public static final CreativeTabs creativeTab = new CreativeTabs(MODID) {
         @Override
         public ItemStack getTabIconItem() {
-            return new ItemStack(ItemRegistry.gliderBasic);
+            return new ItemStack(ItemRegistry.GLIDER_BASIC);
         }
     };
 
@@ -58,7 +58,7 @@ public class OpenGlider {
         PacketHandler.init();
 
         //items
-        ItemRegistry.registerItems();
+//        ItemRegistry.registerItems();
 
         //init renderers and client event handlers
         proxy.preInit(event);
