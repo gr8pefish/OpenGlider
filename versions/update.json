@@ -1,13 +1,10 @@
 {
   "homepage": "https://minecraft.curseforge.com/projects/open-glider",
   "promos": {
-    "1.10.2-latest": "1.0.0",
-    "1.10.2-recommended": "1.0.0"
+    "1.12-latest": "1.0.0",
+    "1.12-recommended": "1.0.0"
   },
-  "1.10.2": {"3": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","2": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","2": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","2": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt","1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
-    "1.0.0": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
-    "0.2.0": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
-    "0.1.2": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt",
-    "0.1.1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.10/changelog.txt"
+  "1.12": {
+    "1.0.0": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt"
   }
 }
