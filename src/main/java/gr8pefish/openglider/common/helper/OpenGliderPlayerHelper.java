@@ -59,7 +59,7 @@ public class OpenGliderPlayerHelper {
                     }
 
                     // Stop fall damage
-                    player.fallDistance = 0f;
+                    player.fallDistance = 0.0F;
 
 //                    playWindSound(player); //ToDo: sounds
                 }
