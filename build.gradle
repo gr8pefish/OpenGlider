@@ -174,13 +174,13 @@ task incrementVersionNumber {
             "[![](https://img.shields.io/badge/Latest_version-${major_version}.${minor_version}.${build_number}") //replace README 1.10 badge version with CURRENT build
 
     //update latest and recommended forge update versions to current
-    ant.replace(file: "versions/update.json", token: "\"1.12-latest\": \"${build_number}\"", value: "\"1.10.2-latest\": \"${build_number.toString().toInteger() + 1}\"")
-    ant.replace(file: "versions/update.json", token: "\"1.12-recommended\": \"${build_number}\"", value: "\"1.10.2-recommended\": \"${build_number.toString().toInteger() + 1}\"")
+    ant.replace(file: "versions/update.json", token: "\"1.12-latest\": \"${build_number}\"", value: "\"1.12-latest\": \"${build_number.toString().toInteger()}\"")
+    ant.replace(file: "versions/update.json", token: "\"1.12-recommended\": \"${build_number}\"", value: "\"1.12-recommended\": \"${build_number.toString().toInteger()}\"")
 
     //update version history for forge update by adding latest
     ant.replace(file: "versions/update.json", token: "\"1.12\": {" +
             "", value: "\"1.12\": {" +
-            "\"${major_version}.${minor_version}.${build_number.toString().toInteger() + 1}\": \"See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt\"," +
+            "\"\n${major_version}.${minor_version}.${build_number.toString().toInteger()}\": \"See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt\"," +
             "")
 }
 

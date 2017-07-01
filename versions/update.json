@@ -1,10 +1,11 @@
 {
   "homepage": "https://minecraft.curseforge.com/projects/open-glider",
   "promos": {
-    "1.12-latest": "1.0.0",
-    "1.12-recommended": "1.0.0"
+    "1.12-latest": "1.0.1",
+    "1.12-recommended": "1.0.1"
   },
   "1.12": {
+    "1.0.1": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt",
     "1.0.0": "See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt"
   }
 }
