@@ -5,7 +5,14 @@ Additions
 - None
 
 Changes
-- None
+- Lots of config default rebalancing:
+    - All gliders have less chance to take damage/durablity now
+    - Basic glider has slightly more durability still
+    - Advanced glider rebalanced to be about the same durability as it was before
+    - Basic glider has less air resistance, and is slightly faster
+    - Wind effect in storms is now less
+    - Shift visual effect (glider changing position) is halved to be less jarring
+
 
 Bug Fixes
 - None
