@@ -178,10 +178,10 @@ task incrementVersionNumber {
     ant.replace(file: "versions/update.json", token: "\"1.12-recommended\": \"${build_number}\"", value: "\"1.12-recommended\": \"${build_number.toString().toInteger()}\"")
 
     //update version history for forge update by adding latest
-    ant.replace(file: "versions/update.json", token: "\"1.12\": {" +
-            "", value: "\"1.12\": {" +
-            "\"\n${major_version}.${minor_version}.${build_number.toString().toInteger()}\": \"See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt\"," +
-            "")
+//    ant.replace(file: "versions/update.json", token: "\"1.12\": {" +
+//            "", value: "\"1.12\": {" +
+//            "\"\n${major_version}.${minor_version}.${build_number.toString().toInteger()}\": \"See changelog here: https://github.com/gr8pefish/OpenGlider/blob/1.12/changelog.txt\"," +
+//            "")
 }
 
 //Adds a new changelog segment for the next 1.7.10. Nifty!
