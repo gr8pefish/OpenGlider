@@ -51,6 +51,9 @@ public class ConfigHandler {
     public static int durabilityPerUse;
     public static int durabilityTimeframe;
 
+    //Misc
+    public static boolean heatUpdraftEnabled;
+
     //Client
     public static boolean enableRendering3PP;
     public static boolean enableRenderingFPP;
@@ -94,7 +97,7 @@ public class ConfigHandler {
         advancedGliderShiftHorizSpeed = config.getFloat("3) Fast Forward Movement", category, 0.08F, 0, 100,"The amount of blocks to move forwards (per-tick) while gliding fast (pressing 'Shift').");
         advancedGliderShiftVertSpeed = config.getFloat("4) Fast Fall Distance", category, 0.675F, 0, 100,"The amount of blocks to fall (per-tick) while gliding fast (pressing 'Shift').");
         advancedGliderWindModifier = config.getFloat("5) Overall Wind Power", category, 0.75F, 0.001F, 10, "A quality-of-life option to quickly change the overall power of the wind effect for this glider. Default is an overall quite weak wind, with mild gusts that occur semi-commonly. Note that this value can be a decimal (i.e. 0.5 would be half as strong). More fine-grained options are available in the 'wind' section of this config."); //ToDo: playtest
-        advancedGliderAirResistance = config.getFloat("6) Air Resistance", category, 0.999F, 0, 1, "The rate at which air resistance hinders your movement. 1 is no resistance, 0.5 is 1/2 as fast each tick.");
+        advancedGliderAirResistance = config.getFloat("6) Air Resistance", category, 0.99F, 0, 1, "The rate at which air resistance hinders your movement. 1 is no resistance, 0.5 is 1/2 as fast each tick.");
         advancedGliderTotalDurability = config.getInt("7) Total Durability", category, 2202, 1, 100000, "The maximum durability of an unused advanced hang glider.");
 
         category = "3) Wind";
@@ -115,7 +118,11 @@ public class ConfigHandler {
         durabilityPerUse = config.getInt("Durability Per-Use", category, 1, 0, 10000, "The durability used up each time.");
         durabilityTimeframe = config.getInt("Durability Timeframe", category, 200, 1, 10000, "The timeframe for durability usage, in ticks. Recall that there are 20 ticks in a second, so a value of 20 would damage the item about once a second. Default is 1 damage about every 10 seconds of flight, so with the default durability (618) means about 15 minutes of flight time with an undamaged glider.");
 
-        category = "5) Visuals";
+        category = "5) Misc";
+        categories.add(category);
+        heatUpdraftEnabled = config.getBoolean("Enable Heat Updraft", category, false, "Allows gliders to rise when gliding over hot blocks (e.g. lava). EXPERIMENTAL so disabled by default (for now).");
+
+        category = "6) Visuals";
         categories.add(category);
         enableRendering3PP = config.getBoolean("1) Enable Rendering 3PP", category, true, "Enables rendering of the hang glider on the player in third-person perspective (or to others).");
         enableRenderingFPP = config.getBoolean("2) Enable Rendering FPP", category, true, "Enables rendering of the hang glider above the player's head in first person perspective.");
