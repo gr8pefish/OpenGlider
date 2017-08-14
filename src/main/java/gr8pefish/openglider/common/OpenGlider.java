@@ -22,7 +22,7 @@ import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
 import static gr8pefish.openglider.api.OpenGliderInfo.MOD_NAME;
 import static gr8pefish.openglider.common.lib.ModInfo.FORGE_UPDATE_JSON_URL;
 
-@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY, updateJSON = FORGE_UPDATE_JSON_URL)
+@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY)//, updateJSON = FORGE_UPDATE_JSON_URL) //disabled version update checker for now, as it was giving false positives
 public class OpenGlider {
 
     //Proxies
