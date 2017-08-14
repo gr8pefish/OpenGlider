@@ -1,14 +1,15 @@
 ------------------------------------------------------
-Version 1.12 - 1.0.2
+Version 1.12.1 - 1.0.2
 ------------------------------------------------------
 Additions
-- None
+- Heat updraft system!
+    - Experimental, so disabled by default (configurable), but it does work if you want to try it out.
 
 Changes
-- None
+- Changed to 1.12.1, update Forge and mappings for that
 
 Bug Fixes
-- None
+- Disable update checker for now , as it was giving false positives
 ------------------------------------------------------
 Version 1.12 - 1.0.1
 ------------------------------------------------------
