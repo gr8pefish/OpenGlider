@@ -1,0 +1,13 @@
+# Item Localizations
+item.openglider:hang_glider_basic.name=滑翔翼
+item.openglider:hang_glider_advanced.name=高级滑翔翼
+item.openglider:glider_part.wing_left.name=左翼
+item.openglider:glider_part.wing_right.name=右翼
+item.openglider:glider_part.scaffolding.name=滑翔翼把手
+
+# Creative tab Localization
+itemGroup.openglider=滑翔翼
+
+# Other
+openglider.elytra.error=装备鞘翅时不能使用滑翔翼！
+openglider.tooltip.upgrade=升级
