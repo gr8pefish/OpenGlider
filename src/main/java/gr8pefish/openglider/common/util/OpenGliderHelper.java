@@ -19,7 +19,7 @@ public class OpenGliderHelper {
                     for (int i = 0; i < tagList.tagCount(); i++) {
                         NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
                         ItemStack upgrade = new ItemStack(stackTag);
-                        if (upgrade != null && !glider.isEmpty())
+                        if (!upgrade.isEmpty() && !glider.isEmpty())
                             upgradesArrayList.add(upgrade);
                     }
                 }
