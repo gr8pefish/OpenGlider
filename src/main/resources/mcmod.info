@@ -3,7 +3,7 @@
   "name": "Open Glider",
   "description": "Hang glider!",
   "version": "${version}",
-  "mcversion": "1.12.1",
+  "mcversion": "[1.12,1.13)",
   "url": "",
   "updateUrl": "",
   "authorList": ["gr8pefish"],
