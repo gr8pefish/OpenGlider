@@ -18,11 +18,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
-import static gr8pefish.openglider.api.OpenGliderInfo.MOD_NAME;
-import static gr8pefish.openglider.common.lib.ModInfo.FORGE_UPDATE_JSON_URL;
+import static gr8pefish.openglider.api.OpenGliderInfo.*;
 
-@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY)//, updateJSON = FORGE_UPDATE_JSON_URL) //disabled version update checker for now, as it was giving false positives
+@Mod(modid = MODID, name = MOD_NAME, version = ModInfo.VERSION, guiFactory = ModInfo.GUI_FACTORY, acceptedMinecraftVersions = "[1.12,1.13)")//, updateJSON = FORGE_UPDATE_JSON_URL) //disabled version update checker for now, as it was giving false positives
 public class OpenGlider {
 
     //Proxies
@@ -31,8 +29,9 @@ public class OpenGlider {
 
     //Creative Tab
     public static final CreativeTabs creativeTab = new CreativeTabs(MODID) {
+
         @Override
-        public ItemStack getTabIconItem() {
+        public ItemStack createIcon() {
             return new ItemStack(ItemRegistry.GLIDER_BASIC);
         }
     };

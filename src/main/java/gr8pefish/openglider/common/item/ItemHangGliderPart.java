@@ -6,12 +6,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
-import static gr8pefish.openglider.api.OpenGliderInfo.MODID;
+import static gr8pefish.openglider.api.OpenGliderInfo.*;
 
 public class ItemHangGliderPart extends Item {
 
@@ -21,7 +17,7 @@ public class ItemHangGliderPart extends Item {
         super();
         setCreativeTab(OpenGlider.creativeTab);
         setHasSubtypes(true);
-        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_PART_NAME+ ".");
+        setTranslationKey(MODID +":" + ModInfo.ITEM_GLIDER_PART_NAME+ ".");
     }
 
     @Override
@@ -33,8 +29,8 @@ public class ItemHangGliderPart extends Item {
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + names[stack.getItemDamage()];
+    public String getTranslationKey(ItemStack stack) {
+        return super.getTranslationKey(stack) + names[stack.getItemDamage()];
     }
 
 }

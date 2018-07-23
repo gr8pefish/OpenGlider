@@ -14,7 +14,7 @@ public class ItemHangGliderAdvanced extends ItemHangGliderBase {
     public ItemHangGliderAdvanced() {
         super(ConfigHandler.advancedGliderHorizSpeed, ConfigHandler.advancedGliderVertSpeed, ConfigHandler.advancedGliderShiftHorizSpeed, ConfigHandler.advancedGliderShiftVertSpeed, ConfigHandler.advancedGliderWindModifier, ConfigHandler.advancedGliderAirResistance, ConfigHandler.advancedGliderTotalDurability, ModelGlider.MODEL_GLIDER_ADVANCED_TEXTURE_RL);
         setCreativeTab(OpenGlider.creativeTab);
-        setUnlocalizedName(MODID +":" + ModInfo.ITEM_GLIDER_ADVANCED_NAME);
+        setTranslationKey(MODID +":" + ModInfo.ITEM_GLIDER_ADVANCED_NAME);
     }
 
     //ToDo: Needed?
