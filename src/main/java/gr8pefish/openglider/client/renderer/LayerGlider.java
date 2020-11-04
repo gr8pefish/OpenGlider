@@ -76,8 +76,8 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
             //renderPlayer.addLayer(new LayerGlider(renderPlayer));
             System.out.println("added layer");
         } catch (Exception e) {
-            System.out.println("error?");
-            System.out.println(e);
+            //System.out.println("error?");
+            //System.out.println(e);
         }
     }
 }
