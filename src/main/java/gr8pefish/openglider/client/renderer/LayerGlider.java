@@ -10,10 +10,15 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import java.util.Map;
+
 import javax.annotation.Nonnull;
+
+import com.google.common.collect.Maps;
 
 public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
 
@@ -68,12 +73,16 @@ public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
     public static void addLayer(){
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
         try {
-            RenderPlayer renderPlayer = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, renderManager, "playerRenderer", "field_178637_m");
-            renderPlayer.addLayer(new LayerGlider(renderPlayer));
+        	Map<String, RenderPlayer> skinMap = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, renderManager, "skinMap", "field_178636_l");
+        	skinMap.forEach((key, value) -> {
+                value.addLayer(new LayerGlider(value));
+            });
+            //RenderPlayer renderPlayer = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, renderManager, "playerRenderer", "field_178637_m");
+            //renderPlayer.addLayer(new LayerGlider(renderPlayer));
             System.out.println("added layer");
         } catch (Exception e) {
-            // failed to add layer
-            //ToDo: Add logger class
+            System.out.println("error?");
+            System.out.println(e);
         }
     }
 }
