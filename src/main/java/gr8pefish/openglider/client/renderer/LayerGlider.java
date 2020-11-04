@@ -10,15 +10,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-
 import java.util.Map;
-
 import javax.annotation.Nonnull;
-
-import com.google.common.collect.Maps;
 
 public class LayerGlider implements LayerRenderer<AbstractClientPlayer> {
 
